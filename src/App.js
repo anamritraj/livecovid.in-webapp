@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Help from "./pages/Help";
 import Home from "./pages/Home";
 import Toolbar from "./components/nav/Toolbar";
+import Footer from "./components/Footer";
 
 class App extends Component {
   constructor() {
@@ -49,6 +50,7 @@ class App extends Component {
               ></Home>
             </Route>
           </Switch>
+          <Footer></Footer>
         </div>
       </Router>
     );

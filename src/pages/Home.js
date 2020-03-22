@@ -6,10 +6,10 @@ const Home = props => {
   return (
     <>
       <div className="container">
-        <div className="row">
-          <h1>COVID-19 India Tracker Statewise</h1>
-        </div>
         <Stats dayChange={props.dayChange} total={props.total}></Stats>
+        <div className="row">
+          <h1>COVID-19 Cases India - Statewise</h1>
+        </div>
         {props.isLoading ? null : (
           <IndiaStateMap
             dayChange={props.dayChange}
