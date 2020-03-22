@@ -1,3 +1,6 @@
+a {
+  color: #272343;
+}
 .container {
   text-align: center;
   width: 100%;
@@ -62,6 +65,18 @@
   font-size: 20px;
 }
 
+/* HELP CSS */
+
+.table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background: #f4efd3;
+}
+
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;
@@ -74,4 +89,6 @@
     padding: 5px 5px;
     font-size: 10px;
   }
+
+  /* Help CSS */
 }
