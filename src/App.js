@@ -4,6 +4,7 @@ import { getStateWiseData } from "./services/patients.service";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Help from "./pages/Help";
 import Home from "./pages/Home";
+import Toolbar from "./components/nav/Toolbar";
 
 class App extends Component {
   constructor() {
@@ -29,21 +30,11 @@ class App extends Component {
       });
     });
   }
-
   render() {
     return (
       <Router>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/help">Help</Link>
-            </li>
-          </ul>
-
-          <hr />
+          <Toolbar />
           <Switch>
             <Route exact path="/help">
               <Help></Help>

@@ -80,7 +80,7 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
     <>
       <div className="row">
         <div className="col-12">
-          <div id="india-state-map"></div>
+          <div id="india-state-map" className="card"></div>
         </div>
       </div>
       <Popover
