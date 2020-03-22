@@ -15,7 +15,7 @@ const SideDrawer = props => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 40 40"
           className="close-svg"
-          enable-background="new 0 0 40 40"
+          enableBackground="new 0 0 40 40"
           version="1.1"
           stroke="#000"
         >
@@ -24,18 +24,18 @@ const SideDrawer = props => {
             y1="15"
             x2="25"
             y2="25"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeMiterlimit="10"
           ></line>
           <line
             x1="25"
             y1="15"
             x2="15"
             y2="25"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeMiterlimit="10"
           ></line>
         </svg>
       </div>

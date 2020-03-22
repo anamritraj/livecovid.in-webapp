@@ -1,23 +1,35 @@
+html,
+body {
+  overflow: auto;
+}
 body {
   background-color: #fdfdfd;
-  padding: 56px 0;
+  padding: 56px 0 100px 0;
 }
 
 a {
-  color: #272343;
+  color: #18b0b0;
+  font-weight: bold;
 }
 .container {
   text-align: center;
-  width: 100%;
+  width: 80%;
   max-width: 100rem;
   z-index: 100;
 }
-
+.stats {
+  margin-top: 40px;
+}
 .boundaried-land-indian {
   stroke: #464646;
-  stroke-width: 2;
 }
-
+.boundaried-land-indian:hover::after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 .card {
   text-align: center;
   padding: 10px;
@@ -75,14 +87,34 @@ a {
 }
 
 .table tbody tr:nth-of-type(odd) {
-  background: #fae3d9;
+  background: #e0fdf6;
+}
+.table thead {
+  font-weight: bolder;
+  background: #e4e4e4;
+}
+.table td,
+.table th {
+  padding: 10px;
+}
+
+.table a {
+  color: #000;
 }
 
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;
   }
-
+  .container {
+    width: 100%;
+  }
+  td {
+    padding: 5px;
+  }
+  .state-col {
+    width: 40%;
+  }
   .popover {
     position: absolute;
     border: 1px solid #e4e4e4;
@@ -92,6 +124,16 @@ a {
   }
 
   /* Help CSS */
+}
+
+/* Credits */
+
+.helpful-resources ul {
+  text-align: left;
+}
+.helpful-resources ul li {
+  margin: 10px 0;
+  overflow-wrap: break-word;
 }
 
 /* Footer CSS */

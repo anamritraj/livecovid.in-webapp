@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SVG } from "@svgdotjs/svg.js";
 import indiaMap from "../india-map";
 import Popover from "../Popover";
+import HelpResources from "./HelpResources";
 
 const percentColors = [
   { percent: 0.0, color: { r: 255, g: 255, b: 255 } },
@@ -11,7 +12,7 @@ const percentColors = [
 
 // Calculate percent as minimum cases/ maximum cases. If % = 0, color should be white
 const getColorBasedOnNoOfCases = percent => {
-  if (percent == 0) {
+  if (percent === 0) {
     return "#fff";
   }
   for (var i = 1; i < percentColors.length - 1; i++) {
@@ -36,11 +37,9 @@ const getColorBasedOnNoOfCases = percent => {
 };
 
 const IndiaStateMap = ({ statewise, isMobile, total }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [popover, setPopover] = useState({ x: 0, y: 0, show: false });
   const [selectedState, setSelectedState] = useState({ name: "", count: 0 });
   useEffect(() => {
-    console.log(total);
     const indiaSvgMap = SVG(indiaMap).addTo("#india-state-map");
     const max = total.max;
     Object.keys(statewise).map(key => {
@@ -49,7 +48,9 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
         .fill(getColorBasedOnNoOfCases(statewise[key].active / max));
 
       indiaSvgMap.findOne("#" + key).on("mouseenter", e => {
-        console.log(e);
+        SVG(e.target).attr({
+          "stroke-width": "5px"
+        });
         setSelectedState({
           name: statewise[key].name,
           count: statewise[key].confirmed
@@ -57,7 +58,9 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       });
 
       indiaSvgMap.findOne("#" + key).on("mouseleave", e => {
-        console.log(e);
+        SVG(e.target).attr({
+          "stroke-width": "2px"
+        });
         setPopover({
           ...popover,
           show: false
@@ -65,7 +68,6 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       });
 
       indiaSvgMap.findOne("#" + key).on("mousemove", e => {
-        console.log(e);
         const gap = isMobile ? 20 : 50;
         setPopover({
           show: true,
@@ -74,13 +76,16 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
         });
       });
     });
-  }, [total.name]);
+  }, [total.max]);
 
   return (
     <>
       <div className="row">
-        <div className="col-12">
+        <div className="col-7">
           <div id="india-state-map" className="card"></div>
+        </div>
+        <div className="col-5">
+          <HelpResources></HelpResources>
         </div>
       </div>
       <Popover

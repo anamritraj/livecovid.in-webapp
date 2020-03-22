@@ -1,9 +1,10 @@
 import React from "react";
+import HelpResources from "../components/HelpResources";
 
 const Help = () => {
   return (
     <div className="container">
-      <h1>Helpline</h1>
+      <h2>Helpline</h2>
       <p>
         Helpline No (Toll Free) <br></br> <a href="tel:1075">1075</a> |
         <a href="tel:+91-11-23978046">+91-11-23978046</a>
@@ -30,12 +31,14 @@ const Help = () => {
           Facebook
         </a>
       </p>
+      <h2>StateWise Telephone Helpline Numbers</h2>
+
       <div>
         <table class="table">
           <thead>
             <tr>
               <th>Sr.No</th>
-              <th>State</th>
+              <th className="state-col">State</th>
               <th>Helpline Number</th>
             </tr>
           </thead>
@@ -367,7 +370,7 @@ const Help = () => {
           <thead>
             <tr>
               <th>Sr.No</th>
-              <th>Union Territory</th>
+              <th className="state-col">Union Territory</th>
               <th>Helpline Number</th>
             </tr>
           </thead>
@@ -481,6 +484,8 @@ const Help = () => {
           </tbody>
         </table>
       </div>
+
+      <HelpResources></HelpResources>
     </div>
   );
 };

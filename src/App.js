@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import { getStateWiseData } from "./services/patients.service";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Help from "./pages/Help";
 import Home from "./pages/Home";
 import Toolbar from "./components/nav/Toolbar";
 import Footer from "./components/Footer";
+import Credits from "./pages/Credits";
 
 class App extends Component {
   constructor() {
@@ -39,6 +40,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/help">
               <Help></Help>
+            </Route>
+            <Route exact path="/credits">
+              <Credits></Credits>
             </Route>
             <Route exact path="/">
               <Home

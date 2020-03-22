@@ -13,7 +13,7 @@ const Footer = props => {
       </span>
       |
       <span>
-        <a href="http://twitter.com/anamritraj">Made by anamritraj</a>
+        <a href="http://twitter.com/anamritraj">Created by anamritraj</a>
       </span>
     </footer>
   );
