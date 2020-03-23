@@ -5,7 +5,7 @@ const StateWiseRow = ({ state, index, isMobile }) => {
     <tr>
       {isMobile ? null : <td>{index}</td>}
       <td>{state.name}</td>
-      <td>{state.active}</td>
+      <td>{state.confirmed}</td>
       <td>{state.recovered}</td>
       <td>{state.deaths}</td>
     </tr>
