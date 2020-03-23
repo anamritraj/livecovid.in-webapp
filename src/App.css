@@ -86,9 +86,9 @@ a {
   border-collapse: collapse;
 }
 
-.table tbody tr:nth-of-type(odd) {
+/* .table tbody tr:nth-of-type(odd) {
   background: #e0fdf6;
-}
+} */
 .table thead {
   font-weight: bolder;
   background: #e4e4e4;
@@ -98,8 +98,36 @@ a {
   padding: 10px;
 }
 
+.table th {
+  padding: 10px;
+}
+
 .table a {
   color: #000;
+}
+
+.table tbody tr:hover {
+  background: #fae3d9;
+}
+/* statewise cases */
+
+.statewise-cases tbody tr {
+  cursor: pointer;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+/* .statewise-cases thead {
+  font-weight: 900;
+  background: #bbded6;
+} */
+
+.statewise-cases td,
+.statewise-cases th {
+  padding: 5px 10px;
+}
+
+.statewise-cases td:nth-child(2) {
+  text-align: left;
 }
 
 @media (max-width: 460px) {
@@ -122,8 +150,15 @@ a {
     padding: 5px 5px;
     font-size: 10px;
   }
-
-  /* Help CSS */
+  .statewise-cases {
+    font-size: 0.8rem;
+  }
+  .statewise-cases td:nth-child(2) {
+    text-align: center;
+  }
+  .statewise-cases td:nth-child(1) {
+    text-align: left;
+  }
 }
 
 /* Credits */

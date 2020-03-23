@@ -3,6 +3,7 @@ import { SVG } from "@svgdotjs/svg.js";
 import indiaMap from "../india-map";
 import Popover from "../Popover";
 import HelpResources from "./HelpResources";
+import StatewiseTable from "./StateWise/StatewiseTable";
 
 const percentColors = [
   { percent: 0.0, color: { r: 255, g: 255, b: 255 } },
@@ -81,11 +82,15 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
   return (
     <>
       <div className="row">
-        <div className="col-7">
+        <div className="col-6">
           <div id="india-state-map" className="card"></div>
         </div>
-        <div className="col-5">
-          <HelpResources></HelpResources>
+        <div className="col-6">
+          {/* <HelpResources></HelpResources> */}
+          <StatewiseTable
+            statewise={statewise}
+            isMobile={isMobile}
+          ></StatewiseTable>
         </div>
       </div>
       <Popover
