@@ -13,8 +13,14 @@ const Credits = props => {
             </a>
           </li>
           <li>
-            Contribute to the Github repository
-            <a href="">Github</a>
+            Wanna Help? Please consider helping this project by donating come of
+            your time.{" "}
+            <a
+              target="_blank"
+              href="https://github.com/anamritraj/livecovid.in-webapp"
+            >
+              Github
+            </a>
           </li>
         </ul>
       </div>
