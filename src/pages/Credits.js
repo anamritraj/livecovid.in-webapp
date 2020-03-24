@@ -13,7 +13,7 @@ const Credits = props => {
             </a>
           </li>
           <li>
-            Wanna Help? Please consider helping this project by donating come of
+            Wanna Help? Please consider helping this project by donating some of
             your time.{" "}
             <a
               target="_blank"
