@@ -15,6 +15,7 @@ class App extends Component {
       isLoading: true,
       statewise: {},
       total: {},
+      tested: {},
       dayChange: {},
       isMobile: document.documentElement.clientWidth < 768
     };
@@ -28,6 +29,7 @@ class App extends Component {
         statewise: data.statewise,
         total: data.total,
         dayChange: data.dayChange,
+        tested: data.tested,
         isLoading: false
       });
     });
@@ -49,6 +51,7 @@ class App extends Component {
                 isLoading={this.state.isLoading}
                 dayChange={this.state.dayChange}
                 total={this.state.total}
+                tested={this.state.tested}
                 statewise={this.state.statewise}
                 isMobile={this.state.isMobile}
               ></Home>

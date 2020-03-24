@@ -5,7 +5,9 @@ const Footer = props => {
   return (
     <footer className="footer">
       <span>
-        <a href="http://twitter.com/anamritraj">Report an Error</a>
+        <a href="https://github.com/anamritraj/livecovid.in-webapp/issues/new">
+          Report an error
+        </a>
       </span>
       |
       <span>

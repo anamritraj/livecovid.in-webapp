@@ -8,10 +8,10 @@ const Stats = props => {
         <p className="count">{props.total.confirmed}</p>
         <p className="title">Confirmed Cases</p>
       </div>
-      <div className="col-3 col-6-sm card active">
-        <p className="delta">(+{props.dayChange.confirmed})</p>
-        <p className="count">{props.total.active}</p>
-        <p className="title">Active Cases</p>
+      <div className="col-3 col-6-sm card tested">
+        <p className="delta">(+{props.tested.delta})</p>
+        <p className="count">{props.tested.totalsamplestested}</p>
+        <p className="title">Tested</p>
       </div>
       <div className="col-3 col-6-sm card recovered">
         <p className="delta">(+{props.dayChange.recovered})</p>

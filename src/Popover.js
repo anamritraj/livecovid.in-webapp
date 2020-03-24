@@ -3,7 +3,7 @@ import React from "react";
 const Popover = ({ name, count, popover }) => {
   return (
     <div
-      className="popover"
+      className="popover card"
       style={{
         display: popover.show ? "block" : "none",
         top: popover.y,

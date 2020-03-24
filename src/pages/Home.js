@@ -6,7 +6,11 @@ const Home = props => {
   return (
     <>
       <div className="container">
-        <Stats dayChange={props.dayChange} total={props.total}></Stats>
+        <Stats
+          dayChange={props.dayChange}
+          total={props.total}
+          tested={props.tested}
+        ></Stats>
         <div className="row">
           <h1>COVID-19 Cases India - State-wise</h1>
         </div>
