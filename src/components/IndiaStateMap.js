@@ -69,11 +69,15 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       });
 
       indiaSvgMap.findOne("#" + key).on("mousemove", e => {
-        const gap = isMobile ? 20 : 50;
+        let gapX = isMobile ? 20 : 50;
+        let gapY = isMobile ? 20 : 50;
+        if (e.pageX + gapX > document.defaultView.outerWidth * 0.65) {
+          gapX = -100;
+        }
         setPopover({
           show: true,
-          x: e.pageX + gap,
-          y: e.pageY - gap
+          x: e.pageX + gapX,
+          y: e.pageY - gapY
         });
       });
     });

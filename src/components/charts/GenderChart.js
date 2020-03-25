@@ -2,7 +2,7 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 
-const colors = { M: "#7ebcff", F: "#f77eb9", unknown: "#959595" };
+const colors = { M: "#c2f0fc", F: "#ffb0cd", unknown: "#959595" };
 const getColor = bar => {
   return colors[bar.id];
 };
@@ -47,6 +47,7 @@ const GenderChart = ({ gender }) => {
               </div>
             );
           }}
+          theme={{ fontSize: "16px" }}
           motionStiffness={90}
           motionDamping={15}
         />

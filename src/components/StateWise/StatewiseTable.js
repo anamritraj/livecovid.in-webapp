@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import StateWiseRow from "./StateWiseRow";
 
@@ -26,8 +26,12 @@ const getSortedElement = () => {
 
 const StatewiseTable = ({ statewise, isMobile }) => {
   const [states, setStates] = useState(Object.keys(statewise));
-  const [activeSorting, setActiveSorting] = useState("confirmed");
+  const [activeSorting, setActiveSorting] = useState("");
   const [currentOrder, setCurrentOrder] = useState(1);
+  // For the intial sorting when it renders the first time, empty array as second parameters ensures this effect is run one time.
+  useEffect(() => {
+    sortStates("confirmed");
+  }, []);
   const sortStates = key => {
     let currentOrderNew = currentOrder;
     if (activeSorting === key) {

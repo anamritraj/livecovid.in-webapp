@@ -2,7 +2,7 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 
-const colors = { indian: "#7ebcff", foreign: "#f77eb9", unknown: "#959595" };
+const colors = { indian: "#8ac6d1", foreign: "#ff7272", unknown: "#f1e7b6" };
 
 const getColor = bar => {
   return colors[bar.id];
@@ -32,6 +32,7 @@ const NationalityChart = ({ nationality }) => {
           data={data}
           margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
           colors={getColor}
+          startAngle={-45}
           borderWidth={0}
           radialLabelsSkipAngle={10}
           radialLabelsTextXOffset={0}
@@ -39,6 +40,7 @@ const NationalityChart = ({ nationality }) => {
           radialLabelsLinkDiagonalLength={5}
           radialLabelsLinkHorizontalLength={5}
           radialLabelsLinkStrokeWidth={2}
+          theme={{ fontSize: "16px" }}
           animate={true}
           tooltip={({ label, value }) => {
             return (

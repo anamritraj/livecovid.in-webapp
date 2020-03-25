@@ -45,6 +45,7 @@ const AgeGroup = props => {
             legendPosition: "middle",
             legendOffset: -40
           }}
+          theme={{ fontSize: "12px" }}
           labelSkipWidth={12}
           labelSkipHeight={12}
           enableGridY={false}
