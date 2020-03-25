@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Stats from "../components/Stats";
 import IndiaStateMap from "../components/IndiaStateMap";
+import AgeGroup from "../components/charts/AgeGroups";
+
 const Home = props => {
   return (
     <>
@@ -22,6 +24,11 @@ const Home = props => {
             isMobile={props.isMobile}
           ></IndiaStateMap>
         )}
+        <div className="row">
+          <div className="col-6">
+            <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
+          </div>
+        </div>
       </div>
     </>
   );

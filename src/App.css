@@ -36,6 +36,7 @@ a {
   box-sizing: border-box;
   box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
   transition: box-shadow 0.3s;
+  background: #fff;
 }
 
 .card p {

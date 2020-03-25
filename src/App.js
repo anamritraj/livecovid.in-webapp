@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { getStateWiseData } from "./services/patients.service";
+import { getStateWiseData, getStats } from "./services/patients.service";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Help from "./pages/Help";
 import Home from "./pages/Home";
@@ -17,7 +17,11 @@ class App extends Component {
       total: {},
       tested: {},
       dayChange: {},
-      isMobile: document.documentElement.clientWidth < 768
+      isMobile: document.documentElement.clientWidth < 768,
+      ageGroup: {},
+      nationality: {},
+      gender: {},
+      hospitalizationStatus: {}
     };
   }
 
@@ -31,6 +35,16 @@ class App extends Component {
         dayChange: data.dayChange,
         tested: data.tested,
         isLoading: false
+      });
+
+      getStats().then(({ data }) => {
+        this.setState({
+          ...this.state,
+          ageGroup: data.ageBrackets,
+          hospitalizationStatus: data.hospitalizationStatus,
+          gender: data.gender,
+          nationality: data.nationality
+        });
       });
     });
   }
@@ -54,6 +68,10 @@ class App extends Component {
                 tested={this.state.tested}
                 statewise={this.state.statewise}
                 isMobile={this.state.isMobile}
+                ageGroup={this.state.ageGroup}
+                nationality={this.state.nationality}
+                gender={this.state.gender}
+                hospitalizationStatus={this.state.hospitalizationStatus}
               ></Home>
             </Route>
           </Switch>
