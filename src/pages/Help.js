@@ -34,7 +34,7 @@ const Help = () => {
       <h2>StateWise Telephone Helpline Numbers</h2>
 
       <div>
-        <table class="table">
+        <table class="table help-table">
           <thead>
             <tr>
               <th>Sr.No</th>
@@ -366,7 +366,7 @@ const Help = () => {
           </tbody>
         </table>
         <br />
-        <table class="table" id="union_territories">
+        <table class="table" class="help-table">
           <thead>
             <tr>
               <th>Sr.No</th>

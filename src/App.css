@@ -90,10 +90,10 @@ a {
   width: 100%;
   border-collapse: collapse;
 }
-
-/* .table tbody tr:nth-of-type(odd) {
+.help-table tbody tr:nth-of-type(odd) {
   background: #e0fdf6;
-} */
+}
+
 .table thead {
   font-weight: bolder;
   background: #e4e4e4;
@@ -228,4 +228,14 @@ a {
 .footer a {
   text-decoration: none;
   color: #000;
+}
+
+/* FAQ css */
+li.question {
+  font-size: 1.4em;
+  list-style-type: none;
+  color: #18b0b0;
+}
+li.answer {
+  list-style: none;
 }

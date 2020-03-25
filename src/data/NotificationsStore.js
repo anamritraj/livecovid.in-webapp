@@ -9,6 +9,6 @@ export default [
   },
   {
     message:
-      "Show compassion. Be considerate. Help others. We will get through this! TOGETHER!"
+      "Show compassion. Be considerate. Help others. We will get through this. TOGETHER!"
   }
 ];

@@ -51,6 +51,11 @@ const SideDrawer = props => {
           </Link>
         </li>
         <li>
+          <Link to="/faqs" onClick={props.click}>
+            FAQs
+          </Link>
+        </li>
+        <li>
           <Link to="credits" onClick={props.click}>
             Credits
           </Link>

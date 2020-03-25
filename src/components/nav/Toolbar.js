@@ -27,6 +27,9 @@ const Toolbar = props => {
               <Link to="/help">Help</Link>
             </li>
             <li>
+              <Link to="/faqs">FAQs</Link>
+            </li>
+            <li>
               <Link to="credits">Credits</Link>
             </li>
           </ul>

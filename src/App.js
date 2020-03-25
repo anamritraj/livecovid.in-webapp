@@ -8,6 +8,7 @@ import Toolbar from "./components/nav/Toolbar";
 import Footer from "./components/Footer";
 import Credits from "./pages/Credits";
 import Notification from "./components/Notification";
+import FAQs from "./pages/FAQs";
 
 class App extends Component {
   constructor() {
@@ -61,6 +62,9 @@ class App extends Component {
             </Route>
             <Route exact path="/credits">
               <Credits></Credits>
+            </Route>
+            <Route exact path="/faqs">
+              <FAQs></FAQs>
             </Route>
             <Route exact path="/">
               <Home
