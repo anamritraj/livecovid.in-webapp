@@ -3,7 +3,7 @@ import React from "react";
 const HelpResources = () => {
   return (
     <div className="helpful-resources">
-      <h2>Helpful Links &amp; Resources</h2>
+      <h2>Helpful Links</h2>
       <ul>
         <li>
           HELPLINE NUMBERS (by State)

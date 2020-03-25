@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Toolbar from "./components/nav/Toolbar";
 import Footer from "./components/Footer";
 import Credits from "./pages/Credits";
+import Notification from "./components/Notification";
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,7 @@ class App extends Component {
       <Router>
         <div>
           <Toolbar />
+          <Notification></Notification>
           <Switch>
             <Route exact path="/help">
               <Help></Help>

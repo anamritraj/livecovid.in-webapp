@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { SVG } from "@svgdotjs/svg.js";
 import indiaMap from "../india-map";
 import Popover from "../Popover";
-import HelpResources from "./HelpResources";
 import StatewiseTable from "./StateWise/StatewiseTable";
 
 const percentColors = [

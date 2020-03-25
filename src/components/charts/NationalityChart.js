@@ -40,7 +40,7 @@ const NationalityChart = ({ nationality }) => {
           radialLabelsLinkDiagonalLength={5}
           radialLabelsLinkHorizontalLength={5}
           radialLabelsLinkStrokeWidth={2}
-          theme={{ fontSize: "16px" }}
+          theme={{ fontSize: 16 }}
           animate={true}
           tooltip={({ label, value }) => {
             return (

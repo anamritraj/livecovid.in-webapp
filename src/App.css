@@ -156,6 +156,15 @@ a {
   color: rgba(108, 117, 125, 0.6);
 }
 
+/* Notification SVG */
+
+.notification {
+  background: #50a4b5;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;

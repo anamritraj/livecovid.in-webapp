@@ -47,7 +47,7 @@ const GenderChart = ({ gender }) => {
               </div>
             );
           }}
-          theme={{ fontSize: "16px" }}
+          theme={{ fontSize: 16 }}
           motionStiffness={90}
           motionDamping={15}
         />

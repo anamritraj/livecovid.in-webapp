@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import Stats from "../components/Stats";
 import IndiaStateMap from "../components/IndiaStateMap";
@@ -27,7 +27,7 @@ const Home = props => {
           ></IndiaStateMap>
         )}
         <div className="row">
-          <div className="col-6">
+          <div className="col-12">
             <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
           </div>
           <div className="col-6">
