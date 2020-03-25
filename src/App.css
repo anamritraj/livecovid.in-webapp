@@ -195,6 +195,9 @@ a {
   .statewise-cases thead .heading {
     min-width: auto;
   }
+  .faqs ul {
+    padding: 20px;
+  }
 }
 
 /* Credits */

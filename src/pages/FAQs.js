@@ -4,7 +4,7 @@ import HelpResources from "../components/HelpResources";
 const FAQs = () => {
   return (
     <div className="container credits">
-      <div className="helpful-resources">
+      <div className="helpful-resources faqs">
         <h2>Frequently asked questions</h2>
         <ul>
           <li className="question">Is this government offical website?</li>
@@ -43,7 +43,7 @@ const FAQs = () => {
           <li className="question">How can I contribute?</li>
           <li className="answer">
             It's all open-source, please feel free to raise a pull-request. They
-            are always welcome!! <br></br>
+            are always welcome! <br></br>
             <a
               href="https://github.com/anamritraj/livecovid.in-webapp/issues/new"
               target="_blank"
@@ -51,10 +51,6 @@ const FAQs = () => {
             >
               https://github.com/anamritraj/livecovid.in-webapp
             </a>{" "}
-            <br></br>
-            As for the server costs, I had a spare server where the API is
-            hosted, the webapp is hosted on Netlify which has a decent enough
-            bandwidth limit.
           </li>
           <li className="question">Do you accept donations/monetary help?</li>
           <li className="answer">
@@ -62,7 +58,7 @@ const FAQs = () => {
             API is hosted. The webapp is hosted on Netlify which has a decent
             enough free tier. <br></br>
             <strong>
-              If you have some extra cash please consider donating to
+              If you have some extra cash/resources please consider donating to
               state/central relief funds.
             </strong>
           </li>
