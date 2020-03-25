@@ -22,7 +22,7 @@ const AgeGroup = props => {
           data={data}
           keys={["value"]}
           indexBy="ageGroup"
-          margin={{ top: 50, right: 0, bottom: 50, left: 50 }}
+          margin={{ top: 50, right: 0, bottom: 50, left: 45 }}
           padding={0.3}
           colorBy="index"
           colors={{ scheme: "nivo" }}

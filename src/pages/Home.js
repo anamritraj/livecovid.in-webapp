@@ -4,6 +4,7 @@ import Stats from "../components/Stats";
 import IndiaStateMap from "../components/IndiaStateMap";
 import AgeGroup from "../components/charts/AgeGroups";
 import GenderChart from "../components/charts/GenderChart";
+import NationalityChart from "../components/charts/NationalityChart";
 
 const Home = props => {
   return (
@@ -31,6 +32,11 @@ const Home = props => {
           </div>
           <div className="col-6">
             <GenderChart gender={props.gender}></GenderChart>
+          </div>
+          <div className="col-6">
+            <NationalityChart
+              nationality={props.nationality}
+            ></NationalityChart>
           </div>
         </div>
       </div>

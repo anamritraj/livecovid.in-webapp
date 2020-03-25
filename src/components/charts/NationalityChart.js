@@ -2,42 +2,43 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 
-const colors = { M: "#7ebcff", F: "#f77eb9", unknown: "#959595" };
+const colors = { indian: "#7ebcff", foreign: "#f77eb9", unknown: "#959595" };
+
 const getColor = bar => {
   return colors[bar.id];
 };
 
 let totalCases = 0;
 
-const GenderChart = ({ gender }) => {
+const NationalityChart = ({ nationality }) => {
   let data = [];
-  Object.keys(gender).map(key => {
-    let label = "Male";
-    if (key === "F") label = "Female";
+  Object.keys(nationality).map(key => {
+    let label = "Indian";
+    if (key === "foreign") label = "Foreign";
     if (key === "unknown") label = "Unknown";
-    totalCases += gender[key];
+    totalCases += nationality[key];
     data.push({
       id: key,
       label,
-      value: gender[key]
+      value: nationality[key]
     });
   });
 
   return (
     <div className="card chart">
-      <h2>Gender</h2>
+      <h2>Nationality</h2>
       <div style={{ height: "500px" }}>
         <ResponsivePie
           data={data}
-          margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+          margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
           colors={getColor}
           borderWidth={0}
           radialLabelsSkipAngle={10}
-          radialLabelsTextXOffset={6}
+          radialLabelsTextXOffset={0}
           radialLabelsLinkOffset={0}
           radialLabelsLinkDiagonalLength={5}
           radialLabelsLinkHorizontalLength={5}
-          radialLabelsLinkStrokeWidth={1}
+          radialLabelsLinkStrokeWidth={2}
           animate={true}
           tooltip={({ label, value }) => {
             return (
@@ -55,4 +56,4 @@ const GenderChart = ({ gender }) => {
   );
 };
 
-export default GenderChart;
+export default NationalityChart;
