@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Stats from "../components/Stats";
 import IndiaStateMap from "../components/IndiaStateMap";
 import AgeGroup from "../components/charts/AgeGroups";
+import GenderChart from "../components/charts/GenderChart";
 
 const Home = props => {
   return (
@@ -27,6 +28,9 @@ const Home = props => {
         <div className="row">
           <div className="col-6">
             <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
+          </div>
+          <div className="col-6">
+            <GenderChart gender={props.gender}></GenderChart>
           </div>
         </div>
       </div>
