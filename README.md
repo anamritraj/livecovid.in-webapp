@@ -28,7 +28,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Disclaimer
 
-This is not a Goverment official project. This is not associated in any way with my employer. I am not getting paid to do this. Also, I have no intentions of making money from this. This is created to keep people informed about the current state of Covid-19 in the country.
+This is not an official government project. This is not associated in any way with my employer. I am not getting paid to do this. Also, I have no intentions of making money from this. This is created to keep people informed about the current state of Covid-19 in the country. If you need help, please call the emergency numbers listed on the [website here](https://www.mohfw.gov.in/) or call 100.
 
 If you feel any information is missing or there is any error, please feel free to create [an issue](https://github.com/anamritraj/livecovid.in-webapp/issues/new) or reach out to me directly on [Twitter](https://twitter.com/anamritraj) and I would be happy to assist.
 
