@@ -1,4 +1,5 @@
-## livecovid.in
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fbdfd508-acd8-403a-b24a-209e1e7e9419/deploy-status)](https://app.netlify.com/sites/gallant-shirley-8651b6/deploys)
+## livecovid.in 
 > A live state-wise Covid-19 cases tracker for India.
 <img width="1440" alt="Screenshot 2020-03-26 at 10 48 19 PM" src="https://user-images.githubusercontent.com/11889942/77676171-f3e63180-6fb3-11ea-9306-9bff35b68e90.png">
 
