@@ -5,7 +5,8 @@
 ## How to contribute?
 - Fork this repository by clicking the fork button on the top right of this page.
 - Clone that forked repository in your local, make changes, test and then push to your forked branch.
-  - If you are making changes only in this Repo change your URL in the `.environment.development` to https://api.livecovid.in/api. I know thi
+  - If you are making changes only in this Repo change your URL in the `.environment.development` to https://api.livecovid.in/api.  
+- If you want to setup the backend as well, see this repo: https://github.com/anamritraj/livecovind.in-api
 - Now, create a pull request from your forked repo to this repo.
 
 ## Available Scripts
