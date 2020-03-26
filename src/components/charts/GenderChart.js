@@ -14,7 +14,7 @@ const GenderChart = ({ gender }) => {
   Object.keys(gender).map(key => {
     let label = "Male";
     if (key === "F") label = "Female";
-    if (key === "unknown") label = "Unknown";
+    if (key === "unknown") label = "Details Awaited";
     totalCases += gender[key];
     data.push({
       id: key,

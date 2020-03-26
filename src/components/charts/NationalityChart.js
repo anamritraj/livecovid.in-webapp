@@ -15,7 +15,7 @@ const NationalityChart = ({ nationality }) => {
   Object.keys(nationality).map(key => {
     let label = "Indian";
     if (key === "foreign") label = "Foreign";
-    if (key === "unknown") label = "Unknown";
+    if (key === "unknown") label = "Details Awaited";
     totalCases += nationality[key];
     data.push({
       id: key,
