@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## livecovid.in
+> A live state-wise Covid-19 cases tracker for India.
+<img width="1440" alt="Screenshot 2020-03-26 at 10 48 19 PM" src="https://user-images.githubusercontent.com/11889942/77676171-f3e63180-6fb3-11ea-9306-9bff35b68e90.png">
+
+## How to contribute?
+- Fork this repository by clicking the fork button on the top right of this page.
+- Clone that forked repository in your local, make changes, test and then push to your forked branch.
+  - If you are making changes only in this Repo change your URL in the `.environment.development` to https://api.livecovid.in/api. I know thi
+- Now, create a pull request from your forked repo to this repo.
 
 ## Available Scripts
 
@@ -17,52 +25,14 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Disclaimer
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is not a Goverment official project. This is not associated in any way with my employer. I am not getting paid to do this. Also, I have no intentions of making money from this. This is created to keep people informed about the current state of Covid-19 in the country.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+If you feel any information is missing or there is any error, please feel free to create an issue or reach out to me directly on [Twitter](https://twitter.com/anamritraj) an I would be happy to assist.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Meta
 
-### `npm run eject`
+Anand – [@anamritraj](https://twitter.com/anamritraj) | [https://anandamritraj.in](anandamritraj.in) 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Distributed under the MIT license. See ``LICENSE`` for more information.
