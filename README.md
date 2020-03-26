@@ -32,6 +32,10 @@ This is not an official government project. This is not associated in any way wi
 
 If you feel any information is missing or there is any error, please feel free to create [an issue](https://github.com/anamritraj/livecovid.in-webapp/issues/new) or reach out to me directly on [Twitter](https://twitter.com/anamritraj) and I would be happy to assist.
 
+## Credits
+
+This would not have been possible without the awesome guys at https://github.com/covid19india. I was initially scraping the MoHFW website, but then I got to know about them and since then this project internally calls their API. They are doing really awesome work maintaining a crowdsorced data-base of patients. Thanks to them for all the hard work!
+
 ## Meta
 
 Anand – [@anamritraj](https://twitter.com/anamritraj) | [https://anandamritraj.in](anandamritraj.in) 
