@@ -5,6 +5,7 @@ import IndiaStateMap from "../components/IndiaStateMap";
 import AgeGroup from "../components/charts/AgeGroups";
 import GenderChart from "../components/charts/GenderChart";
 import NationalityChart from "../components/charts/NationalityChart";
+import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/IndianTimeSeriesWrapper";
 
 const Home = props => {
   return (
@@ -28,6 +29,11 @@ const Home = props => {
         )}
         <div className="row">
           <div className="col-12">
+            <IndianTimeSeriesWrapper
+              isMobile={props.isMobile}
+            ></IndianTimeSeriesWrapper>
+          </div>
+          <div className="col-6">
             <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
           </div>
           <div className="col-6">

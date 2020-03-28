@@ -16,8 +16,11 @@ const AgeGroup = props => {
 
   return (
     <div className="card chart">
-      <h2>Age Groups</h2>
-      <div style={{ height: "500px" }}>
+      <div className="chart-controls">
+        <h2>Age Groups</h2>
+      </div>
+
+      <div style={{ height: "450px" }}>
         <ResponsiveBar
           data={data}
           keys={["value"]}

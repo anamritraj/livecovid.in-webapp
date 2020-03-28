@@ -6,4 +6,96 @@
   text-align: left;
   font-size: 1.3em;
   margin-bottom: 0;
+  float: left;
+}
+.chart-controls {
+  overflow: auto;
+}
+.btn {
+  float: left;
+  min-width: 150px;
+  max-width: 250px;
+  display: block;
+  margin: 1em 0.5em;
+  padding: 1em 2em;
+  border: none;
+  background: none;
+  color: inherit;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  -moz-osx-font-smoothing: grayscale;
+}
+.btn:focus {
+  outline: none;
+}
+.btn > span {
+  vertical-align: middle;
+}
+
+.btn.btn-chart {
+  background: #ebebeb;
+  color: #37474f;
+  overflow: hidden;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-weight: 800;
+  float: right;
+}
+.btn-chart.btn--inverted {
+  background: none;
+  color: #fff;
+}
+.btn-chart::before,
+.btn-chart::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.btn-chart::before {
+  background: #8ac6d1;
+}
+.btn-chart::after {
+  background: #50a4b5;
+}
+.btn-chart.active {
+  background: #50a4b5;
+  color: #fff;
+}
+.btn-chart:hover {
+  color: #fff;
+}
+.btn-chart:hover::before,
+.btn-chart:hover::after {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.btn-chart:hover::after {
+  -webkit-transition-delay: 0.175s;
+  transition-delay: 0.175s;
+}
+
+@media (max-width: 480px) {
+  .chart {
+    padding: 5px;
+    overflow: hidden;
+  }
+  .btn.btn-chart {
+    float: none;
+    display: inline-block;
+  }
+  .chart-controls h2 {
+    float: none;
+    text-align: center;
+    margin-top: 5px;
+  }
 }

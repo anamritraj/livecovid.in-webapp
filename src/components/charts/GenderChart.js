@@ -2,7 +2,11 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 
-const colors = { M: "#c2f0fc", F: "#ffb0cd", unknown: "#959595" };
+const colors = {
+  Male: "#c2f0fc",
+  Female: "#ffb0cd",
+  "Details Awaited": "#959595"
+};
 const getColor = bar => {
   return colors[bar.id];
 };
@@ -17,7 +21,7 @@ const GenderChart = ({ gender }) => {
     if (key === "unknown") label = "Details Awaited";
     totalCases += gender[key];
     data.push({
-      id: key,
+      id: label,
       label,
       value: gender[key]
     });
@@ -25,8 +29,11 @@ const GenderChart = ({ gender }) => {
 
   return (
     <div className="card chart">
-      <h2>Gender</h2>
-      <div style={{ height: "500px" }}>
+      <div className="chart-controls">
+        <h2>Gender</h2>
+      </div>
+
+      <div style={{ height: "450px" }}>
         <ResponsivePie
           data={data}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
@@ -48,6 +55,7 @@ const GenderChart = ({ gender }) => {
             );
           }}
           theme={{ fontSize: 16 }}
+          animate={true}
           motionStiffness={90}
           motionDamping={15}
         />

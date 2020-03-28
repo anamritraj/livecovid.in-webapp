@@ -2,7 +2,11 @@ import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 
-const colors = { indian: "#8ac6d1", foreign: "#ff7272", unknown: "#f1e7b6" };
+const colors = {
+  Indian: "#8ac6d1",
+  Foreign: "#ff7272",
+  "Details Awaited": "#f1e7b6"
+};
 
 const getColor = bar => {
   return colors[bar.id];
@@ -18,7 +22,7 @@ const NationalityChart = ({ nationality }) => {
     if (key === "unknown") label = "Details Awaited";
     totalCases += nationality[key];
     data.push({
-      id: key,
+      id: label,
       label,
       value: nationality[key]
     });
@@ -26,8 +30,11 @@ const NationalityChart = ({ nationality }) => {
 
   return (
     <div className="card chart">
-      <h2>Nationality</h2>
-      <div style={{ height: "500px" }}>
+      <div className="chart-controls">
+        <h2>Nationality</h2>
+      </div>
+
+      <div style={{ height: "450px" }}>
         <ResponsivePie
           data={data}
           margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
@@ -50,6 +57,7 @@ const NationalityChart = ({ nationality }) => {
               </div>
             );
           }}
+          animate={true}
           motionStiffness={90}
           motionDamping={15}
         />
