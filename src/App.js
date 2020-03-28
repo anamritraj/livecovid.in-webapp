@@ -10,6 +10,7 @@ import Credits from "./pages/Credits";
 import Notification from "./components/Notification";
 import FAQs from "./pages/FAQs";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import WhatsappShare from "./components/whatsapp-share";
 class App extends Component {
   constructor() {
     super();
@@ -83,8 +84,8 @@ class App extends Component {
           </Switch>
           <Footer></Footer>
         </div>
-
         <GoogleAnalytics></GoogleAnalytics>
+        <WhatsappShare></WhatsappShare>
       </Router>
     );
   }

@@ -166,41 +166,6 @@ a {
   text-align: center;
 }
 
-@media (max-width: 460px) {
-  h1 {
-    font-size: 1.2rem;
-  }
-  .container {
-    width: 100%;
-  }
-  td {
-    padding: 5px;
-  }
-  .state-col {
-    width: 40%;
-  }
-  .popover {
-    font-size: 12px;
-    padding: 2px 8px;
-    font-weight: bold;
-  }
-  .statewise-cases {
-    font-size: 0.9rem;
-  }
-  .statewise-cases td:nth-child(2) {
-    text-align: center;
-  }
-  .statewise-cases td:nth-child(1) {
-    text-align: left;
-  }
-  .statewise-cases thead .heading {
-    min-width: auto;
-  }
-  .faqs ul {
-    padding: 20px;
-  }
-}
-
 /* Credits */
 
 .helpful-resources ul {
@@ -242,4 +207,53 @@ li.question {
 }
 li.answer {
   list-style: none;
+}
+
+.wa-share {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  display: none;
+  z-index: 100;
+}
+.wa-svg {
+  background: #fff;
+  border-radius: 50%;
+}
+@media (max-width: 460px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  .container {
+    width: 100%;
+  }
+  td {
+    padding: 5px;
+  }
+  .state-col {
+    width: 40%;
+  }
+  .popover {
+    font-size: 12px;
+    padding: 2px 8px;
+    font-weight: bold;
+  }
+  .statewise-cases {
+    font-size: 0.9rem;
+  }
+  .statewise-cases td:nth-child(2) {
+    text-align: center;
+  }
+  .statewise-cases td:nth-child(1) {
+    text-align: left;
+  }
+  .statewise-cases thead .heading {
+    min-width: auto;
+  }
+  .faqs ul {
+    padding: 20px;
+  }
+  .wa-share {
+    display: block;
+  }
 }
