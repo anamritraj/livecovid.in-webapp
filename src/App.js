@@ -31,7 +31,6 @@ class App extends Component {
 
   componentDidMount() {
     getStateWiseData().then(({ data }) => {
-      console.log(data);
       this.setState({
         ...this.state,
         statewise: data.statewise,

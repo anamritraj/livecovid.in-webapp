@@ -12,7 +12,6 @@ const AgeGroup = props => {
       value: ageGroup[key]
     });
   });
-  console.log(data);
 
   return (
     <div className="card chart">

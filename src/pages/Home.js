@@ -39,11 +39,11 @@ const Home = props => {
           <div className="col-6">
             <GenderChart gender={props.gender}></GenderChart>
           </div>
-          <div className="col-6">
+          {/* <div className="col-6">
             <NationalityChart
               nationality={props.nationality}
             ></NationalityChart>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

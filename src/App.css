@@ -1,3 +1,8 @@
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
 html,
 body {
   overflow: auto;
@@ -112,38 +117,88 @@ a {
   color: #000;
 }
 
-.table tbody tr:hover {
-  background: #fae3d9;
-}
-/* statewise cases */
-
 .statewise-cases tbody tr {
   cursor: pointer;
   border-bottom: 1px solid #f4f4f4;
+  font-size: 15px;
 }
-
-/* .statewise-cases thead {
-  font-weight: 900;
-  background: #bbded6;
-} */
 
 .statewise-cases thead .heading {
   display: flex;
   min-width: 100px;
   justify-content: center;
 }
-
-.statewise-cases td {
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
+.statewise-cases tbody tr:nth-child(even) {
+  background: #f8f8f8;
 }
+
 .statewise-cases td,
 .statewise-cases th {
-  padding: 5px 10px;
+  padding: 8px;
 }
 
 .statewise-cases td:nth-child(2) {
   text-align: left;
+}
+
+.statewise-cases tbody tr.fold > td {
+  padding: 0;
+}
+.statewise-cases tbody tr.fold .districts-table {
+  max-height: 1000px;
+  transition: all 0.4s ease;
+}
+.statewise-cases tbody tr.fold.close .districts-table {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.statewise-cases tbody tr.fold {
+  background: transparent;
+}
+
+.state-row.open {
+  background: #f5f5f5;
+  box-shadow: -1px 3px 5px 2px #e4e4e4;
+}
+.state-row .expand-icon img {
+  transition: all 0.4s ease-in-out;
+}
+.state-row.open .expand-icon img {
+  transform: rotateZ(90deg);
+}
+
+.state-row .delta {
+  font-size: 11px;
+  font-weight: 400;
+  color: gray;
+}
+.state-row .delta.confirmed {
+  color: red;
+}
+.state-row .delta.recovered {
+  color: green;
+}
+.state-row .delta.deaths {
+  color: red;
+}
+
+/* Districts Table */
+.districts-table table {
+  width: 100%;
+}
+.districts-table th {
+  padding: 4px;
+}
+.districts-table table tr td {
+  padding: 4px;
+  text-align: center;
+}
+.districts-table table tr td:nth-child(2) {
+  text-align: center;
+}
+.districts-table .title {
+  display: inline-block;
 }
 
 .sorted-svg {
@@ -240,12 +295,6 @@ li.answer {
   }
   .statewise-cases {
     font-size: 0.9rem;
-  }
-  .statewise-cases td:nth-child(2) {
-    text-align: center;
-  }
-  .statewise-cases td:nth-child(1) {
-    text-align: left;
   }
   .statewise-cases thead .heading {
     min-width: auto;
