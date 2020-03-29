@@ -209,7 +209,7 @@ li.answer {
   list-style: none;
 }
 
-.wa-share {
+.floating-actions {
   position: fixed;
   bottom: 50px;
   right: 20px;
@@ -253,7 +253,7 @@ li.answer {
   .faqs ul {
     padding: 20px;
   }
-  .wa-share {
+  .floating-actions {
     display: block;
   }
 }
