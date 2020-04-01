@@ -214,6 +214,44 @@ a {
   color: rgba(108, 117, 125, 0.6);
 }
 
+.bell-icon {
+  transition: all 0.4s ease-in-out;
+}
+.bell-icon.active {
+  fill: #fbd30c;
+  animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes bellshake {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(50deg);
+  }
+  30% {
+    transform: rotate(-50deg);
+  }
+  45% {
+    transform: rotate(40deg);
+  }
+  60% {
+    transform: rotate(-40deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+  85% {
+    transform: rotate(-20deg);
+  }
+  92% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
 /* Notification SVG */
 
 .notification {

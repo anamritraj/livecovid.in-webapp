@@ -46,14 +46,15 @@ const StateWiseRow = ({ state, districts }) => {
             )}
         </td>
       </tr>,
-      districts.districts ? (
-        <RowTableAccordion
-          lastUpdated={state.lastUpdated}
-          districts={districts.districts}
-          isHidden={isHidden}
-        ></RowTableAccordion>
-      ) : null
-    ]
+        districts.districts ? (
+          <RowTableAccordion
+            lastUpdated={state.lastUpdated}
+            districts={districts.districts}
+            isHidden={isHidden}
+            stateCode={state.code}
+          ></RowTableAccordion>
+        ) : null
+      ]
     : null;
 };
 
