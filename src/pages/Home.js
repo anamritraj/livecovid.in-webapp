@@ -6,10 +6,12 @@ import AgeGroup from "../components/charts/AgeGroups";
 import GenderChart from "../components/charts/GenderChart";
 import NationalityChart from "../components/charts/NationalityChart";
 import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/IndianTimeSeriesWrapper";
+import { HelmetDefault } from "../components/SEO";
 
 const Home = props => {
   return (
     <>
+      <HelmetDefault title={"Home"}></HelmetDefault>
       <div className="container">
         <Stats
           dayChange={props.dayChange}
