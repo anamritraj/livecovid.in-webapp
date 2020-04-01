@@ -7,12 +7,18 @@ import GenderChart from "../components/charts/GenderChart";
 import NationalityChart from "../components/charts/NationalityChart";
 import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/IndianTimeSeriesWrapper";
 import { HelmetDefault } from "../components/SEO";
+import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
 
 const Home = props => {
-  return (
+  return props.isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <HelmetDefault title={"Home"}></HelmetDefault>
       <div className="container">
+        <LastUpdatedIndicator
+          lastUpdated={props.total.lastUpdated}
+        ></LastUpdatedIndicator>
         <Stats
           dayChange={props.dayChange}
           total={props.total}

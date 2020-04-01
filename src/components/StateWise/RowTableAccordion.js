@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SortIcon from "./SortIcon";
-import { formatRelative, formatDistance, format } from "date-fns";
+import { formatDistance, format } from "date-fns";
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {

@@ -23,7 +23,7 @@ a {
   z-index: 100;
 }
 .stats {
-  margin-top: 40px;
+  margin-top: 5px;
 }
 .boundaried-land-indian {
   stroke: #464646;
@@ -228,6 +228,39 @@ a {
   padding: 10px;
 }
 
+/* Last Updated pulse animation */
+
+.live-indicator-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-indicator {
+  float: left;
+  margin: 10px;
+  width: 6px;
+  height: 6px;
+  text-transform: uppercase;
+  background: #ff1818;
+  border-radius: 50%;
+  animation: shadow-pulse 1s infinite;
+}
+
+.last-updated-main {
+  font-size: 14px;
+  color: #666;
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+  }
+}
 /* Credits */
 
 .helpful-resources ul {
