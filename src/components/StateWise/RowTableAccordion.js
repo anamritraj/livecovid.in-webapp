@@ -36,15 +36,15 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated }) => {
   useEffect(() => {
     handleSorting("confirmed");
   }, []);
+  const time = new Date(Date.parse(lastUpdated.slice(0, 19) + "+05:30"));
   return (
     <tr className={"fold" + (isHidden ? " close" : "")}>
       <td colSpan="5">
         <div className="districts-table">
           <div className="last-updated-state">
             {" "}
-            Updated{" "}
-            {formatDistance(new Date(Date.parse(lastUpdated)), new Date())} ago
-            at {format(new Date(Date.parse(lastUpdated)), "dd MMM yyyy HH:mm")}
+            Updated {formatDistance(time, new Date())} ago at{" "}
+            {format(time, "dd MMM yyyy HH:mm")}
           </div>
           <table>
             <thead>
