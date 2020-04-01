@@ -168,12 +168,14 @@ a {
   transform: rotateZ(90deg);
 }
 
-.state-row .delta {
+.state-row .delta,
+.fold .delta {
   font-size: 11px;
   font-weight: 400;
   color: gray;
 }
-.state-row .delta.confirmed {
+.state-row .delta.confirmed,
+.fold .delta.confirmed {
   color: red;
 }
 .state-row .delta.recovered {
@@ -219,6 +221,11 @@ a {
   padding: 10px;
   color: #fff;
   text-align: center;
+}
+.last-updated-state {
+  font-size: 12px;
+  color: #777;
+  padding: 10px;
 }
 
 /* Credits */

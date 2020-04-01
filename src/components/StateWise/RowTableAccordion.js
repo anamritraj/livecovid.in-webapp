@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SortIcon from "./SortIcon";
+import { formatRelative, formatDistance, format } from "date-fns";
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
@@ -13,7 +14,7 @@ const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   });
 };
 
-const RowTableAccordion = ({ districts, isHidden }) => {
+const RowTableAccordion = ({ districts, isHidden, lastUpdated }) => {
   const [districtSortOrder, setDistrictSortOrder] = useState(
     Object.keys(districts)
   );
@@ -39,6 +40,12 @@ const RowTableAccordion = ({ districts, isHidden }) => {
     <tr className={"fold" + (isHidden ? " close" : "")}>
       <td colSpan="5">
         <div className="districts-table">
+          <div className="last-updated-state">
+            {" "}
+            Updated{" "}
+            {formatDistance(new Date(Date.parse(lastUpdated)), new Date())} ago
+            at {format(new Date(Date.parse(lastUpdated)), "dd MMM yyyy HH:mm")}
+          </div>
           <table>
             <thead>
               <tr>
@@ -60,7 +67,16 @@ const RowTableAccordion = ({ districts, isHidden }) => {
                 return (
                   <tr key={districtName}>
                     <td>{districtName}</td>
-                    <td>{districts[districtName].confirmed}</td>
+                    <td>
+                      {districts[districtName].confirmed}{" "}
+                      {districts[districtName].delta.confirmed ? (
+                        <span className="delta confirmed">
+                          (+{districts[districtName].delta.confirmed})
+                        </span>
+                      ) : (
+                        <span className="delta gray">(+0)</span>
+                      )}
+                    </td>
                   </tr>
                 );
               })}
