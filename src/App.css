@@ -315,6 +315,51 @@ li.answer {
   background: #fff;
   border-radius: 50%;
 }
+
+/* RaceChart CSS */
+
+.race-chart h3,
+.race-chart h2 {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.race-chart h2 {
+  font-size: 1.4em;
+}
+.race-chart h3 {
+  font-size: 1.2em;
+}
+.race-chart-controls {
+  margin-bottom: 5px;
+}
+
+button.chart-control-btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #e4e4e4;
+  margin: 5px 10px;
+  background: #fff;
+  min-width: 70px;
+}
+
+.chart-control-btn:focus {
+  outline: none;
+}
+.chart-control-btn:active {
+  border: 1px solid #ddd;
+  background: #e4e4e4;
+}
+
+img.control-img {
+  width: 10px;
+  margin-right: 5px;
+}
+
+.racechart-speed {
+  color: #666;
+  font-size: 12px;
+}
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;

@@ -5,6 +5,10 @@ export const getIndiaTimeSeries = () => {
   return axios.get(`${api}/india/timeseries`);
 };
 
+export const getStatesRaceChart = () => {
+  return axios.get(`${api}/states/racechart`);
+};
+
 export default {
   getIndiaTimeSeries
 };
