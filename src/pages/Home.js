@@ -47,9 +47,9 @@ const Home = props => {
                 isMobile={props.isMobile}
               ></IndianTimeSeriesWrapper>
             </div>
-            <div className="col-6">
+            {/* <div className="col-6">
               <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
-            </div>
+            </div> */}
             <div className="col-6">
               <GenderChart gender={props.gender}></GenderChart>
             </div>
