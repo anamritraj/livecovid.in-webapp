@@ -11,7 +11,7 @@ const WhatsappShare = () => {
   return (
     <div className="floating-actions">
       <a
-        href="whatsapp://send?text=Covid-19 India provides the latest state-wise updates on the spead of the coronavirus in India. Stay Informed. Stay Inside https://livecovid.in/"
+        href="whatsapp://send?text=Covid-19 India provides the latest state-wise updates on the spread of the coronavirus in India. Stay Informed. Stay Inside https://livecovid.in/"
         data-action="share/whatsapp/share"
         className="wa-icon"
       ></a>

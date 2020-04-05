@@ -360,6 +360,37 @@ img.control-img {
   color: #666;
   font-size: 12px;
 }
+
+.social-footer ul {
+  list-style: none;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+.social-footer li {
+  margin-bottom: 20px;
+}
+.social-footer .github {
+  padding: 10px 20px;
+  background: #131313;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.social-footer img {
+  width: 20px;
+  vertical-align: sub;
+  margin-right: 5px;
+}
+.social-footer .twitter {
+  padding: 10px 20px;
+  background: rgb(29, 161, 242);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;

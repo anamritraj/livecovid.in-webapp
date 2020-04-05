@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
+import SocialFooter from "./components/SocialFooter";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 const Credits = React.lazy(() => import("./pages/Credits"));
@@ -92,6 +93,7 @@ class App extends Component {
                   ></Home>
                 </Route>
               </Switch>
+              <SocialFooter></SocialFooter>
               <Footer></Footer>
             </div>
             <GoogleAnalytics></GoogleAnalytics>
