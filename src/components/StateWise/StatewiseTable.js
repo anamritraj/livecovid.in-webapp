@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import StateWiseRow from "./StateWiseRow";
 import { getDistrictWiseData } from "../../services/patients.service";
 import SortIcon from "./SortIcon";
+import { sendEventToGA } from '../../services/analytics.service'
 
 const StatewiseTable = ({ statewise, isMobile }) => {
   const [states, setStates] = useState(Object.keys(statewise));
@@ -24,6 +25,9 @@ const StatewiseTable = ({ statewise, isMobile }) => {
       setIsLoading(false);
     });
   }, []);
+
+  const category = "User";
+  const action = "Clicked Sorting";
 
   const sortStates = key => {
     let currentOrderNew = currentOrder;
@@ -51,7 +55,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
           <tr>
             <th></th>
             <th>State</th>
-            <th onClick={e => sortStates("confirmed")}>
+            <th onClick={e => { sortStates("confirmed"); sendEventToGA(category, action, "confirmed") }}>
               <div className="heading">
                 <div>Confirmed</div>
                 <div className="sortIcon">
@@ -61,7 +65,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
                 </div>
               </div>
             </th>
-            <th onClick={e => sortStates("recovered")}>
+            <th onClick={e => { sortStates("recovered"); sendEventToGA(category, action, "recovered") }}>
               <div className="heading">
                 <div>Recovered </div>
                 <div className="sortIcon">
@@ -71,7 +75,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
                 </div>
               </div>
             </th>
-            <th onClick={e => sortStates("deaths")}>
+            <th onClick={e => { sortStates("deaths"); sendEventToGA(category, action, "deaths") }}>
               <div className="heading">
                 <div>Deaths </div>{" "}
                 <div className="sortIcon">

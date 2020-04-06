@@ -9,7 +9,7 @@ body {
 }
 body {
   background-color: #fdfdfd;
-  padding: 56px 0 100px 0;
+  padding: 56px 0 55px 0;
 }
 
 a {
@@ -360,15 +360,19 @@ img.control-img {
   color: #666;
   font-size: 12px;
 }
-
+.social-footer {
+  margin-top: 40px;
+}
 .social-footer ul {
   list-style: none;
   width: 100%;
   text-align: center;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 .social-footer li {
-  margin-bottom: 20px;
+  margin: 10px;
 }
 .social-footer .github {
   padding: 10px 20px;
@@ -420,5 +424,14 @@ img.control-img {
   }
   .floating-actions {
     display: block;
+  }
+  .social-footer {
+    margin-top: 10px;
+  }
+  .social-footer ul {
+    display: grid;
+  }
+  .social-footer li {
+    margin-top: 15px;
   }
 }

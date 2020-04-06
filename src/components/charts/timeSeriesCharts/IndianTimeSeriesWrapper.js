@@ -4,6 +4,8 @@ import IndiaTimeSeriesCumulativeChart from "./IndiaTimeSeriesCumulativeChart";
 import { getIndiaTimeSeries } from "../../../services/charts.service";
 import "../Charts.css";
 import IndianTimeSeriesDailyChart from "./IndianTimeSeriesDailyChart";
+import { sendEventToGA } from '../../../services/analytics.service';
+
 const months = [
   "January",
   "February",
@@ -19,10 +21,15 @@ const months = [
   "December"
 ];
 
+const category = "User";
+const action = "Clicked daily/cumulative";
+const cumulative = "cumulative";
+const daily = "daily";
+
 const IndianTimeSeriesWrapper = props => {
   const [dailyIndiaTimeSeriesData, setdailyIndiaTimeSeriesData] = useState([]);
   const [totalIndiaTimeSeriesData, settotalIndiaTimeSeriesData] = useState([]);
-  const [chartToshow, setChartToshow] = useState("cumulative");
+  const [chartToshow, setChartToshow] = useState(cumulative);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -78,7 +85,7 @@ const IndianTimeSeriesWrapper = props => {
           Object.keys(chartData).forEach(key => {
             if (key.startsWith("total")) {
               totalChartData.push(chartData[key]);
-            } else if (key.startsWith("daily")) {
+            } else if (key.startsWith(daily)) {
               dailyChartData.push(chartData[key]);
             }
           });
@@ -100,24 +107,24 @@ const IndianTimeSeriesWrapper = props => {
           <h2>Number of cases</h2>
           <button
             className={
-              "btn btn-chart" + (chartToshow === "cumulative" ? " active" : "")
+              "btn btn-chart" + (chartToshow === cumulative ? " active" : "")
             }
-            onClick={() => setChartToshow("cumulative")}
+            onClick={() => { setChartToshow(cumulative); sendEventToGA(category, action, cumulative) }}
           >
             Cumulative
           </button>
           <button
             className={
-              "btn btn-chart" + (chartToshow === "daily" ? " active" : "")
+              "btn btn-chart" + (chartToshow === daily ? " active" : "")
             }
-            onClick={() => setChartToshow("daily")}
+            onClick={() => { setChartToshow(daily); sendEventToGA(category, action, daily) }}
           >
             Daily
           </button>
         </div>
 
         <div style={{ height: "500px" }}>
-          {chartToshow === "daily" && dailyIndiaTimeSeriesData.length ? (
+          {chartToshow === daily && dailyIndiaTimeSeriesData.length ? (
             <IndianTimeSeriesDailyChart
               timeseries={dailyIndiaTimeSeriesData}
               isLoading={isLoading}

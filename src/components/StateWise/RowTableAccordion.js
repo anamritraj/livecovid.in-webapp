@@ -4,8 +4,8 @@ import { formatDistance, format } from "date-fns";
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
-    if (a == "Unknown") return 1;
-    if (b == "Unknown") return -1;
+    if (a === "Unknown") return 1;
+    if (b === "Unknown") return -1;
     return (
       currentOrder *
       (parseInt(districtArray[b][activeSortingKey]) -
@@ -74,8 +74,8 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated }) => {
                           (+{districts[districtName].delta.confirmed})
                         </span>
                       ) : (
-                        <span className="delta gray">(+0)</span>
-                      )}
+                          <span className="delta gray">(+0)</span>
+                        )}
                     </td>
                   </tr>
                 );

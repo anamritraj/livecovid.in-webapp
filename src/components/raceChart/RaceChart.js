@@ -4,6 +4,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import { format } from 'date-fns'
 import useInterval from '../../hooks/useInterval';
 import RaceChartControls from './RaceChartControls';
+import { sendEventToGA } from '../../services/analytics.service';
 
 const BarComponent = props => {
   return (
@@ -85,6 +86,9 @@ const DataManager = () => {
 }
 
 const dataManager = DataManager();
+// Analytics variables.
+const category = "User";
+const action = "Clicked Race Controls"
 
 const RaceChart = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -117,10 +121,10 @@ const RaceChart = (props) => {
     <RaceChartControls
       isPaused={isPaused}
       raceTimeInterval={raceTimeInterval}
-      onPause={() => setIsPaused(!isPaused)}
-      onFaster={() => setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25))}
-      onSlower={() => setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25))}
-      onRestart={() => { dataManager.restart(0); setIsPaused(false) }}
+      onPause={() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play'); }}
+      onFaster={() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }}
+      onSlower={() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }}
+      onRestart={() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }}
     ></RaceChartControls>
     <h3>{format(new Date(barData.date), "d MMMM yyyy")}</h3>
 
