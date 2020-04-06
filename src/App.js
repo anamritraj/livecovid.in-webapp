@@ -1,108 +1,77 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense, useState, useEffect } from "react";
 import "./App.css";
 import { Helmet } from "react-helmet";
 import { getStateWiseData, getStats } from "./services/patients.service";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Help from "./pages/Help";
-import Home from "./pages/Home";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import Toolbar from "./components/nav/Toolbar";
 import Footer from "./components/Footer";
-import GoogleAnalytics from "./components/GoogleAnalytics";
 import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
+import Routes from "./Routes";
 
 const Notification = React.lazy(() => import("./components/Notification"));
-const Credits = React.lazy(() => import("./pages/Credits"));
-const FAQs = React.lazy(() => import("./pages/FAQs"));
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: true,
-      statewise: {},
-      total: {},
-      tested: {},
-      dayChange: {},
-      isMobile: document.documentElement.clientWidth < 768,
-      ageGroup: {},
-      nationality: {},
-      gender: {},
-      hospitalizationStatus: {}
-    };
-  }
 
-  componentDidMount() {
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [statewise, setStatewise] = useState({});
+  const [total, setTotal] = useState({});
+  const [tested, setTested] = useState({});
+  const [dayChange, setDayChange] = useState({});
+  const [isMobile, setIsMobile] = useState(document.documentElement.clientWidth < 768);
+  const [ageGroup, setAgeGroup] = useState({});
+  const [nationality, setNationality] = useState({});
+  const [gender, setGender] = useState({});
+  const [hospitalizationStatus, setHospitalizationStatus] = useState({});
+
+  useEffect(() => {
     getStateWiseData().then(({ data }) => {
-      this.setState({
-        ...this.state,
-        statewise: data.statewise,
-        total: data.total,
-        dayChange: data.dayChange,
-        tested: data.tested,
-        isLoading: false
-      });
+      setStatewise(data.statewise);
+      setTotal(data.total);
+      setDayChange(data.dayChange);
+      setTested(data.tested);
+      setIsLoading(false);
 
       getStats().then(({ data }) => {
-        this.setState({
-          ...this.state,
-          ageGroup: data.ageBrackets,
-          hospitalizationStatus: data.hospitalizationStatus,
-          gender: data.gender,
-          nationality: data.nationality
-        });
+        setAgeGroup(data.ageGroup);
+        setHospitalizationStatus(data.hospitalizationStatus);
+        setGender(data.gender);
+        setNationality(data.nationality);
       });
     });
-  }
+  }, []);
 
-  render() {
-    return (
-      <>
-        <Helmet>
-          <script type="application/json">
-            {JSON.stringify(schemaMarkup())}
-          </script>
-        </Helmet>
-        <Router>
-          <Suspense fallback={<div>Loading...</div>}>
-            <div>
-              <Toolbar />
-              <Notification></Notification>
-              <Switch>
-                <Route exact path="/help">
-                  <Help></Help>
-                </Route>
-                <Route exact path="/credits">
-                  <Credits></Credits>
-                </Route>
-                <Route exact path="/faqs">
-                  <FAQs></FAQs>
-                </Route>
-                <Route exact path="/">
-                  <Home
-                    isLoading={this.state.isLoading}
-                    dayChange={this.state.dayChange}
-                    total={this.state.total}
-                    tested={this.state.tested}
-                    statewise={this.state.statewise}
-                    isMobile={this.state.isMobile}
-                    ageGroup={this.state.ageGroup}
-                    nationality={this.state.nationality}
-                    gender={this.state.gender}
-                    hospitalizationStatus={this.state.hospitalizationStatus}
-                  ></Home>
-                </Route>
-              </Switch>
-              <SocialFooter></SocialFooter>
-              <Footer></Footer>
-            </div>
-            <GoogleAnalytics></GoogleAnalytics>
-            <WhatsappShare></WhatsappShare>
-          </Suspense>
-        </Router>
-      </>
-    );
-  }
+  return (
+    <>
+      <Helmet>
+        <script type="application/json">
+          {JSON.stringify(schemaMarkup())}
+        </script>
+      </Helmet>
+      <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+          <div>
+            <Toolbar />
+            <Notification></Notification>
+            <Routes
+              isLoading={isLoading}
+              statewise={statewise}
+              total={total}
+              tested={tested}
+              dayChange={dayChange}
+              isMobile={isMobile}
+              ageGroup={ageGroup}
+              nationality={nationality}
+              gender={gender}
+              hospitalizationStatus={hospitalizationStatus}></Routes>
+            <SocialFooter></SocialFooter>
+            <Footer></Footer>
+          </div>
+          <WhatsappShare></WhatsappShare>
+        </Suspense>
+      </Router>
+    </>)
 }
 
 export default App;
