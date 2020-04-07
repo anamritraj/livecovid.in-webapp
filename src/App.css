@@ -423,7 +423,8 @@ img.control-img {
     padding: 20px;
   }
   .floating-actions {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   .social-footer {
     margin-top: 10px;
