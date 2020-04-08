@@ -13,6 +13,8 @@
     "axios": "^0.19.2",
     "date-fns": "^2.11.1",
     "idb": "^5.0.2",
+    "cra-append-sw": "^2.7.0",
+    "date-fns": "^2.11.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
@@ -21,7 +23,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build && cra-append-sw --skip-compile ./public/custom-sw.js",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
