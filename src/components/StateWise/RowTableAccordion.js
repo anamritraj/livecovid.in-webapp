@@ -61,7 +61,7 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNo
                     ? SortIcon(currentOrder)
                     : null}
                 </th>
-                <th></th>
+                {/* <th></th> */}
               </tr>
             </thead>
             <tbody>
@@ -78,13 +78,13 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNo
                       ) : (
                           <span className="delta gray">(+0)</span>
                         )}</td>
-                    <td>
+                    {/* <td>
                       <BellIcon
                         districtName={districtName}
                         stateCode={stateCode}
                         showNotificationModal={showNotificationModal}
                       ></BellIcon>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}
