@@ -16,6 +16,43 @@ a {
   color: #18b0b0;
   font-weight: bold;
 }
+.text-center{
+  text-align: center;
+}
+
+.overlay{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal{
+  background: white;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 14px;
+}
+.modal p{
+  font-size: 1rem;
+}
+.modal .modal-button-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.modal .btn{
+  padding: 10px;
+  background: #e4e4e4;
+}
+
 .container {
   text-align: center;
   width: 80%;
@@ -317,7 +354,7 @@ a {
   left: 0;
   right: 0;
   height: 20px;
-  z-index: 1000;
+  z-index: 200;
   font-size: 0.75rem;
   background: #fff;
   text-align: center;
@@ -439,6 +476,16 @@ img.control-img {
   }
   .container {
     width: 100%;
+  }
+  .modal{
+    min-width: 60%;
+  }
+
+  .modal-button-wrapper{
+    flex-direction: column;
+  }
+  .modal .btn{
+    margin: 5px auto;
   }
   td {
     padding: 5px;
