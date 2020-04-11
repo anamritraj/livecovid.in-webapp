@@ -19,96 +19,6 @@ const isLocalhost = Boolean(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
 );
-let db;
-// Let us open our database
-const DBOpenRequest = window.indexedDB.open("keyval-store", 1);
-
-// these two event handlers act on the database being opened successfully, or not
-DBOpenRequest.onerror = function(event) {
-  console.log("Error loading database");
-};
-
-DBOpenRequest.onsuccess = function(event) {
-  console.log("Database initialized..");
-  // store the result of opening the database in the db variable. This is used a lot below
-  db = DBOpenRequest.result;
-};
-
-const showNotificationsBasedOnData = districtData => {
-  let districtNameArray = [];
-
-  let objectStore = db.transaction("keyval", "readwrite").objectStore("keyval");
-  objectStore.openCursor().onsuccess = function(event) {
-    let cursor = event.target.result;
-    // if there is still another cursor to go, keep runing this code
-    if (cursor) {
-      const stateKey = cursor.key.split("_")[0];
-      const districtName = cursor.key.split("_")[1];
-      const numberOfPatients = cursor.value.numberOfPatients || 0;
-      console.log(
-        stateKey,
-        numberOfPatients,
-        districtData[stateKey].districts[districtName].confirmed
-      );
-      if (
-        districtData[stateKey].districts[districtName].confirmed >
-        numberOfPatients
-      ) {
-        districtNameArray.push(districtName);
-        try {
-          let objectStoreRequest = objectStore.put(
-            {
-              ...cursor.value,
-              numberOfPatients:
-                districtData[stateKey].districts[districtName].confirmed
-            },
-            stateKey + "_" + districtName
-          );
-
-          objectStoreRequest.onsuccess = function() {
-            console.log("This has been udpated in the database");
-          };
-          objectStoreRequest.onerror = function(e) {
-            console.log("This has not been udpated in the database", e);
-          };
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      cursor.continue();
-    } else {
-      if (districtNameArray.length) {
-        const notification = new Notification("There are new Cases!", {
-          body: "There are new cases in " + districtNameArray.join(", "),
-          tag: "districtNotification",
-          image: "./assets/logo192x192.png",
-          renotify: true,
-          requireInteraction: true
-        });
-
-        notification.onclick = function(event) {
-          event.preventDefault(); // prevent the browser from focusing the Notification's tab
-          window.open(window.location + "?ref=notification", "_blank");
-        };
-      }
-    }
-  };
-};
-
-const startCasesNotificationService = () => {
-  fetch("http://localhost:4444/api/district").then(response => {
-    if (response.status !== 200) {
-      console.log(
-        "Looks like there was a problem. Status Code: " + response.status
-      );
-      return;
-    }
-    response.json().then(function(data) {
-      showNotificationsBasedOnData(data);
-    });
-  });
-};
 
 export function register(config) {
   
@@ -145,12 +55,7 @@ export function register(config) {
             Notification.permission === "default"
           ) {
             console.log("There is no notification access, abort!");
-          } else {
-            setInterval(startCasesNotificationService, 10000);
           }
-          Notification.requestPermission().then(permission => {
-            console.log(permission);
-          });
         });
       } else {
         // Is not localhost. Just register service worker

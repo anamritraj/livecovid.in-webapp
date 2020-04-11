@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { subscribeUser } from "../../services/subscription.service";
+import { idb } from "../../services/idb.service";
+import useNotificationsPermission from "../../hooks/useNotificationsPermissions";
 
-const updateStatusInIDB = (notificationKey, alarmStatus, confirmed, idb) => {
-  if (alarmStatus === false) {
-    idb.delete(notificationKey);
-    return;
-  }
-  const districtState = {
-    alarmStatus: alarmStatus,
-    numberOfPatients: confirmed - 10
-  };
-  idb.set(notificationKey, districtState);
-};
+const handleSubscriptionClick = (key, status) => {
+  subscribeUser(key, status);
+}
 
-const BellIcon = ({ districtName, stateCode, confirmed, idb }) => {
+const BellIcon = ({ districtName, stateCode}) => {
   const [isBellActive, setIsBellActive] = useState(false);
   const districtKey = stateCode + "_" + districtName;
-
+  // const hasNotificationPermissions = useNotificationsPermission();
+  // console.log(hasNotificationPermissions);
   useEffect(() => {
     idb.get(districtKey).then(bellStatus => {
       if (bellStatus) {
         setIsBellActive(bellStatus.alarmStatus);
-        updateStatusInIDB(districtKey, bellStatus.alarmStatus, confirmed, idb);
       }
     });
   }, []);
@@ -30,7 +25,8 @@ const BellIcon = ({ districtName, stateCode, confirmed, idb }) => {
       onClick={() => {
         const newStatus = !isBellActive;
         setIsBellActive(newStatus);
-        updateStatusInIDB(districtKey, newStatus, confirmed, idb);
+        // if (hasNotificationPermissions)
+          handleSubscriptionClick(districtKey, newStatus);
       }}
       height="20"
       className={"bell-icon" + (isBellActive ? " active" : "")}

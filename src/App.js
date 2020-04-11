@@ -10,6 +10,7 @@ import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
+import { subscribeUser } from "./services/subscription.service";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 

@@ -82,7 +82,7 @@ a {
 }
 
 .popover {
-  position: absolute;
+  position: fixed;
   border: 1px solid #e4e4e4;
   background: #ffffff;
   padding: 5px 15px;
