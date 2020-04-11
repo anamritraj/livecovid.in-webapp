@@ -12,6 +12,7 @@ const StateWiseRow = ({ state, districts }) => {
       <tr
         onClick={() => { setIsHidden(!isHidden); sendEventToGA(category, action, state.name) }}
         className={"state-row " + (isHidden ? "" : "open")}
+        key={state.name}
       >
         <td className="expand-icon">
           <img src={chevronRight} alt="more-details" />
@@ -52,6 +53,7 @@ const StateWiseRow = ({ state, districts }) => {
             districts={districts.districts}
             isHidden={isHidden}
             stateCode={state.code}
+            key={state.code}
           ></RowTableAccordion>
         ) : null
       ]

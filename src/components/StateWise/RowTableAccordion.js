@@ -2,43 +2,6 @@ import React, { useState, useEffect } from "react";
 import SortIcon from "./SortIcon";
 import { formatDistance, format } from "date-fns";
 import BellIcon from "./BellIcon";
-import { openDB } from "idb";
-const subscribe = () => {
-  console.log("Subscribing");
-  Notification.requestPermission().then(permission => {
-    console.log(permission);
-  });
-};
-
-const notify = () => {
-  let notification = new Notification("To do list", {
-    body: "this is a notificaiton!!"
-  });
-};
-
-const dbPromise = openDB("keyval-store", 1, {
-  upgrade(db) {
-    db.createObjectStore("keyval");
-  }
-});
-
-const idb = {
-  async get(key) {
-    return (await dbPromise).get("keyval", key);
-  },
-  async set(key, val) {
-    return (await dbPromise).put("keyval", val, key);
-  },
-  async delete(key) {
-    return (await dbPromise).delete("keyval", key);
-  },
-  async clear() {
-    return (await dbPromise).clear("keyval");
-  },
-  async keys() {
-    return (await dbPromise).getAllKeys("keyval");
-  }
-};
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
@@ -84,10 +47,6 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode }) => {
             Updated {formatDistance(time, new Date())} ago at{" "}
             {format(time, "dd MMM yyyy HH:mm")}
           </div>
-          <p onClick={subscribe}>
-            Click here to get notified of new cases from this district
-          </p>
-          <p onClick={notify}>Click here for a test notification</p>
           <table>
             <thead>
               <tr>
@@ -121,10 +80,8 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode }) => {
                         )}</td>
                     <td>
                       <BellIcon
-                        confirmed={districts[districtName].confirmed}
                         districtName={districtName}
                         stateCode={stateCode}
-                        idb={idb}
                       ></BellIcon>
                     </td>
                   </tr>

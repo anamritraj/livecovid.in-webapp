@@ -3,6 +3,8 @@ import StateWiseRow from "./StateWiseRow";
 import { getDistrictWiseData } from "../../services/patients.service";
 import SortIcon from "./SortIcon";
 import { sendEventToGA } from '../../services/analytics.service'
+import { idb } from "../../services/idb.service";
+import useNotificationsPermission from "../../hooks/useNotificationsPermissions";
 
 const StatewiseTable = ({ statewise, isMobile }) => {
   const [states, setStates] = useState(Object.keys(statewise));
@@ -14,6 +16,12 @@ const StatewiseTable = ({ statewise, isMobile }) => {
   useEffect(() => {
     sortStates("confirmed");
   }, []);
+
+  const hasNotificationPermissions = useNotificationsPermission();
+  console.log(hasNotificationPermissions);
+  if (hasNotificationPermissions === false){
+    idb.clear();
+  }
 
   useEffect(() => {
     getDistrictWiseData().then(response => {

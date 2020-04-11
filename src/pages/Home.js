@@ -9,6 +9,7 @@ import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/India
 import { HelmetDefault } from "../components/SEO";
 import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
 import RaceChart from "../components/raceChart/RaceChart";
+import StatewiseTable from "../components/StateWise/StatewiseTable";
 
 const Home = props => {
   return props.isLoading ? (
@@ -32,15 +33,22 @@ const Home = props => {
           </div>
           <div className="row">
             <h1>COVID-19 Cases India - State-wise</h1>
+            <div className="col-6">
+              {props.isLoading ? null : <IndiaStateMap
+                dayChange={props.dayChange}
+                total={props.total}
+                statewise={props.statewise}
+                isMobile={props.isMobile}
+              ></IndiaStateMap>}
+            </div>
+            <div className="col-6">
+              <StatewiseTable
+                statewise={props.statewise}
+                isMobile={props.isMobile}
+              ></StatewiseTable>
+            </div>
           </div>
-          {props.isLoading ? null : (
-            <IndiaStateMap
-              dayChange={props.dayChange}
-              total={props.total}
-              statewise={props.statewise}
-              isMobile={props.isMobile}
-            ></IndiaStateMap>
-          )}
+
           <div className="row">
             <div className="col-12">
               <IndianTimeSeriesWrapper

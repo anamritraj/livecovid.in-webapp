@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { SVG } from "@svgdotjs/svg.js";
 import indiaMap from "../india-map";
 import Popover from "../Popover";
-import StatewiseTable from "./StateWise/StatewiseTable";
 
 const percentColors = [
-  { percent: 0.0, color: { r: 255, g: 255, b: 255 } },
-  { percent: 0.5, color: { r: 199, g: 21, b: 21 } },
+  { percent: 0.0, color: { r: 243, g: 206, b: 206 } },
   { percent: 1.0, color: { r: 160, g: 0, b: 0 } }
 ];
 
@@ -70,13 +68,13 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       indiaSvgMap.findOne("#" + key).on("mousemove", e => {
         let gapX = isMobile ? 20 : 50;
         let gapY = isMobile ? 20 : 50;
-        if (e.pageX + gapX > document.defaultView.outerWidth * 0.65) {
+        if (e.clientX + gapX > document.defaultView.outerWidth * 0.65) {
           gapX = -100;
         }
         setPopover({
           show: true,
-          x: e.pageX + gapX,
-          y: e.pageY - gapY
+          x: e.clientX + gapX,
+          y: e.clientY - gapY
         });
       });
     });
@@ -84,18 +82,7 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
 
   return (
     <>
-      <div className="row">
-        <div className="col-6">
-          <div id="india-state-map" className="card"></div>
-        </div>
-        <div className="col-6">
-          {/* <HelpResources></HelpResources> */}
-          <StatewiseTable
-            statewise={statewise}
-            isMobile={isMobile}
-          ></StatewiseTable>
-        </div>
-      </div>
+      <div id="india-state-map" className="card"></div>
       <Popover
         popover={popover}
         count={selectedState.count}
