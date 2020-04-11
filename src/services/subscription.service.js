@@ -48,9 +48,8 @@ const askUserPermissions = () =>{
                 console.error('An error ocurred during the subscription process.', e)
                 // Show a pop-up that there was an internal error.
                 reject({
-                  msg: 'error'
+                  msg: e
                 })
-                
               }
             })
           }else{
