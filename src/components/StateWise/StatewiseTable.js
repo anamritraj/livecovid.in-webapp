@@ -39,7 +39,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
           break;
         case 'browser_unsupported': setModalContent(unsupportedMsg); setShowGetNotificationButtons(false);
           break;
-        default: setModalContent(err.msg); setShowGetNotificationButtons(true);
+        default: setModalContent(errorMsg); setShowGetNotificationButtons(true);
       }
     })
   }
