@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { subscribeUser } from "../../services/subscription.service";
 import { idb } from "../../services/idb.service";
-import useNotificationsPermission from "../../hooks/useNotificationsPermissions";
 
-const handleSubscriptionClick = (key, status) => {
-  subscribeUser(key, status);
-}
 
-const BellIcon = ({ districtName, stateCode}) => {
+const BellIcon = ({ districtName, stateCode, showNotificationModal }) => {
   const [isBellActive, setIsBellActive] = useState(false);
   const districtKey = stateCode + "_" + districtName;
-  // const hasNotificationPermissions = useNotificationsPermission();
-  // console.log(hasNotificationPermissions);
+
+  const handleSubscriptionClick = (key, status) => {
+    return subscribeUser(key, status).then(msg => {
+      setIsBellActive(status);
+    }).catch(err => {
+      showNotificationModal();
+    })
+  }
+
   useEffect(() => {
     idb.get(districtKey).then(bellStatus => {
       if (bellStatus) {
@@ -23,10 +26,7 @@ const BellIcon = ({ districtName, stateCode}) => {
   return (
     <svg
       onClick={() => {
-        const newStatus = !isBellActive;
-        setIsBellActive(newStatus);
-        // if (hasNotificationPermissions)
-          handleSubscriptionClick(districtKey, newStatus);
+        handleSubscriptionClick(districtKey, !isBellActive);
       }}
       height="20"
       className={"bell-icon" + (isBellActive ? " active" : "")}

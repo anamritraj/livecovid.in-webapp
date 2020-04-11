@@ -5,6 +5,14 @@ import SortIcon from "./SortIcon";
 import { sendEventToGA } from '../../services/analytics.service'
 import { idb } from "../../services/idb.service";
 import useNotificationsPermission from "../../hooks/useNotificationsPermissions";
+import Modal from "../Modal";
+import { askUserPermissions } from "../../services/subscription.service";
+
+const promptMsg = <p>You need to allow permissions to get Notifications. When prompted click 'Allow' to get notifications</p>;
+const blockedMsg = <p>Seems like you have denied the message permissions, you need to click "Allow" to give permissions for notifications. <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid&hl=en&oco=1" target="_blank" rel="noopener noreferrer">Follow the instructions here</a></p>
+const errorMsg = <p>There was an error, please try again.</p>
+const unsupportedMsg = <p>Seems like your browser doesn't support notifications, it is possible you are in a private window.</p>
+const successMsg = <p>Congratulations you have enabled notifications! <span role="img" aria-label="tada"> 🎉 </span></p>
 
 const StatewiseTable = ({ statewise, isMobile }) => {
   const [states, setStates] = useState(Object.keys(statewise));
@@ -12,14 +20,32 @@ const StatewiseTable = ({ statewise, isMobile }) => {
   const [activeSorting, setActiveSorting] = useState("");
   const [currentOrder, setCurrentOrder] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(promptMsg);
+  const [showGetNotificationButtons, setShowGetNotificationButtons] = useState(true);
+
   // For the intial sorting when it renders the first time, empty array as second parameters ensures this effect is run one time.
   useEffect(() => {
     sortStates("confirmed");
   }, []);
 
+  const getNotificationPermissions = () => {
+    askUserPermissions().then(msg => {
+      setModalContent(successMsg);
+      setShowGetNotificationButtons(false);
+    }).catch(err => {
+      switch (err.msg) {
+        case 'blocked': setModalContent(blockedMsg); setShowGetNotificationButtons(false);
+          break;
+        case 'browser_unsupported': setModalContent(unsupportedMsg); setShowGetNotificationButtons(false);
+          break;
+        default: setModalContent(errorMsg); setShowGetNotificationButtons(true);
+      }
+    })
+  }
+
   const hasNotificationPermissions = useNotificationsPermission();
-  console.log(hasNotificationPermissions);
-  if (hasNotificationPermissions === false){
+  if (hasNotificationPermissions === false) {
     idb.clear();
   }
 
@@ -101,11 +127,21 @@ const StatewiseTable = ({ statewise, isMobile }) => {
                 districts={districts[stateCode]}
                 index={index + 1}
                 key={stateCode}
+                showNotificationModal={() => setShowModal(true)}
               ></StateWiseRow>
             );
           })}
         </tbody>
       </table>
+      {showModal && <Modal>
+        <div className="modal text-center">
+          {modalContent}
+          <div className="modal-button-wrapper">
+            {showGetNotificationButtons && <button className="btn" onClick={getNotificationPermissions}>Okay</button>}
+            <button className="btn" onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      </Modal>}
     </div>
   );
 };
