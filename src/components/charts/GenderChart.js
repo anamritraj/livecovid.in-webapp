@@ -11,10 +11,9 @@ const getColor = bar => {
   return colors[bar.id];
 };
 
-let totalCases = 0;
-
 const GenderChart = ({ gender }) => {
   let data = [];
+  let totalCases = 0;
   Object.keys(gender).map(key => {
     let label = "Male";
     if (key === "F") label = "Female";
