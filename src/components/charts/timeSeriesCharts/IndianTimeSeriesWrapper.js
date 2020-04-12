@@ -32,11 +32,10 @@ const IndianTimeSeriesWrapper = props => {
   const [chartToshow, setChartToshow] = useState(cumulative);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
   useEffect(() => {
     getIndiaTimeSeries()
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           const chartData = {
             dailydeceased: {
               id: "Daily Deceased",
@@ -92,8 +91,6 @@ const IndianTimeSeriesWrapper = props => {
           setdailyIndiaTimeSeriesData(dailyChartData);
           settotalIndiaTimeSeriesData(totalChartData);
           setIsLoading(false);
-        } else {
-          setIsError(true);
         }
       })
       .catch(err => {

@@ -40,7 +40,7 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
   useEffect(() => {
     const indiaSvgMap = SVG(indiaMap).addTo("#india-state-map");
     const max = total.max;
-    Object.keys(statewise).map(key => {
+    Object.keys(statewise).forEach(key => {
       indiaSvgMap
         .findOne("#" + key)
         .fill(getColorBasedOnNoOfCases(statewise[key].active / max));

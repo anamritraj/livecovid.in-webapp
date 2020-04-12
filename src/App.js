@@ -1,4 +1,4 @@
-import React, { Component, Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import "./App.css";
 import { Helmet } from "react-helmet";
 import { getStateWiseData, getStats } from "./services/patients.service";
@@ -10,7 +10,6 @@ import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
-import { subscribeUser } from "./services/subscription.service";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 
@@ -20,7 +19,7 @@ const App = () => {
   const [total, setTotal] = useState({});
   const [tested, setTested] = useState({});
   const [dayChange, setDayChange] = useState({});
-  const [isMobile, setIsMobile] = useState(document.documentElement.clientWidth < 768);
+  const [isMobile] = useState(document.documentElement.clientWidth < 768);
   const [ageGroup, setAgeGroup] = useState({});
   const [nationality, setNationality] = useState({});
   const [gender, setGender] = useState({});
@@ -32,13 +31,13 @@ const App = () => {
       setTotal(data.total);
       setDayChange(data.dayChange);
       setTested(data.tested);
-      setIsLoading(false);
 
       getStats().then(({ data }) => {
         setAgeGroup(data.ageGroup);
         setHospitalizationStatus(data.hospitalizationStatus);
         setGender(data.gender);
         setNationality(data.nationality);
+        setIsLoading(false);
       });
     });
   }, []);
@@ -51,11 +50,11 @@ const App = () => {
         </script>
       </Helmet>
       <Router>
-        <Suspense fallback={<div>Loading...</div>}>
-          <div>
+        <Suspense fallback={<div className="text-center">Loading...</div>}>
+          <>
             <Toolbar />
             <Notification></Notification>
-            <Routes
+            {!isLoading && <Routes
               isLoading={isLoading}
               statewise={statewise}
               total={total}
@@ -65,10 +64,10 @@ const App = () => {
               ageGroup={ageGroup}
               nationality={nationality}
               gender={gender}
-              hospitalizationStatus={hospitalizationStatus}></Routes>
+              hospitalizationStatus={hospitalizationStatus}></Routes>}
             <SocialFooter></SocialFooter>
             <Footer></Footer>
-          </div>
+          </>
           <WhatsappShare></WhatsappShare>
         </Suspense>
       </Router>

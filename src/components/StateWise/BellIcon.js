@@ -14,14 +14,13 @@ const BellIcon = ({ districtName, stateCode, showNotificationModal }) => {
       showNotificationModal();
     })
   }
-
   useEffect(() => {
     idb.get(districtKey).then(bellStatus => {
       if (bellStatus) {
         setIsBellActive(bellStatus.alarmStatus);
       }
     });
-  }, []);
+  }, [districtKey]);
 
   return (
     <svg

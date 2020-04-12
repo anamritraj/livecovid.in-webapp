@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import StateWiseRow from "./StateWiseRow";
 import { getDistrictWiseData } from "../../services/patients.service";
 import SortIcon from "./SortIcon";
@@ -15,19 +15,42 @@ const unsupportedMsg = <p>Seems like your browser doesn't support notifications,
 const successMsg = <p>Congratulations you have enabled notifications! <span role="img" aria-label="tada"> 🎉 </span></p>
 
 const StatewiseTable = ({ statewise, isMobile }) => {
-  const [states, setStates] = useState(Object.keys(statewise));
-  const [districts, setDistricts] = useState(Object.keys({}));
-  const [activeSorting, setActiveSorting] = useState("");
-  const [currentOrder, setCurrentOrder] = useState(1);
+  const stateWiseKeys = Object.keys(statewise);
+  const [stateSortObject, setStateSortObject] = useState({
+    states: stateWiseKeys,
+    activeSorting: "",
+    currentOrder: 1
+  });
+  const [districts, setDistricts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(promptMsg);
   const [showGetNotificationButtons, setShowGetNotificationButtons] = useState(true);
 
-  // For the intial sorting when it renders the first time, empty array as second parameters ensures this effect is run one time.
-  useEffect(() => {
-    sortStates("confirmed");
-  }, []);
+  const sortStates = useCallback((key, order, stateWiseKeys) => {
+    return stateWiseKeys.sort((a, b) => {
+      return (
+        order * (parseInt(statewise[b][key]) - parseInt(statewise[a][key]))
+      );
+    });
+  }, [statewise]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleSortClick = (activeSortingNew) => {
+    let currentOrderNew = stateSortObject.currentOrder;
+    if (stateSortObject.activeSorting === activeSortingNew) {
+      currentOrderNew = currentOrderNew * -1;
+    } else {
+      currentOrderNew = 1;
+    }
+    const newStateKeys = sortStates(activeSortingNew, currentOrderNew, stateWiseKeys);
+    
+    setStateSortObject({
+      states: newStateKeys,
+      activeSorting: activeSortingNew,
+      currentOrder: currentOrderNew
+    })
+  }
 
   const getNotificationPermissions = () => {
     askUserPermissions().then(msg => {
@@ -53,74 +76,56 @@ const StatewiseTable = ({ statewise, isMobile }) => {
     getDistrictWiseData().then(response => {
       if (response.status === 200) {
         setDistricts(response.data);
+        handleSortClick("confirmed");
+        setIsLoading(false);
       } else {
         console.log("Error in API");
       }
-      setIsLoading(false);
     });
   }, []);
 
   const category = "User";
   const action = "Clicked Sorting";
 
-  const sortStates = key => {
-    let currentOrderNew = currentOrder;
-    if (activeSorting === key) {
-      currentOrderNew = currentOrderNew * -1;
-    } else {
-      currentOrderNew = 1;
-    }
-    let keys = Object.keys(statewise);
-    keys.sort((a, b) => {
-      return (
-        currentOrderNew *
-        (parseInt(statewise[b][key]) - parseInt(statewise[a][key]))
-      );
-    });
-    setStates(keys);
-    setActiveSorting(key);
-    setCurrentOrder(currentOrderNew);
-  };
-
-  return isLoading ? null : (
+  return !isLoading && (
     <div>
       <table className="statewise-cases table card">
         <thead>
           <tr>
             <th></th>
             <th>State</th>
-            <th onClick={e => { sortStates("confirmed"); sendEventToGA(category, action, "confirmed") }}>
+            <th onClick={e => { handleSortClick("confirmed"); sendEventToGA(category, action, "confirmed") }}>
               <div className="heading">
                 <div>Confirmed</div>
                 <div className="sortIcon">
-                  {activeSorting === "confirmed"
-                    ? SortIcon(currentOrder)
+                  {stateSortObject.activeSorting === "confirmed"
+                    ? SortIcon(stateSortObject.currentOrder)
                     : null}
                 </div>
               </div>
             </th>
-            <th onClick={e => { sortStates("recovered"); sendEventToGA(category, action, "recovered") }}>
+            <th onClick={e => { handleSortClick("recovered"); sendEventToGA(category, action, "recovered") }}>
               <div className="heading">
                 <div>Recovered </div>
                 <div className="sortIcon">
-                  {activeSorting === "recovered"
-                    ? SortIcon(currentOrder)
+                  {stateSortObject.activeSorting === "recovered"
+                    ? SortIcon(stateSortObject.currentOrder)
                     : null}
                 </div>
               </div>
             </th>
-            <th onClick={e => { sortStates("deaths"); sendEventToGA(category, action, "deaths") }}>
+            <th onClick={e => { handleSortClick("deaths"); sendEventToGA(category, action, "deaths") }}>
               <div className="heading">
                 <div>Deaths </div>{" "}
                 <div className="sortIcon">
-                  {activeSorting === "deaths" ? SortIcon(currentOrder) : null}
+                  {stateSortObject.activeSorting === "deaths" ? SortIcon(stateSortObject.currentOrder) : null}
                 </div>
               </div>
             </th>
           </tr>
         </thead>
         <tbody>
-          {states.map((stateCode, index) => {
+          {stateSortObject.states.map((stateCode, index) => {
             return (
               <StateWiseRow
                 state={statewise[stateCode]}

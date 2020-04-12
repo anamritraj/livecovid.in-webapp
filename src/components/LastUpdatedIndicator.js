@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDistance, format } from "date-fns";
+import { formatDistance } from "date-fns";
 
 const LastUpdatedIndicator = props => {
   return (

@@ -14,7 +14,7 @@ const getColor = bar => {
 const GenderChart = ({ gender }) => {
   let data = [];
   let totalCases = 0;
-  Object.keys(gender).map(key => {
+  Object.keys(gender).forEach(key => {
     let label = "Male";
     if (key === "F") label = "Female";
     if (key === "unknown") label = "Details Awaited";
@@ -54,7 +54,6 @@ const GenderChart = ({ gender }) => {
             );
           }}
           theme={{ fontSize: 16 }}
-          animate={true}
           motionStiffness={90}
           motionDamping={15}
         />
