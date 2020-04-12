@@ -64,6 +64,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
           break;
         default: setModalContent(errorMsg);
       }
+      setShowGetNotificationButtons(false);
     })
   }
 
