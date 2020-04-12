@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray
 }
 
-const askUserPermissions = () =>{
+const askUserPermissions = () => {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.ready.then(function (registration) {
@@ -28,44 +28,34 @@ const askUserPermissions = () =>{
             msg: 'browser_unsupported'
           })
         }
-        registration.pushManager.getSubscription().then(function (existingSubscription) {
-          if (existingSubscription === null) {
-            registration.pushManager.subscribe({
-              applicationServerKey: convertedVapidKey,
-              userVisibleOnly: true,
-            }).then(function (newSubscription) {
-              resolve({
-                msg: 'success'
-              })
-            }).catch(function (e) {
-              if (Notification.permission !== 'granted') {
-                console.log('Permission was not granted.')
-                // Show a pop-up that we need notification access.
-                reject({
-                  msg: 'blocked'
-                })
-              } else {
-                console.error('An error ocurred during the subscription process.', e)
-                // Show a pop-up that there was an internal error.
-                reject({
-                  msg: 'error'
-                })
-                
-              }
+        const subscribeOptions = {
+          userVisibleOnly: true,
+          applicationServerKey: convertedVapidKey
+        };
+
+        registration.pushManager.subscribe(subscribeOptions).then(function (existingSubscription) {
+          console.log(existingSubscription);
+          resolve({
+            msg: 'success'
+          })
+        }).catch(function (e) {
+          if (Notification.permission !== 'granted') {
+            console.log('Permission was not granted.')
+            // Show a pop-up that we need notification access.
+            reject({
+              msg: 'blocked'
             })
-          }else{
-            resolve({
-              msg: 'success'
+          } else {
+            console.error('An error ocurred during the subscription process.', e)
+            // Show a pop-up that there was an internal error.
+            reject({
+              msg: 'error'
             })
+
           }
-        })
-      }).catch(function (e) {
-        reject({
-          msg: 'error'
-        })
-        console.error('An error ocurred during Service Worker registration.', e)
-      })
-    }else{
+        });
+      });
+    } else {
       reject({
         msg: 'browser_unsupported'
       })
@@ -128,13 +118,13 @@ function subscribeUser(key, status) {
                 if (response.status === 200 && response.data.success === true) {
                   // Data successfully updated in the database
                   idb.delete(data.payload.key);
-                  resolve({msg_code: 'success'});
+                  resolve({ msg_code: 'success' });
                 } else {
                   reject({ msg_code: 'failure' });
                 }
               }).catch(err => {
                 console.log(err);
-                reject({msg_code: 'server_error'});
+                reject({ msg_code: 'server_error' });
               })
             }
           }
