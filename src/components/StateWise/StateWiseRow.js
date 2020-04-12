@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RowTableAccordion from "./RowTableAccordion";
 import chevronRight from "./chevron-right.svg";
 import { sendEventToGA } from '../../services/analytics.service'
@@ -7,6 +7,7 @@ const action = "Clicked State Row"
 
 const StateWiseRow = ({ state, districts, showNotificationModal}) => {
   const [isHidden, setIsHidden] = useState(true);
+
   return state.active > 0
     ? [
       <tr

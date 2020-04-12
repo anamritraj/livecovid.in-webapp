@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
 const IndianTimeSeriesDailyChart = ({
@@ -7,7 +7,6 @@ const IndianTimeSeriesDailyChart = ({
   months,
   isMobile
 }) => {
-  console.log(timeseries);
   return (
     <ResponsiveLine
       data={timeseries}

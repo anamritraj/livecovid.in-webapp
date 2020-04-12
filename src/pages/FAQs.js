@@ -1,5 +1,5 @@
 import React from "react";
-import HelpResources from "../components/HelpResources";
+// import HelpResources from "../components/HelpResources";
 import { HelmetDefault } from "../components/SEO";
 
 const FAQs = () => {

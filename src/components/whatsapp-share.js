@@ -20,6 +20,7 @@ const WhatsappShare = () => {
       <a
         href="https://gpay.app.goo.gl/EfBVSS"
         target="_blank"
+        rel="noopener noreferrer"
         data-action="share/whatsapp/share"
         className="gpay-icon"
         onClick={() => sendEventToGA('User', 'Clicked share', 'Google Pay')}

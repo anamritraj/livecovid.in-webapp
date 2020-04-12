@@ -16,9 +16,8 @@ const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
 };
 
 const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNotificationModal }) => {
-  const [districtSortOrder, setDistrictSortOrder] = useState(
-    Object.keys(districts)
-  );
+  const districtKeysArray = Object.keys(districts)
+  const [districtSortOrder, setDistrictSortOrder] = useState(districtKeysArray);
   const [activeSortingKey, setActiveSortingKey] = useState("confirmed");
   const [currentOrder, setCurrentOrder] = useState(1);
 
@@ -61,7 +60,7 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNo
                     ? SortIcon(currentOrder)
                     : null}
                 </th>
-                {/* <th></th> */}
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -78,13 +77,13 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNo
                       ) : (
                           <span className="delta gray">(+0)</span>
                         )}</td>
-                    {/* <td>
+                    <td>
                       <BellIcon
                         districtName={districtName}
                         stateCode={stateCode}
                         showNotificationModal={showNotificationModal}
                       ></BellIcon>
-                    </td> */}
+                    </td>
                   </tr>
                 );
               })}

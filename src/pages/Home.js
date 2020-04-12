@@ -2,9 +2,7 @@ import React from "react";
 
 import Stats from "../components/Stats";
 import IndiaStateMap from "../components/IndiaStateMap";
-import AgeGroup from "../components/charts/AgeGroups";
 import GenderChart from "../components/charts/GenderChart";
-import NationalityChart from "../components/charts/NationalityChart";
 import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/IndianTimeSeriesWrapper";
 import { HelmetDefault } from "../components/SEO";
 import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
@@ -12,10 +10,7 @@ import RaceChart from "../components/raceChart/RaceChart";
 import StatewiseTable from "../components/StateWise/StatewiseTable";
 
 const Home = props => {
-  return props.isLoading ? (
-    <div>Loading...</div>
-  ) : (
-      <>
+  return <>
         <HelmetDefault title={"Home"}></HelmetDefault>
         <div className="container">
           <LastUpdatedIndicator
@@ -68,7 +63,6 @@ const Home = props => {
           </div>
         </div>
       </>
-    );
 };
 
 export default Home;
