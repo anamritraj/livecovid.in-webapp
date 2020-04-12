@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { subscribeUser } from "../../services/subscription.service";
 import { idb } from "../../services/idb.service";
-
+import { sendEventToGA } from '../../services/analytics.service'
 
 const BellIcon = ({ districtName, stateCode, showNotificationModal }) => {
   const [isBellActive, setIsBellActive] = useState(false);
@@ -26,6 +26,7 @@ const BellIcon = ({ districtName, stateCode, showNotificationModal }) => {
     <svg
       onClick={() => {
         handleSubscriptionClick(districtKey, !isBellActive);
+        sendEventToGA("User", "Clicked Bell", isBellActive ? "on" : "off");
       }}
       height="20"
       className={"bell-icon" + (isBellActive ? " active" : "")}

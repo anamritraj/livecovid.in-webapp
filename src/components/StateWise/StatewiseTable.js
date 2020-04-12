@@ -10,8 +10,8 @@ import { askUserPermissions } from "../../services/subscription.service";
 
 const promptMsg = <p>You need to allow permissions to get Notifications. When prompted click 'Allow' to get notifications</p>;
 const blockedMsg = <p>Seems like you have denied the message permissions, you need to click "Allow" to give permissions for notifications. <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid&hl=en&oco=1" target="_blank" rel="noopener noreferrer">Follow the instructions here</a></p>
-const errorMsg = <p>There was an error, please try again.</p>
-const unsupportedMsg = <p>Seems like your browser doesn't support notifications, it is possible you are in a private window.</p>
+const errorMsg = <p>There was an error, please try again. It is possible that your browser doesn't support notifications.</p>
+const unsupportedMsg = <p>Seems like your browser doesn't support notifications. Make sure you are not in a private/incognito window.</p>
 const successMsg = <p>Congratulations you have enabled notifications! <span role="img" aria-label="tada"> 🎉 </span></p>
 
 const StatewiseTable = ({ statewise, isMobile }) => {
@@ -54,16 +54,19 @@ const StatewiseTable = ({ statewise, isMobile }) => {
 
   const getNotificationPermissions = () => {
     askUserPermissions().then(msg => {
+      sendEventToGA("Notifications", "Enabled", "Success");
       setModalContent(successMsg);
       setShowGetNotificationButtons(false);
     }).catch(err => {
       switch (err.msg) {
-        case 'blocked': setModalContent(blockedMsg); setShowGetNotificationButtons(false);
+        case 'blocked': setModalContent(blockedMsg);
           break;
-        case 'browser_unsupported': setModalContent(unsupportedMsg); setShowGetNotificationButtons(false);
+        case 'browser_unsupported': setModalContent(unsupportedMsg);
           break;
-        default: setModalContent(errorMsg); setShowGetNotificationButtons(true);
+        default: setModalContent(errorMsg);
       }
+      setShowGetNotificationButtons(false);
+      sendEventToGA("Notifications", "Failed", "Failed");
     })
   }
 
