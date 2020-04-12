@@ -1,11 +1,7 @@
 import React from "react";
 
 const Stats = props => {
-  // var totalconfirmedpercent = {props.total.confirmed}/{props.tested.totalsamplestested};
-  const totalconfirmedpercent = (props.total.confirmed/props.tested.totalsamplestested).toPrecision(2);;
-  // const totalconfirmedpercent = props.total.confirmed/props.tested.totalsamplestested;
-  // const totalconfirmedpercent = props.total.confirmed/props.tested.totalsamplestested;
-  // const totalconfirmedpercent = props.total.confirmed/props.tested.totalsamplestested;
+
   return (
 
     <div className="row stats">
@@ -37,12 +33,12 @@ const Stats = props => {
       </div>
 
       <div className="col-4 col-6-sm card recovered">
-        <p className="delta">(+{(100*props.dayChange.recovered/props.dayChange.confirmed).toPrecision(3)})</p>
+        <p className="delta">(+{(100*props.dayChange.recovered/props.dayChange.confirmed).toPrecision(3)}) %</p>
         <p className="count">{(100*props.total.recovered/props.total.confirmed).toPrecision(3)} %</p>
         <p className="title">Recovered </p>
       </div>
       <div className="col-4 col-6-sm card deceased">
-        <p className="delta">(+{(100*props.dayChange.deceased/props.dayChange.confirmed).toPrecision(3)})</p>
+        <p className="delta">(+{(100*props.dayChange.deceased/props.dayChange.confirmed).toPrecision(3)}) %</p>
         <p className="count">{(100*props.total.deaths/props.total.confirmed).toPrecision(3)} %</p>
         <p className="title">Deceased </p>
       </div>
