@@ -65,6 +65,10 @@ const askUserPermissions = () =>{
         })
         console.error('An error ocurred during Service Worker registration.', e)
       })
+    }else{
+      reject({
+        msg: 'browser_unsupported'
+      })
     }
   })
 }
@@ -137,6 +141,10 @@ function subscribeUser(key, status) {
         })
       }).catch(function (e) {
         console.error('An error ocurred during Service Worker registration.', e)
+      })
+    } else {
+      reject({
+        msg: 'browser_unsupported'
       })
     }
   });
