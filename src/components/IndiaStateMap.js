@@ -8,6 +8,18 @@ const percentColors = [
   { percent: 1.0, color: { r: 160, g: 0, b: 0 } }
 ];
 
+const debounce = (func, delay) => {
+  let inDebounce
+  return function () {
+    const context = this
+    const args = arguments
+    clearTimeout(inDebounce)
+    inDebounce = setTimeout(() =>
+      func.apply(context, args)
+      , delay)
+  }
+}
+
 // Calculate percent as minimum cases/ maximum cases. If % = 0, color should be white
 const getColorBasedOnNoOfCases = percent => {
   if (percent === 0) {
@@ -44,6 +56,11 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       indiaSvgMap
         .findOne("#" + key)
         .fill(getColorBasedOnNoOfCases(statewise[key].active / max));
+      
+      // This will hide the popover on mobile devices when user scrolls.
+        document.body.addEventListener("touchmove", debounce(() => {
+          indiaSvgMap.findOne("#" + key).fire('touchmove')
+      }, 1000));
 
       indiaSvgMap.findOne("#" + key).on("mouseenter", e => {
         SVG(e.target).attr({
@@ -55,7 +72,7 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
         });
       });
 
-      indiaSvgMap.findOne("#" + key).on("mouseleave", e => {
+      indiaSvgMap.findOne("#" + key).on(["mouseleave", "touchmove"], e => {
         SVG(e.target).attr({
           "stroke-width": "2px"
         });
@@ -78,6 +95,13 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
         });
       });
     });
+
+    return () => {
+      Object.keys(statewise).forEach(key => {
+        indiaSvgMap.findOne("#" + key).off();
+      });
+      document.body.removeEventListener("touchmove");
+    }
   }, [total.max]);
 
   return (
