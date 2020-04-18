@@ -127,7 +127,7 @@ const StatewiseTable = ({ statewise }) => {
           setStatesNotificationStatus(newNotificaitonStatus);
         }
     }).catch(err => {
-      showModal(true);
+      setShowModal(true);
     })
   }
 
