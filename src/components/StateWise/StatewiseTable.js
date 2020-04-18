@@ -116,19 +116,20 @@ const StatewiseTable = ({ statewise }) => {
         } else if (stateCode === 'all' && districtName === 'all' && !isBellActive) {
           setAllNotificationsEnabled(false);
         } else{
-          setStatesNotificationStatus({
+          const newStateStatus = {
+            ...statesNotificationStatus[stateCode],
+            [districtName]: isBellActive
+          };
+          const newNotificaitonStatus = {
             ...statesNotificationStatus,
-            stateCode : {
-              ...statesNotificationStatus[stateCode],
-              districtName : isBellActive
-            }
-          });
+            [stateCode]: newStateStatus
+          };
+          setStatesNotificationStatus(newNotificaitonStatus);
         }
     }).catch(err => {
       showModal(true);
     })
   }
-
 
   return !isLoading && (
     <div className="card">

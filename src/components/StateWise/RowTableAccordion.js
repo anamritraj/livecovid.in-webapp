@@ -41,11 +41,21 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
     <tr className={"fold" + (isHidden ? " close" : "")}>
       <td colSpan="5">
         <div className="districts-table">
-          <div className="last-updated-state">
-            {" "}
-            Updated {formatDistance(time, new Date())} ago at{" "}
-            {format(time, "dd MMM yyyy HH:mm")}
+          <div className="state-desc-header">
+            <div className="last-updated-state">
+              {" "}
+              Updated {formatDistance(time, new Date())} ago at{" "}
+              {format(time, "dd MMM yyyy HH:mm")}
+            </div>
+            <BellIcon
+              stateCode={stateCode}
+              districtName="all"
+              handleBellClick={handleBellClick}
+              isBellActive={allNotificationsEnabled || (statesNotificationStatus && statesNotificationStatus['all'] === true) || false}
+              isDisabled={allNotificationsEnabled}
+            ></BellIcon>
           </div>
+          
           <table>
             <thead>
               <tr>
@@ -81,7 +91,13 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
                       <BellIcon
                         districtName={districtName}
                         stateCode={stateCode}
-                        isBellActive={allNotificationsEnabled || (statesNotificationStatus && statesNotificationStatus[districtName]) || false}
+                        isBellActive={allNotificationsEnabled ||
+                          (statesNotificationStatus && statesNotificationStatus['all'] === true) ||
+                          (statesNotificationStatus && statesNotificationStatus[districtName]) ||
+                          false
+                        }
+                        isDisabled={allNotificationsEnabled ||
+                          (statesNotificationStatus && statesNotificationStatus['all'] === true)}
                         handleBellClick={handleBellClick}
                       ></BellIcon>
                     </td>

@@ -233,6 +233,15 @@ a {
 }
 
 /* Districts Table */
+.state-desc-header{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.state-desc-header .bell-icon{
+  margin-top: 7px;
+}
 .districts-table table {
   width: 100%;
 }
@@ -267,6 +276,10 @@ a {
 .bell-icon.active {
   fill: #fbd30c;
   animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+.bell-icon.active.disabled{
+  fill: rgba(255, 219, 37, 0.45098039215686275);
+  stroke: #9c9c9c;
 }
 
 @keyframes bellshake {

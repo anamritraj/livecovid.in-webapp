@@ -1,11 +1,11 @@
 import React from "react";
 
-const BellIconSVG = ({ isBellActive, onClick}) => {
+const BellIconSVG = ({ isBellActive, onClick, isDisabled}) => {
   return (
     <svg
       onClick={onClick}
       height="20"
-      className={"bell-icon" + (isBellActive ? " active" : "")}
+      className={"bell-icon" + (isBellActive ? " active" : "") + (isDisabled ? " disabled" : "")}
       viewBox="0 0 16 16"
       stroke="#000"
       fill="#fff"
