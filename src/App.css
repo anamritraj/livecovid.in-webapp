@@ -192,7 +192,7 @@ a {
   padding: 0;
 }
 .statewise-cases tbody tr.fold .districts-table {
-  max-height: 1500px;
+  max-height: 2000px;
   transition: all 0.4s ease;
 }
 .statewise-cases tbody tr.fold.close .districts-table {
@@ -272,6 +272,7 @@ a {
 
 .bell-icon {
   transition: all 0.4s ease-in-out;
+  cursor: pointer;
 }
 .bell-icon.active {
   fill: #fbd30c;
