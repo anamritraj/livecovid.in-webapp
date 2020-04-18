@@ -114,7 +114,6 @@ function subscribeUser(key, status) {
               })
             } else {
               sendUnsubscription(data).then((response) => {
-                console.log(response);
                 if (response.status === 200 && response.data.success === true) {
                   // Data successfully updated in the database
                   idb.delete(data.payload.key);

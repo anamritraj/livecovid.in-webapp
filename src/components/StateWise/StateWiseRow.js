@@ -5,7 +5,7 @@ import { sendEventToGA } from '../../services/analytics.service'
 const category = "User";
 const action = "Clicked State Row"
 
-const StateWiseRow = ({ state, districts, showNotificationModal}) => {
+const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus}) => {
   const [isHidden, setIsHidden] = useState(true);
 
   return state.active > 0
@@ -55,7 +55,9 @@ const StateWiseRow = ({ state, districts, showNotificationModal}) => {
             isHidden={isHidden}
             stateCode={state.code}
             key={state.code}
-            showNotificationModal={showNotificationModal}
+            handleBellClick={handleBellClick}
+            allNotificationsEnabled={allNotificationsEnabled}
+            statesNotificationStatus={statesNotificationStatus}
           ></RowTableAccordion>
         ) : null
       ]

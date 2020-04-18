@@ -15,7 +15,7 @@ const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   });
 };
 
-const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNotificationModal }) => {
+const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handleBellClick, allNotificationsEnabled, statesNotificationStatus }) => {
   const districtKeysArray = Object.keys(districts)
   const [districtSortOrder, setDistrictSortOrder] = useState(districtKeysArray);
   const [activeSortingKey, setActiveSortingKey] = useState("confirmed");
@@ -81,7 +81,8 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, showNo
                       <BellIcon
                         districtName={districtName}
                         stateCode={stateCode}
-                        showNotificationModal={showNotificationModal}
+                        isBellActive={allNotificationsEnabled || (statesNotificationStatus && statesNotificationStatus[districtName]) || false}
+                        handleBellClick={handleBellClick}
                       ></BellIcon>
                     </td>
                   </tr>

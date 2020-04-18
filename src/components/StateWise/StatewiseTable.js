@@ -6,15 +6,18 @@ import { sendEventToGA } from '../../services/analytics.service'
 import { idb } from "../../services/idb.service";
 import useNotificationsPermission from "../../hooks/useNotificationsPermissions";
 import Modal from "../Modal";
-import { askUserPermissions } from "../../services/subscription.service";
+import { askUserPermissions, subscribeUser } from "../../services/subscription.service";
+import BellIcon from "./BellIcon";
 
 const promptMsg = <p>You need to allow permissions to get Notifications. When prompted click 'Allow' to get notifications</p>;
 const blockedMsg = <p>Seems like you have denied the message permissions, you need to click "Allow" to give permissions for notifications. <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid&hl=en&oco=1" target="_blank" rel="noopener noreferrer">Follow the instructions here</a></p>
 const errorMsg = <p>There was an error, please try again. It is possible that your browser doesn't support notifications.</p>
 const unsupportedMsg = <p>Seems like your browser doesn't support notifications. Make sure you are not in a private/incognito window.</p>
 const successMsg = <p>Congratulations you have enabled notifications! <span role="img" aria-label="tada"> 🎉 </span></p>
+const category = "User";
+const action = "Clicked Sorting";
 
-const StatewiseTable = ({ statewise, isMobile }) => {
+const StatewiseTable = ({ statewise }) => {
   const stateWiseKeys = Object.keys(statewise);
   const [stateSortObject, setStateSortObject] = useState({
     states: stateWiseKeys,
@@ -26,7 +29,8 @@ const StatewiseTable = ({ statewise, isMobile }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(promptMsg);
   const [showGetNotificationButtons, setShowGetNotificationButtons] = useState(true);
-
+  const [allNotificationsEnabled, setAllNotificationsEnabled] = useState(false);
+  const [statesNotificationStatus, setStatesNotificationStatus] = useState({});
   const sortStates = useCallback((key, order, stateWiseKeys) => {
     return stateWiseKeys.sort((a, b) => {
       return (
@@ -44,7 +48,7 @@ const StatewiseTable = ({ statewise, isMobile }) => {
       currentOrderNew = 1;
     }
     const newStateKeys = sortStates(activeSortingNew, currentOrderNew, stateWiseKeys);
-    
+
     setStateSortObject({
       states: newStateKeys,
       activeSorting: activeSortingNew,
@@ -87,12 +91,57 @@ const StatewiseTable = ({ statewise, isMobile }) => {
     });
   }, []);
 
-  const category = "User";
-  const action = "Clicked Sorting";
+  useEffect(() =>{
+    const statesNotificationStatus = {};
+    idb.keys().then(keys => {
+      keys.forEach((key) => {
+        switch(key){
+          case 'all_all': setAllNotificationsEnabled(true);
+            break;
+          default:
+            const [state_code, district_code] = key.split('_');
+            if (!statesNotificationStatus[state_code]) statesNotificationStatus[state_code] = {};
+            statesNotificationStatus[state_code][district_code] = true;
+        }
+      });
+      setStatesNotificationStatus(statesNotificationStatus);
+    });
+  }, [])
+
+  const handleBellClick = (stateCode, districtName, isBellActive) => {
+    return subscribeUser(stateCode + "_" + districtName, isBellActive).then(msg => {
+      if(msg.msg_code === 'success')
+        if (stateCode === 'all' && districtName === 'all' && isBellActive){
+          setAllNotificationsEnabled(true);
+        } else if (stateCode === 'all' && districtName === 'all' && !isBellActive) {
+          setAllNotificationsEnabled(false);
+        } else{
+          setStatesNotificationStatus({
+            ...statesNotificationStatus,
+            stateCode : {
+              ...statesNotificationStatus[stateCode],
+              districtName : isBellActive
+            }
+          });
+        }
+    }).catch(err => {
+      showModal(true);
+    })
+  }
+
 
   return !isLoading && (
-    <div>
-      <table className="statewise-cases table card">
+    <div className="card">
+      <p className="notif-help-text">
+        <span>Enable Notifications for all new cases in India</span>
+        <BellIcon 
+          districtName="all" 
+          stateCode="all"
+          isBellActive={allNotificationsEnabled}
+          handleBellClick={handleBellClick}
+        ></BellIcon>
+      </p>
+      <table className="statewise-cases table ">
         <thead>
           <tr>
             <th></th>
@@ -132,10 +181,12 @@ const StatewiseTable = ({ statewise, isMobile }) => {
             return (
               <StateWiseRow
                 state={statewise[stateCode]}
+                allNotificationsEnabled={allNotificationsEnabled}
+                statesNotificationStatus={statesNotificationStatus[stateCode]}
                 districts={districts[stateCode]}
                 index={index + 1}
                 key={stateCode}
-                showNotificationModal={() => setShowModal(true)}
+                handleBellClick={handleBellClick}
               ></StateWiseRow>
             );
           })}
