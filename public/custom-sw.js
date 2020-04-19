@@ -11,7 +11,6 @@ self.addEventListener('push', event => {
     self.registration.showNotification(data.title, options)
   );
 })
-
 self.onnotificationclick = function (event) {
   event.notification.close();
   const urlToOpen = new URL("", self.location.origin).href;

@@ -10,8 +10,10 @@ import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
+import Alert from "./components/Alert";
 
 const Notification = React.lazy(() => import("./components/Notification"));
+const showContentUpdatedHTML = <span>Website was updated in background, please reload to load the lastest version. <a href="#" onClick={() => window.location.reload()}>Click Here</a></span>
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +26,17 @@ const App = () => {
   const [nationality, setNationality] = useState({});
   const [gender, setGender] = useState({});
   const [hospitalizationStatus, setHospitalizationStatus] = useState({});
+  const [showContentUpdatedAlert, setShowContentUpdatedAlert] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('contentUpdated', () => {
+      console.log("Content Updated bhai!");
+      setShowContentUpdatedAlert(true);
+    })
+    return () =>{
+      window.removeEventListener('contentUpdated', null);
+    }
+  }, [])
 
   useEffect(() => {
     getStateWiseData().then(({ data }) => {
@@ -69,6 +82,7 @@ const App = () => {
             <Footer></Footer>
           </>
           <WhatsappShare></WhatsappShare>
+          <Alert show={showContentUpdatedAlert} content={showContentUpdatedHTML}></Alert>
         </Suspense>
       </Router>
     </>)

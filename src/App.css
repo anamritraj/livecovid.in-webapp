@@ -19,7 +19,9 @@ a {
 .text-center{
   text-align: center;
 }
-
+.hide{
+  display: none !important;
+}
 .overlay{
   z-index: 1000;
   position: fixed;
@@ -500,6 +502,23 @@ img.control-img {
   border-radius: 10px;
 }
 
+.alert{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #333;
+  padding: 10px 15px;
+  z-index: 100;
+}
+
+.alert span{
+  color: #e4e4e4;
+}
+.alert a{
+  text-decoration: underline;
+  color: #ffec07;
+}
 @media (max-width: 460px) {
   h1 {
     font-size: 1.2rem;
