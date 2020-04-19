@@ -71,14 +71,12 @@ const DataManager = () => {
       state = dataStore[index];
     },
     increment: () => {
-      console.log(index);
       if (index + 1 < totalElements) {
         index++;
         state = dataStore[index];
       }
     },
     decrement: () =>{
-      console.log(index);
       if(index > 0){
         index--;
         state = dataStore[index];
