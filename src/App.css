@@ -9,7 +9,7 @@ body {
 }
 body {
   background-color: #fdfdfd;
-  padding: 56px 0 55px 0;
+  padding: 56px 0 0 0;
 }
 
 a {
@@ -373,7 +373,6 @@ a {
 /* Footer CSS */
 .footer {
   padding: 1em;
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -416,7 +415,10 @@ li.answer {
 }
 
 /* RaceChart CSS */
-
+.race-chart{
+  display: flex;
+  flex-direction: column;
+}
 .race-chart h3,
 .race-chart h2 {
   margin-bottom: 10px;
@@ -454,10 +456,14 @@ img.control-img {
   width: 10px;
   margin-right: 5px;
 }
-
+.racechart-date {
+  float: left;
+}
 .racechart-speed {
   color: #666;
   font-size: 12px;
+  line-height: 40px;
+  float: right;
 }
 .social-footer {
   margin-top: 40px;
