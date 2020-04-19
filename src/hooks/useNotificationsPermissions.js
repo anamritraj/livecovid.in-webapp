@@ -4,7 +4,7 @@ function useNotificationsPermission() {
   const [hasPermission, setHasPermission] = useState(null);
 
   useEffect(() => {
-    navigator.permissions.query({ name: "notifications" }).then(result => {
+    navigator.permissions && navigator.permissions.query({ name: "notifications" }).then(result => {
       return result;
     }).then(result => {
       result.onchange = () => {
