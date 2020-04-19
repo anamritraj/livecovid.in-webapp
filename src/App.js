@@ -30,7 +30,6 @@ const App = () => {
 
   useEffect(() => {
     window.addEventListener('contentUpdated', () => {
-      console.log("Content Updated bhai!");
       setShowContentUpdatedAlert(true);
     })
     return () =>{
