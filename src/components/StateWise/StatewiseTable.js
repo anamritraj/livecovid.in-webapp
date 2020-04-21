@@ -8,6 +8,7 @@ import useNotificationsPermission from "../../hooks/useNotificationsPermissions"
 import Modal from "../Modal";
 import { askUserPermissions, subscribeUser } from "../../services/subscription.service";
 import BellIcon from "./BellIcon";
+import { useTranslation } from "react-i18next";
 
 const promptMsg = <p>You need to allow permissions to get Notifications. When prompted click 'Allow' to get notifications</p>;
 const blockedMsg = <p>Seems like you have denied the message permissions, you need to click "Allow" to give permissions for notifications. <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid&hl=en&oco=1" target="_blank" rel="noopener noreferrer">Follow the instructions here</a></p>
@@ -19,6 +20,7 @@ const action = "Clicked Sorting";
 
 const StatewiseTable = ({ statewise }) => {
   const stateWiseKeys = Object.keys(statewise);
+  const {t} = useTranslation();
   const [stateSortObject, setStateSortObject] = useState({
     states: stateWiseKeys,
     activeSorting: "",
@@ -134,7 +136,7 @@ const StatewiseTable = ({ statewise }) => {
   return !isLoading && (
     <div className="card">
       <p className="notif-help-text">
-        <span>Enable Notifications for all new cases in India</span>
+        <span>{t('Enable Notifications for all new cases in India')}</span>
         <BellIcon 
           districtName="all" 
           stateCode="all"
@@ -146,10 +148,10 @@ const StatewiseTable = ({ statewise }) => {
         <thead>
           <tr>
             <th></th>
-            <th>State</th>
+            <th>{t('State')}</th>
             <th onClick={e => { handleSortClick("confirmed"); sendEventToGA(category, action, "confirmed") }}>
               <div className="heading">
-                <div>Confirmed</div>
+                <div>{t('Confirmed')}</div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "confirmed"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -159,7 +161,7 @@ const StatewiseTable = ({ statewise }) => {
             </th>
             <th onClick={e => { handleSortClick("recovered"); sendEventToGA(category, action, "recovered") }}>
               <div className="heading">
-                <div>Recovered </div>
+                <div>{t('Recovered')} </div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "recovered"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -169,7 +171,7 @@ const StatewiseTable = ({ statewise }) => {
             </th>
             <th onClick={e => { handleSortClick("deaths"); sendEventToGA(category, action, "deaths") }}>
               <div className="heading">
-                <div>Deaths </div>{" "}
+                <div>{t('Deaths')} </div>{" "}
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "deaths" ? SortIcon(stateSortObject.currentOrder) : null}
                 </div>

@@ -3,7 +3,6 @@ import { ResponsiveLine } from "@nivo/line";
 
 const IndianTimeSeriesDailyChart = ({
   timeseries,
-  isLoading,
   months,
   isMobile
 }) => {
@@ -41,9 +40,9 @@ const IndianTimeSeriesDailyChart = ({
       }}
       margin={{
         top: 0,
-        right: isMobile ? 10 : 40,
+        right: isMobile ? 15 : 40,
         bottom: 70,
-        left: isMobile ? 30 : 60
+        left: isMobile ? 45 : 60
       }}
       xScale={{ type: "time", format: "%Y-%m-%d", precision: "day" }}
       xFormat="time:%Y-%m-%d"

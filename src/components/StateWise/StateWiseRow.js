@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import RowTableAccordion from "./RowTableAccordion";
 import chevronRight from "./chevron-right.svg";
 import { sendEventToGA } from '../../services/analytics.service'
+import { useTranslation } from "react-i18next";
 const category = "User";
 const action = "Clicked State Row"
 
 const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus}) => {
   const [isHidden, setIsHidden] = useState(true);
+  const {t} = useTranslation();
 
   return state.active > 0
     ? [
@@ -18,7 +20,7 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
         <td className="expand-icon">
           <img src={chevronRight} alt="more-details" />
         </td>
-        <td>{state.name}</td>
+        <td>{t("states:" + state.name)}</td>
         <td>
           {state.confirmed}{" "}
           {state.delta.confirmed ? (

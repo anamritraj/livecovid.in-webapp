@@ -28,4 +28,4 @@ const BellIconSVG = ({ isBellActive, onClick, isDisabled}) => {
   )
 }
 
-export default BellIconSVG;
+export default React.memo(BellIconSVG);

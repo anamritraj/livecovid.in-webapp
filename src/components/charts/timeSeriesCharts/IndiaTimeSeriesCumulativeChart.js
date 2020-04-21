@@ -1,17 +1,15 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { useTranslation } from "react-i18next";
 
 const IndiaTimeSeriesCumulativeChart = ({
   timeseries,
-  isLoading,
   isMobile,
   months
 }) => {
-  return isLoading ? (
-    <div>Loading</div>
-  ) : (
-    <ResponsiveLine
-      data={timeseries}
+  const {t} = useTranslation();
+  return (<ResponsiveLine
+    data={timeseries}
       enableSlices={"x"}
       sliceTooltip={({ slice }) => {
         const d = slice.points[0].data.x;
@@ -45,7 +43,7 @@ const IndiaTimeSeriesCumulativeChart = ({
         top: 0,
         right: isMobile ? 10 : 40,
         bottom: 70,
-        left: isMobile ? 40 : 60
+        left: isMobile ? 50 : 60
       }}
       xScale={{ type: "time", format: "%Y-%m-%d", precision: "day" }}
       xFormat="time:%Y-%m-%d"
@@ -89,4 +87,6 @@ const IndiaTimeSeriesCumulativeChart = ({
   );
 };
 
-export default IndiaTimeSeriesCumulativeChart;
+export default React.memo(IndiaTimeSeriesCumulativeChart, ({timeseries : timeseriesOld}, {timeseries: timeseriesNew}) => {
+  return timeseriesNew !== timeseriesOld
+});

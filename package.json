@@ -14,11 +14,15 @@
     "axios": "^0.19.2",
     "cra-append-sw": "^2.7.0",
     "date-fns": "^2.11.1",
+    "i18next": "^19.4.3",
+    "i18next-browser-languagedetector": "^4.1.1",
+    "i18next-http-backend": "^1.0.4",
     "idb": "^5.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
+    "react-i18next": "^11.3.5",
     "react-router-dom": "^5.1.2"
   },
   "scripts": {

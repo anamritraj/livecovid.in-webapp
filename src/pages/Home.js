@@ -8,9 +8,11 @@ import { HelmetDefault } from "../components/SEO";
 import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
 import RaceChart from "../components/raceChart/RaceChart";
 import StatewiseTable from "../components/StateWise/StatewiseTable";
+import { useTranslation } from "react-i18next";
 
 const Home = props => {
-  return <>
+  const {t} = useTranslation();
+return <>
         <HelmetDefault title={"Home"}></HelmetDefault>
         <div className="container">
           <LastUpdatedIndicator
@@ -27,7 +29,7 @@ const Home = props => {
             </div>
           </div>
           <div className="row">
-            <h1>COVID-19 Cases India - State-wise</h1>
+            <h1>{t('COVID-19 Cases India - State-wise')}</h1>
             <div className="col-6">
               {props.isLoading ? null : <IndiaStateMap
                 dayChange={props.dayChange}

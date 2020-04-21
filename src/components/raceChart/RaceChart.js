@@ -4,6 +4,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import { format } from 'date-fns'
 import useInterval from '../../hooks/useInterval';
 import RaceChartControls from './RaceChartControls';
+import { useTranslation } from 'react-i18next';
 import { sendEventToGA } from '../../services/analytics.service';
 
 const BarComponent = props => {
@@ -101,6 +102,7 @@ const RaceChart = (props) => {
   const [isPaused, setIsPaused] = useState(false);
   const [raceTimeInterval, setRaceTimeInterval] = useState(2000);
   const [barData, setBarData] = useState({ data: dataManager.getData().state.data, date: dataManager.getData().state.date });
+  const { t } = useTranslation();
 
   useEffect(() => {
     getStatesRaceChart().then(response => {
@@ -120,20 +122,11 @@ const RaceChart = (props) => {
     setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
   }, isPaused || isLoading ? null : raceTimeInterval)
 
-  return isLoading ? <div>Loading</div> : <div className="card race-chart" >
-    <h2>State-wise Cases with Time</h2>
-    <RaceChartControls
-      isPaused={isPaused}
-      onPause={() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play'); }}
-      onFaster={() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }}
-      onSlower={() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }}
-      onRestart={() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }}
-      onStepForward={() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward')}}
-      onStepBackward={() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward')}}
-    ></RaceChartControls>
+  return isLoading ? <div>{t('Loading')}</div> : <div className="card race-chart" >
+    <h2>{t('State-wise Cases with Time')}</h2>
     <div>
       <h3 className="racechart-date">{format(new Date(barData.date), "d MMMM yyyy")}</h3>
-      <p className="racechart-speed">Speed: {(2000 / raceTimeInterval).toPrecision(3)}x</p>
+      <p className="racechart-speed">{t('Speed')}: {(2000 / raceTimeInterval).toPrecision(3)}x</p>
     </div>
     <div className="race-chart" style={{ height: '500px' }}>
       <ResponsiveBar
@@ -162,6 +155,15 @@ const RaceChart = (props) => {
         motionDamping={50}
       />
     </div>
+    <RaceChartControls
+      isPaused={isPaused}
+      onPause={() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play'); }}
+      onFaster={() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }}
+      onSlower={() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }}
+      onRestart={() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }}
+      onStepForward={() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward') }}
+      onStepBackward={() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward') }}
+    ></RaceChartControls>
   </div>
 }
 
