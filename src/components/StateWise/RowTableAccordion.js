@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SortIcon from "./SortIcon";
 import { formatDistance, format } from "date-fns";
 import BellIcon from "./BellIcon";
+import { useTranslation } from "react-i18next";
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
@@ -37,14 +38,15 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
     handleSorting("confirmed");
   }, []);
   const time = new Date(Date.parse(lastUpdated.slice(0, 19) + "+05:30"));
-  return (
-    <tr className={"fold" + (isHidden ? " close" : "")}>
+  const { t } = useTranslation();
+  return !isHidden && (
+    <tr className="fold">
       <td colSpan="5">
         <div className="districts-table">
           <div className="state-desc-header">
             <div className="last-updated-state">
               {" "}
-              Updated {formatDistance(time, new Date())} ago at{" "}
+              {t('Updated')} {formatDistance(time, new Date())} {t('ago at')}{" "}
               {format(time, "dd MMM yyyy HH:mm")}
             </div>
             <BellIcon
@@ -59,13 +61,13 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
           <table>
             <thead>
               <tr>
-                <th>District</th>
+                <th>{t('District')}</th>
                 <th
                   onClick={() => {
                     handleSorting("confirmed");
                   }}
                 >
-                  <div className="title">Confirmed</div>
+                  <div className="title">{t('Confirmed')}</div>
                   {activeSortingKey === "confirmed"
                     ? SortIcon(currentOrder)
                     : null}

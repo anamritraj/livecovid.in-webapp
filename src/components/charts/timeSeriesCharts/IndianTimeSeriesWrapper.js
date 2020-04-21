@@ -1,69 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import IndiaTimeSeriesCumulativeChart from "./IndiaTimeSeriesCumulativeChart";
 
 import { getIndiaTimeSeries } from "../../../services/charts.service";
 import "../Charts.css";
 import IndianTimeSeriesDailyChart from "./IndianTimeSeriesDailyChart";
 import { sendEventToGA } from '../../../services/analytics.service';
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
+import { useTranslation } from "react-i18next";
 
 const category = "User";
 const action = "Clicked daily/cumulative";
 const cumulative = "cumulative";
 const daily = "daily";
 
+const getWindowTimeSeriesData = (data) => {
+  data.forEach(fields => {
+    fields.data = fields.data.slice(fields.data.length - 30, fields.data.length);
+  })
+  return data;
+}
+
 const IndianTimeSeriesWrapper = props => {
   const [dailyIndiaTimeSeriesData, setdailyIndiaTimeSeriesData] = useState([]);
   const [totalIndiaTimeSeriesData, settotalIndiaTimeSeriesData] = useState([]);
   const [chartToshow, setChartToshow] = useState(cumulative);
-
   const [isLoading, setIsLoading] = useState(true);
+  const {t} = useTranslation();
+  const memoizedMonths = useMemo(() => [
+    t("months:January"),
+    t("months:February"),
+    t("months:March"),
+    t("months:April"),
+    t("months:May"),
+    t("months:June"),
+    t("months:July"),
+    t("months:August"),
+    t("months:September"),
+    t("months:October"),
+    t("months:November"),
+    t("months:December"),
+  ], [t]);;
+
   useEffect(() => {
     getIndiaTimeSeries()
       .then(response => {
         if (response.status === 200) {
           const chartData = {
             dailydeceased: {
-              id: "Daily Deceased",
+              id: t("Daily Deceased"),
               color: "hsl(225, 70%, 50%)",
               data: []
             },
             dailyrecovered: {
-              id: "Daily Recovered",
+              id: t("Daily Recovered"),
               color: "hsl(225, 70%, 50%)",
               data: []
             },
             dailyconfirmed: {
-              id: "Daily Confirmed",
+              id: t("Daily Confirmed"),
               color: "hsl(225, 70%, 50%)",
               data: []
             },
             totaldeceased: {
-              id: "Total Deceased",
+              id: t("Total Deceased"),
               color: "hsl(225, 70%, 50%)",
               data: []
             },
             totalrecovered: {
-              id: "Total Recovered",
+              id: t("Total Recovered"),
               color: "hsl(225, 70%, 50%)",
               data: []
             },
             totalconfirmed: {
-              id: "Total Confirmed",
+              id: t("Total Confirmed"),
               color: "hsl(225, 70%, 50%)",
               data: []
             }
@@ -88,8 +96,10 @@ const IndianTimeSeriesWrapper = props => {
               dailyChartData.push(chartData[key]);
             }
           });
-          setdailyIndiaTimeSeriesData(dailyChartData);
-          settotalIndiaTimeSeriesData(totalChartData);
+          const dailyChartDataSliced = getWindowTimeSeriesData(dailyChartData);
+          const totalChartDataSliced = getWindowTimeSeriesData(totalChartData);
+          setdailyIndiaTimeSeriesData(dailyChartDataSliced);
+          settotalIndiaTimeSeriesData(totalChartDataSliced);
           setIsLoading(false);
         }
       })
@@ -97,18 +107,17 @@ const IndianTimeSeriesWrapper = props => {
         console.log(err);
       });
   }, []);
-  return (
-    <div>
+  return (!isLoading && <div>
       <div className="card chart">
         <div className="chart-controls">
-          <h2>Number of cases</h2>
+          <h2>{t('Number of cases')}</h2>
           <button
             className={
               "btn btn-chart" + (chartToshow === cumulative ? " active" : "")
             }
             onClick={() => { setChartToshow(cumulative); sendEventToGA(category, action, cumulative) }}
           >
-            Cumulative
+            {t('Cumulative')}
           </button>
           <button
             className={
@@ -116,7 +125,7 @@ const IndianTimeSeriesWrapper = props => {
             }
             onClick={() => { setChartToshow(daily); sendEventToGA(category, action, daily) }}
           >
-            Daily
+            {t('Daily')}
           </button>
         </div>
 
@@ -124,16 +133,14 @@ const IndianTimeSeriesWrapper = props => {
           {chartToshow === daily && dailyIndiaTimeSeriesData.length ? (
             <IndianTimeSeriesDailyChart
               timeseries={dailyIndiaTimeSeriesData}
-              isLoading={isLoading}
-              months={months}
+              months={memoizedMonths}
               isMobile={props.isMobile}
             ></IndianTimeSeriesDailyChart>
           ) : totalIndiaTimeSeriesData.length ? (
             <IndiaTimeSeriesCumulativeChart
               timeseries={totalIndiaTimeSeriesData}
-              isLoading={isLoading}
               isMobile={props.isMobile}
-              months={months}
+              months={memoizedMonths}
             ></IndiaTimeSeriesCumulativeChart>
           ) : null}
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
+import { useTranslation } from "react-i18next";
 
 const colors = {
   Male: "#c2f0fc",
@@ -12,12 +13,13 @@ const getColor = bar => {
 };
 
 const GenderChart = ({ gender }) => {
+  const {t} = useTranslation();
   let data = [];
   let totalCases = 0;
   Object.keys(gender).forEach(key => {
-    let label = "Male";
-    if (key === "F") label = "Female";
-    if (key === "unknown") label = "Details Awaited";
+    let label = t("Male");
+    if (key === "F") label = t("Female");
+    if (key === "unknown") label = t("Details Awaited");
     totalCases += gender[key];
     data.push({
       id: label,
@@ -29,7 +31,7 @@ const GenderChart = ({ gender }) => {
   return (
     <div className="card chart">
       <div className="chart-controls">
-        <h2>Gender</h2>
+        <h2>{t('Gender')}</h2>
       </div>
 
       <div style={{ height: "450px" }}>

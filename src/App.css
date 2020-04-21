@@ -75,6 +75,8 @@ a {
   display: block;
 }
 .card {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
@@ -194,14 +196,9 @@ a {
   padding: 0;
 }
 .statewise-cases tbody tr.fold .districts-table {
-  max-height: 2000px;
   transition: all 0.4s ease;
 }
-.statewise-cases tbody tr.fold.close .districts-table {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
+
 .statewise-cases tbody tr.fold {
   background: transparent;
 }
@@ -420,6 +417,7 @@ li.answer {
 .race-chart{
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 .race-chart h3,
 .race-chart h2 {
@@ -434,7 +432,7 @@ li.answer {
   font-size: 1.2em;
 }
 .race-chart-controls {
-  margin-bottom: 5px;
+  margin-top: 15px;
 }
 
 button.chart-control-btn {
@@ -539,6 +537,9 @@ img.control-img {
   td {
     padding: 5px;
   }
+  .card {
+    padding: 0
+  }
   .state-col {
     width: 40%;
   }
@@ -558,7 +559,6 @@ img.control-img {
   }
   .floating-actions {
     display: flex;
-    flex-direction: column;
   }
   .social-footer {
     margin-top: 10px;
@@ -569,4 +569,14 @@ img.control-img {
   .social-footer li {
     margin-top: 15px;
   }
+  .race-chart{
+    padding: 0;
+  }
+  .race-chart-controls {
+    margin-bottom: 5px;
+  }
+  .button.chart-control-btn{
+    margin: 5px 5px;
+  }
+
 }
