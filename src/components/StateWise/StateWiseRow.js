@@ -65,5 +65,11 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
       ]
     : null;
 };
+const rowPropsAreEqual = (prevProps, currentProps) =>{
+  return prevProps.allNotificationsEnabled === currentProps.allNotificationsEnabled &&
+    prevProps.state === currentProps.state &&
+    prevProps.districts === currentProps.districts &&
+    prevProps.statesNotificationStatus === currentProps.statesNotificationStatus
+}
 
-export default StateWiseRow;
+export default React.memo(StateWiseRow, rowPropsAreEqual);

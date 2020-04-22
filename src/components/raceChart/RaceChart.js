@@ -88,6 +88,9 @@ const DataManager = () => {
         index,
         state
       }
+    },
+    isEnded : () => {
+      return index + 1 === totalElements;
     }
   }
 }
@@ -109,7 +112,6 @@ const RaceChart = (props) => {
       if (response.status === 200) {
         dataManager.initialise(0, response.data.raceChart);
         setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
-        setIsLoading(false);
       } else {
         console.log("Error in API");
       }
@@ -120,7 +122,7 @@ const RaceChart = (props) => {
   useInterval(() => {
     dataManager.increment();
     setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
-  }, isPaused || isLoading ? null : raceTimeInterval)
+  }, isPaused || isLoading || dataManager.isEnded()? null : raceTimeInterval)
 
   return isLoading ? <div>{t('Loading')}</div> : <div className="card race-chart" >
     <h2>{t('State-wise Cases with Time')}</h2>

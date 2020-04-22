@@ -114,4 +114,4 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
   );
 };
 
-export default RowTableAccordion;
+export default React.memo(RowTableAccordion);

@@ -17,4 +17,4 @@ const BellIcon = ({ isBellActive, districtName, stateCode, handleBellClick, isDi
   );
 };
 
-export default BellIcon;
+export default React.memo(BellIcon);

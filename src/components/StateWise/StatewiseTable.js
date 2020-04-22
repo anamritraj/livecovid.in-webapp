@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import StateWiseRow from "./StateWiseRow";
 import { getDistrictWiseData } from "../../services/patients.service";
 import SortIcon from "./SortIcon";
@@ -31,7 +31,7 @@ const StatewiseTable = ({ statewise }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(promptMsg);
   const [showGetNotificationButtons, setShowGetNotificationButtons] = useState(true);
-  const [allNotificationsEnabled, setAllNotificationsEnabled] = useState(false);
+  const [allNotificationsEnabled, setAllNotificationsEnabled] = useState(null);
   const [statesNotificationStatus, setStatesNotificationStatus] = useState({});
   const sortStates = useCallback((key, order, stateWiseKeys) => {
     return stateWiseKeys.sort((a, b) => {
@@ -101,6 +101,7 @@ const StatewiseTable = ({ statewise }) => {
           case 'all_all': setAllNotificationsEnabled(true);
             break;
           default:
+            setAllNotificationsEnabled(false);
             const [state_code, district_code] = key.split('_');
             if (!statesNotificationStatus[state_code]) statesNotificationStatus[state_code] = {};
             statesNotificationStatus[state_code][district_code] = true;
@@ -131,9 +132,8 @@ const StatewiseTable = ({ statewise }) => {
     }).catch(err => {
       setShowModal(true);
     })
-  }
-
-  return !isLoading && (
+  };
+  return !isLoading &&  allNotificationsEnabled !== null  && (
     <div className="card">
       <p className="notif-help-text">
         <span>{t('Enable Notifications for all new cases in India')}</span>

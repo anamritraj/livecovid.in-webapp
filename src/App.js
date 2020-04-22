@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import { Helmet } from "react-helmet";
 import { getStateWiseData, getStats } from "./services/patients.service";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -11,9 +11,14 @@ import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
 import Alert from "./components/Alert";
+import { useDarkMode } from "./hooks/useDarkMode";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 const showContentUpdatedHTML = <span>Website was updated in background, please reload to load the lastest version. <a href="#" onClick={() => window.location.reload()}>Click Here</a></span>
+
+const Loading = () =>{
+  return <div className="text-center">Loading...</div>;
+}
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +32,14 @@ const App = () => {
   const [gender, setGender] = useState({});
   const [hospitalizationStatus, setHospitalizationStatus] = useState({});
   const [showContentUpdatedAlert, setShowContentUpdatedAlert] = useState(false);
+  const [theme, toggleTheme, componentMounted] = useDarkMode();
+
+
+  useEffect(()=>{
+    (theme === 'dark') ? 
+      document.querySelector('body').classList.add('dark') : 
+        document.querySelector('body').classList.remove('dark');
+  }, [theme]);
 
   useEffect(() => {
     window.addEventListener('contentUpdated', () => {
@@ -54,6 +67,9 @@ const App = () => {
     });
   }, []);
 
+  if(!componentMounted)
+    return <Loading/>
+
   return (
     <>
       <Helmet>
@@ -62,7 +78,7 @@ const App = () => {
         </script>
       </Helmet>
       <Router>
-        <Suspense fallback={<div className="text-center">Loading...</div>}>
+        <Suspense fallback={<Loading></Loading>}>
           <>
             <Toolbar />
             <Notification></Notification>
