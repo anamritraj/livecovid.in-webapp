@@ -37,6 +37,7 @@ const Routes = (props) => {
         total={props.total}
         tested={props.tested}
         statewise={props.statewise}
+        statewiseTestingData = {props.statewiseTestingData}
         isMobile={props.isMobile}
         ageGroup={props.ageGroup}
         nationality={props.nationality}

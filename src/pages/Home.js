@@ -42,6 +42,7 @@ return <>
               <StatewiseTable
                 statewise={props.statewise}
                 isMobile={props.isMobile}
+                statewiseTestingData = {props.statewiseTestingData}
               ></StatewiseTable>
             </div>
           </div>
