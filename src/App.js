@@ -11,7 +11,6 @@ import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
 import Alert from "./components/Alert";
-import StateWiseTestData from "./components/StateWise/StateWiseTestData";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 const showContentUpdatedHTML = <span>Website was updated in background, please reload to load the lastest version. <a href="#" onClick={() => window.location.reload()}>Click Here</a></span>
@@ -54,7 +53,7 @@ const App = () => {
         setIsLoading(false);
       });
     });
-    getTestingData().then(data => setTestingData(data))
+    getTestingData().then(({data}) => setTestingData(data))
   }, []);
 
   return (
