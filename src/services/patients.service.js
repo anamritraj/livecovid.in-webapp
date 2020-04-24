@@ -12,3 +12,7 @@ export const getDistrictWiseData = () => {
 export const getStats = () => {
   return axios.get(`${api}/stats`);
 };
+
+export const getTestingData = () => {
+  return axios.get(`${api}/states/testing`)
+}

@@ -18,7 +18,7 @@ const successMsg = <p>Congratulations you have enabled notifications! <span role
 const category = "User";
 const action = "Clicked Sorting";
 
-const StatewiseTable = ({ statewise }) => {
+const StatewiseTable = ({ statewise, statewiseTestingData }) => {
   const stateWiseKeys = Object.keys(statewise);
   const {t} = useTranslation();
   const [stateSortObject, setStateSortObject] = useState({
@@ -190,6 +190,7 @@ const StatewiseTable = ({ statewise }) => {
                 index={index + 1}
                 key={stateCode}
                 handleBellClick={handleBellClick}
+                testingData={statewiseTestingData[stateCode]}
               ></StateWiseRow>
             );
           })}

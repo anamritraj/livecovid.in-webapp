@@ -3,6 +3,7 @@ import SortIcon from "./SortIcon";
 import { formatDistance, format } from "date-fns";
 import BellIcon from "./BellIcon";
 import { useTranslation } from "react-i18next";
+import StateWiseTestData from './StateWiseTestData'
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
@@ -16,7 +17,7 @@ const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   });
 };
 
-const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handleBellClick, allNotificationsEnabled, statesNotificationStatus }) => {
+const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handleBellClick, allNotificationsEnabled, statesNotificationStatus, testingData }) => {
   const districtKeysArray = Object.keys(districts)
   const [districtSortOrder, setDistrictSortOrder] = useState(districtKeysArray);
   const [activeSortingKey, setActiveSortingKey] = useState("confirmed");
@@ -43,6 +44,7 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
     <tr className="fold">
       <td colSpan="5">
         <div className="districts-table">
+          <StateWiseTestData testingData={testingData}/>
           <div className="state-desc-header">
             <div className="last-updated-state">
               {" "}

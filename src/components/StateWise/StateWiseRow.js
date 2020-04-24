@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const category = "User";
 const action = "Clicked State Row"
 
-const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus}) => {
+const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus, testingData}) => {
   const [isHidden, setIsHidden] = useState(true);
   const {t} = useTranslation();
 
@@ -60,6 +60,7 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
             handleBellClick={handleBellClick}
             allNotificationsEnabled={allNotificationsEnabled}
             statesNotificationStatus={statesNotificationStatus}
+            testingData={testingData}
           ></RowTableAccordion>
         ) : null
       ]

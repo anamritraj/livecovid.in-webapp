@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import "./App.css";
 import { Helmet } from "react-helmet";
-import { getStateWiseData, getStats } from "./services/patients.service";
+import { getStateWiseData, getStats, getTestingData } from "./services/patients.service";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Toolbar from "./components/nav/Toolbar";
@@ -20,6 +20,7 @@ const App = () => {
   const [statewise, setStatewise] = useState({});
   const [total, setTotal] = useState({});
   const [tested, setTested] = useState({});
+  const [statewiseTestingData, setTestingData] = useState({})
   const [dayChange, setDayChange] = useState({});
   const [isMobile] = useState(document.documentElement.clientWidth < 768);
   const [ageGroup, setAgeGroup] = useState({});
@@ -52,6 +53,7 @@ const App = () => {
         setIsLoading(false);
       });
     });
+    getTestingData().then(({data}) => setTestingData(data))
   }, []);
 
   return (
@@ -69,6 +71,7 @@ const App = () => {
             {!isLoading && <Routes
               isLoading={isLoading}
               statewise={statewise}
+              statewiseTestingData = {statewiseTestingData}
               total={total}
               tested={tested}
               dayChange={dayChange}
