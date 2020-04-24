@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { getStatesRaceChart } from '../../services/charts.service';
 import { ResponsiveBar } from '@nivo/bar';
 import { format } from 'date-fns'
@@ -55,6 +55,8 @@ const BarComponent = props => {
   )
 }
 
+const MemoizedBarComponent = React.memo(BarComponent);
+
 const DataManager = () => {
   let index = 0;
   let dataStore = {};
@@ -77,8 +79,8 @@ const DataManager = () => {
         state = dataStore[index];
       }
     },
-    decrement: () =>{
-      if(index > 0){
+    decrement: () => {
+      if (index > 0) {
         index--;
         state = dataStore[index];
       }
@@ -89,7 +91,7 @@ const DataManager = () => {
         state
       }
     },
-    isEnded : () => {
+    isEnded: () => {
       return index + 1 === totalElements;
     }
   }
@@ -100,11 +102,37 @@ const dataManager = DataManager();
 const category = "User";
 const action = "Clicked Race Controls"
 
+const darkTheme = {
+  background: "#323232",
+  axis: {
+    domain: {
+      line: {
+        stroke: "#526271"
+      }
+    },
+    ticks: {
+      line: {
+        stroke: "#526271",
+        strokeWidth: 1
+      },
+      text: {
+        fill: "#8d9cab",
+        fontSize: 11
+      }
+    },
+  },
+  grid: {
+    line: {
+      stroke: "#444"
+    }
+  }
+}
+
 const RaceChart = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [raceTimeInterval, setRaceTimeInterval] = useState(2000);
-  const [barData, setBarData] = useState({ data: dataManager.getData().state.data, date: dataManager.getData().state.date });
+  const [barData, setBarData] = useState({});
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -122,7 +150,30 @@ const RaceChart = (props) => {
   useInterval(() => {
     dataManager.increment();
     setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
-  }, isPaused || isLoading || dataManager.isEnded()? null : raceTimeInterval)
+  }, (isPaused || isLoading || dataManager.isEnded()) ? null : raceTimeInterval)
+  
+
+  const raceChartProps = useMemo(() => {
+  return {
+    margin: { top: 26, right: props.isMobile ? 10 : 20, bottom: 26, left: props.isMobile ? 10 : 20 },
+    keys: ['value'],
+    borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
+    axisTop: {
+      format: '~s',
+    },
+    axisBottom: {
+      format: '~s',
+    },
+    labelTextColor: {from: 'color', modifiers: [['darker', 1.4]]}
+  }
+  }, [props.isMobile])
+
+  const handlePauseClick = React.useCallback(() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play') }, [isPaused]);
+  const handleFasterClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }, [raceTimeInterval]);
+  const handleSlowerClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }, [raceTimeInterval]);
+  const handleRestartClick = React.useCallback(() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }, []);
+  const handleForwardClick = React.useCallback(() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward') }, []);
+  const handleBackwardClick = React.useCallback(() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward')}, []);
 
   return isLoading ? <div>{t('Loading')}</div> : <div className="card race-chart" >
     <h2>{t('State-wise Cases with Time')}</h2>
@@ -133,41 +184,38 @@ const RaceChart = (props) => {
     <div className="race-chart" style={{ height: '500px' }}>
       <ResponsiveBar
         layout="horizontal"
-        margin={{ top: 26, right: props.isMobile ? 10 : 20, bottom: 26, left: props.isMobile ? 10 : 20 }}
+        margin={raceChartProps.margin}
         data={barData.data}
         indexBy="id"
-        keys={['value']}
+        keys={raceChartProps.keys}
         colors={{ scheme: 'orange_red' }}
         colorBy="indexValue"
-        borderColor={{ from: 'color', modifiers: [['darker', 2.6]] }}
+        borderColor={raceChartProps.borderColor}
         enableGridX
         enableGridY={false}
-        axisTop={{
-          format: '~s',
-        }}
-        axisBottom={{
-          format: '~s',
-        }}
+        axisTop={raceChartProps.axisTop}
+        axisBottom={raceChartProps.axisBottom}
         axisLeft={null}
         padding={0.3}
-        labelTextColor={{ from: 'color', modifiers: [['darker', 1.4]] }}
+        labelTextColor={raceChartProps.labelTextColor}
         isInteractive={false}
-        barComponent={BarComponent}
+        barComponent={MemoizedBarComponent}
         motionStiffness={250}
         motionDamping={50}
+        animate={true}
+        theme={props.isDarkTheme ? darkTheme : null}
       />
     </div>
     <RaceChartControls
       isPaused={isPaused}
-      onPause={() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play'); }}
-      onFaster={() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }}
-      onSlower={() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }}
-      onRestart={() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }}
-      onStepForward={() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward') }}
-      onStepBackward={() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward') }}
+      onPause={handlePauseClick}
+      onFaster={handleFasterClick}
+      onSlower={handleSlowerClick}
+      onRestart={handleRestartClick}
+      onStepForward={handleForwardClick}
+      onStepBackward={handleBackwardClick}
     ></RaceChartControls>
   </div>
 }
 
-
-export default RaceChart;
+export default React.memo(RaceChart);

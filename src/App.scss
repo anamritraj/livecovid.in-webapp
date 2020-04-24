@@ -8,7 +8,6 @@ body {
   overflow: auto;
 }
 body {
-  background-color: #fdfdfd;
   padding: 56px 0 0 0;
 }
 
@@ -52,6 +51,66 @@ a {
   .btn {
     padding: 10px;
     background: #e4e4e4;
+  }
+}
+$night: #171c28;
+$day: #fff;
+$nightBtn: #fff;
+$dayBtn: #ecc91e;
+.dark-mode-toggle {
+  margin: 0 20px 0 20px;
+  .dayNight {
+    cursor: pointer;
+    input {
+      display: none;
+      & + div {
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        position: relative;
+        box-shadow: inset 4px -8px 0 0 $nightBtn;
+        transform: scale(1) rotate(-2deg);
+        transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+        &:before {
+          content: "";
+          width: inherit;
+          height: inherit;
+          border-radius: inherit;
+          position: absolute;
+          left: 0;
+          top: 0;
+          transition: background 0.3s ease;
+        }
+        &:after {
+          content: "";
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          margin: -3px 0 0 -3px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          box-shadow: 0 -17px 0 $dayBtn, 0 17px 0 $dayBtn, 17px 0 0 $dayBtn,
+            -17px 0 0 $dayBtn, 12px 12px 0 $dayBtn, -12px 12px 0 $dayBtn,
+            12px -12px 0 $dayBtn, -12px -12px 0 $dayBtn;
+          transform: scale(0);
+          transition: all 0.3s ease;
+        }
+      }
+      &:checked + div {
+        box-shadow: inset 15px -15px 0 0 $nightBtn;
+        transform: scale(0.5) rotate(0deg);
+        transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+        &:before {
+          background: $dayBtn;
+          transition: background 0.3s ease 0.1s;
+        }
+        &:after {
+          transform: scale(1.5);
+          transition: transform 0.5s ease 0.15s;
+        }
+      }
+    }
   }
 }
 
@@ -98,9 +157,6 @@ a {
     font-weight: 800;
   }
 
-  &.confirmed .count {
-    /* color: #0088ff; */
-  }
   &.confirmed .delta {
     color: red;
   }
@@ -108,15 +164,8 @@ a {
     color: #17a2bc;
   }
 
-  &.active .count {
-    /* color: #ff9a00; */
-  }
   &.active .delta {
     color: red;
-  }
-
-  &.recovered .count {
-    /* color: green; */
   }
   &.recovered .delta {
     color: green;
@@ -137,6 +186,7 @@ a {
   display: flex;
   justify-content: center;
   padding: 10px;
+  font-weight: normal;
   span {
     margin-right: 5px;
   }
@@ -175,7 +225,11 @@ a {
       background: #f8f8f8;
     }
   }
-
+  thead > tr > th:nth-child(2) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 2px solid #fff;
+  }
   thead .heading {
     display: flex;
     min-width: 100px;
@@ -184,11 +238,13 @@ a {
 
   td,
   th {
-    padding: 8px;
+    padding: 8px 2px;
   }
 
-  td:nth-child(2) {
+  td:nth-child(2),
+  th:nth-child(2) {
     text-align: left;
+    max-width: 7.5rem;
   }
 
   tbody {
@@ -208,29 +264,35 @@ a {
   &.open {
     background: #f5f5f5;
     box-shadow: -1px 3px 5px 2px #e4e4e4;
-    .expand-icon img {
+    .expand-icon svg {
       transform: rotateZ(90deg);
     }
   }
-  .expand-icon img {
+  .expand-icon svg {
     transition: all 0.4s ease-in-out;
   }
+}
+.clickable-header {
+  border-radius: 10px;
+  border-right: 2px solid #fff;
+}
+.confirmed {
+  color: red;
+}
+.recovered {
+  color: green;
+}
+.deaths {
+  color: gray;
+}
+.active {
+  color: #ffa500;
 }
 
 .state-row .delta,
 .fold .delta {
   font-size: 11px;
   font-weight: 400;
-  color: gray;
-  &.confirmed {
-    color: red;
-  }
-  &.recovered {
-    color: green;
-  }
-  &.deaths {
-    color: red;
-  }
 }
 
 /* Districts Table */
@@ -243,7 +305,7 @@ a {
   }
 }
 
-.districts-table {
+.statewise-cases .districts-table {
   table {
     width: 100%;
     tr td {
@@ -259,6 +321,11 @@ a {
   }
   .title {
     display: inline-block;
+  }
+  th:nth-child(2) {
+    text-align:center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 .sorted-svg {
@@ -583,12 +650,189 @@ button.chart-control-btn {
   .button.chart-control-btn {
     margin: 5px 5px;
   }
+  .dark-mode-toggle {
+    margin: 10px 0;
+  }
+  .dayNight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
-$dark-background: '#283149';
-$dark-light-background: '#404b69';
-$dark-accent: '#00818a';
-$dark-font: '#dbedf3';
-.dark{
-  
+$dark-background: #212121;
+$dark-background-light: #414040;
+$dark-light-background: #323232;
+$dark-accent: #00818a;
+$dark-font: #c5c5c5;
+
+.dark {
+  transition: all 0.3s ease;
+  background: $dark-background;
+  p,
+  a,
+  h2,
+  h1,
+  h3,
+  button,
+  span {
+    color: $dark-font;
+    transition: all 0.3s ease;
+  }
+
+  .covid {
+    color: #8ac6d1;
+  }
+
+  .card {
+    transition: all 0.3s ease;
+
+    background: $dark-light-background;
+    box-shadow: none;
+  }
+
+  .toolbar {
+    background: #212121;
+    transition: all 0.3s ease;
+
+    .toggle-button svg {
+      fill: #adadad;
+    }
+  }
+
+  .side-drawer {
+    background: #16191d;
+    .close-svg {
+      stroke: #adadad;
+    }
+    a {
+      color: $dark-font;
+    }
+  }
+
+  // notification
+  .notification {
+    background: #476d7c;
+    transition: all 0.3s ease;
+    color: #f4f4f4;
+  }
+
+  // Race chart
+  .racechart-speed {
+    color: $dark-font;
+    transition: all 0.3s ease;
+  }
+
+  .chart-control-btn {
+    border: 1px solid #535353;
+    background: #272727;
+    user-select: none;
+    &:active {
+      background: #464444;
+      border: 1px solid #535353;
+    }
+  }
+
+  // India State map
+  #water-body {
+    fill: $dark-light-background;
+    transition: all 0.3s ease;
+  }
+  .popover{
+    color: $dark-font
+  }
+
+  // States Table
+  .clickable-header {
+    border-right: 2px solid #323232;
+  }
+  .bell-icon {
+    &.active {
+      fill: #fbd30c;
+      stroke: #777;
+      &.disabled {
+        fill: rgb(247, 229, 136);
+        stroke: #7a7a7a;
+      }
+    }
+  }
+  .table {
+    td,
+    th {
+      color: $dark-font;
+    }
+    thead {
+      transition: all 0.3s ease;
+      background: $dark-background-light;
+    }
+    .sortIcon,
+    .expand-icon svg {
+      fill: $dark-font;
+      transition: all 0.3s ease;
+    }
+    .gray,
+    .deaths {
+      color: #b3b3b3;
+    }
+    .confirmed {
+      color: #ff073a;
+    }
+    .recovered {
+      color: #28a745;
+    }
+    .active {
+      color: #ffa500;
+    }
+
+    .state-row {
+      background: inherit;
+      box-shadow: none;
+      border-bottom: 1px solid $dark-background-light;
+      transition: all 0.3s ease;
+      &.open {
+        transition: all 0.3s ease;
+        background: #464646;
+      }
+    }
+  }
+
+  .statewise-cases {
+    thead > tr > th:nth-child(2) {
+      transition: all 0.3s ease;
+      border-right: 2px solid #323232;
+    }
+    thead {
+      transition: all 0.3s ease;
+      border-bottom: 2px solid #323232;
+    }
+    tbody tr {
+      transition: all 0.3s ease;
+      border-bottom: 1px solid $dark-background-light;
+    }
+    .last-updated-state{
+      color: $dark-font;
+    }
+  }
+
+  .districts-table {
+    tbody tr:nth-child(even) {
+      transition: all 0.3s ease;
+      background: #393939;
+    }
+  }
+
+  .footer {
+    transition: all 0.3s ease;
+    background: #191919;
+    a {
+      color: $dark-font;
+    }
+  }
 }

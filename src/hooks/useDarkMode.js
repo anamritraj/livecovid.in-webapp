@@ -23,7 +23,6 @@ export const useDarkMode = () => {
       localTheme ?
         setTheme(localTheme) :
         setMode('light');
-        console.log('setting theme', theme);
     setComponentMounted(true);
   }, []);
 

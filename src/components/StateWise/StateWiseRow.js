@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import RowTableAccordion from "./RowTableAccordion";
-import chevronRight from "./chevron-right.svg";
 import { sendEventToGA } from '../../services/analytics.service'
 import { useTranslation } from "react-i18next";
+import ChevronIcon from "./ChevronIcon";
 const category = "User";
 const action = "Clicked State Row"
 
-const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus}) => {
+const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus, testingData}) => {
   const [isHidden, setIsHidden] = useState(true);
   const {t} = useTranslation();
 
@@ -18,7 +18,7 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
         key={state.name}
       >
         <td className="expand-icon">
-          <img src={chevronRight} alt="more-details" />
+          <ChevronIcon></ChevronIcon>
         </td>
         <td>{t("states:" + state.name)}</td>
         <td>
@@ -30,6 +30,9 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
           ) : (
               <span className="delta gray">(+0)</span>
             )}
+        </td>
+        <td>
+          {state.active}
         </td>
         <td>
           {state.recovered}{" "}
@@ -60,16 +63,11 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
             handleBellClick={handleBellClick}
             allNotificationsEnabled={allNotificationsEnabled}
             statesNotificationStatus={statesNotificationStatus}
+            testingData={testingData}
           ></RowTableAccordion>
         ) : null
       ]
     : null;
 };
-const rowPropsAreEqual = (prevProps, currentProps) =>{
-  return prevProps.allNotificationsEnabled === currentProps.allNotificationsEnabled &&
-    prevProps.state === currentProps.state &&
-    prevProps.districts === currentProps.districts &&
-    prevProps.statesNotificationStatus === currentProps.statesNotificationStatus
-}
 
-export default React.memo(StateWiseRow, rowPropsAreEqual);
+export default React.memo(StateWiseRow);
