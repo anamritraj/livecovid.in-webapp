@@ -24,9 +24,9 @@ export default ({testingData}) => {
         <tbody>
           <tr>
             <td>{testingData.totaltested}</td>
-            <td>{testingData.positive}</td>
-            <td>{testingData.negative}</td>
-            <td>{testingData.unconfirmed}</td>
+            <td style={{color: 'red'}}>{testingData.positive}</td>
+            <td style={{color: 'green'}}>{testingData.negative}</td>
+            <td style={{color: 'orange'}}>{testingData.unconfirmed}</td>
           </tr>
         </tbody>
       </table>
