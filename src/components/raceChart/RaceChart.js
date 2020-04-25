@@ -69,9 +69,9 @@ const DataManager = () => {
       state = data[index];
       totalElements = data.length;
     },
-    restart: (intialIndex) => {
-      index = intialIndex;
-      state = dataStore[index];
+    restart: () => {
+      index = 0;
+      state = dataStore[0];
     },
     increment: () => {
       if (index + 1 < totalElements) {
@@ -171,7 +171,7 @@ const RaceChart = (props) => {
   const handlePauseClick = React.useCallback(() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play') }, [isPaused]);
   const handleFasterClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * .25)); sendEventToGA(category, action, 'faster') }, [raceTimeInterval]);
   const handleSlowerClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * .25)); sendEventToGA(category, action, 'slower') }, [raceTimeInterval]);
-  const handleRestartClick = React.useCallback(() => { dataManager.restart(0); setIsPaused(false); sendEventToGA(category, action, 'restart') }, []);
+  const handleRestartClick = () => { setIsPaused(false); dataManager.restart(); sendEventToGA(category, action, 'restart')};
   const handleForwardClick = React.useCallback(() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward') }, []);
   const handleBackwardClick = React.useCallback(() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward')}, []);
 
