@@ -693,6 +693,12 @@ $dark-font: #c5c5c5;
   .covid {
     color: #8ac6d1;
   }
+  .modal{
+    background: $dark-background-light;
+    .btn{
+      background: #5e5e5e;
+    }
+  }
 
   .card {
     transition: all 0.3s ease;
