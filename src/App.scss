@@ -701,6 +701,13 @@ $dark-font: #c5c5c5;
     box-shadow: none;
   }
 
+  .modal{
+    background: $dark-background-light;
+    .btn{
+      background: #5e5e5e;
+    }
+  }
+
   .toolbar {
     background: #212121;
     transition: all 0.3s ease;
