@@ -96,6 +96,10 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
   useEffect(() =>{
     const statesNotificationStatus = {};
     idb.keys().then(keys => {
+      if(!keys.length){
+        setAllNotificationsEnabled(false);
+        return;
+      }
       keys.forEach((key) => {
         switch(key){
           case 'all_all': setAllNotificationsEnabled(true);

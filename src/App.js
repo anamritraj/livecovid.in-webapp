@@ -12,6 +12,7 @@ import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
 import Alert from "./components/Alert";
 import { useDarkMode } from "./hooks/useDarkMode";
+import { sendEventToGA } from "./services/analytics.service";
 
 const Notification = React.lazy(() => import("./components/Notification"));
 const showContentUpdatedHTML = <span>Website was updated in background, please reload to load the lastest version. <a href="#" onClick={() => window.location.reload()}>Click Here</a></span>
@@ -83,7 +84,7 @@ const App = () => {
         <Suspense fallback={<Loading></Loading>}>
           <>
             <Toolbar 
-              handleDarkModeClick={() => {toggleTheme()}}
+              handleDarkModeClick={() => { toggleTheme(); sendEventToGA('User', 'Dark/Mode', theme)}}
               theme={theme}
             />
             <Notification></Notification>
