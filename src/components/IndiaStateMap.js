@@ -77,7 +77,6 @@ const IndiaStateMap = ({ statewise, isMobile, total, isDarkTheme }) => {
     const indiaSvgMap = SVG(indiaMap).addTo("#india-state-map");
     setIndiaMapSaved(indiaSvgMap);
     const max = total.max;
-    console.log("Theme changed to", isDarkTheme);
     assginColorToMap(indiaSvgMap, max, isDarkTheme, statewise)
     Object.keys(statewise).forEach(key => {
       // This will hide the popover on mobile devices when user scrolls.

@@ -677,16 +677,19 @@ $dark-font: #c5c5c5;
   transition: all 0.3s ease;
   background: $dark-background;
   p,
-  a,
   h2,
   h1,
   h3,
   button,
-  span {
+  span, .last-updated-main, li {
     color: $dark-font;
     transition: all 0.3s ease;
   }
 
+  a{
+    color: $dark-accent;
+    transition: all 0.3s ease;
+  }
   .covid {
     color: #8ac6d1;
   }
@@ -704,6 +707,9 @@ $dark-font: #c5c5c5;
 
     .toggle-button svg {
       fill: #adadad;
+    }
+    .toolbar_navigation-items a{
+      color: $dark-font;
     }
   }
 

@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 
 const RaceChartControls = (props) => {
   const { t } = useTranslation();
-  console.log("Re-rendering controls")
   return <div className="race-chart-controls">
     <div className="button-controls">
       <button className="chart-control-btn" onClick={props.onPause}>
