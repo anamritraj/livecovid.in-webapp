@@ -8,10 +8,8 @@ import { HelmetDefault } from "../components/SEO";
 import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
 import RaceChart from "../components/raceChart/RaceChart";
 import StatewiseTable from "../components/StateWise/StatewiseTable";
-import { useTranslation } from "react-i18next";
 
 const Home = props => {
-  const {t} = useTranslation();
 return <>
         <HelmetDefault title={"Home"}></HelmetDefault>
         <div className="container">
@@ -25,21 +23,22 @@ return <>
           ></Stats>
           <div className="row">
             <div className="col-12">
-              <RaceChart isMobile={props.isMobile}></RaceChart>
+              <RaceChart isMobile={props.isMobile} isDarkTheme={props.theme === 'dark'}></RaceChart>
             </div>
           </div>
           <div className="row">
-            <h1>{t('COVID-19 Cases India - State-wise')}</h1>
             <div className="col-6">
               {props.isLoading ? null : <IndiaStateMap
                 dayChange={props.dayChange}
                 total={props.total}
+                isDarkTheme={props.theme==='dark'}
                 statewise={props.statewise}
                 isMobile={props.isMobile}
               ></IndiaStateMap>}
             </div>
             <div className="col-6">
               <StatewiseTable
+                theme={props.theme}
                 statewise={props.statewise}
                 isMobile={props.isMobile}
                 statewiseTestingData = {props.statewiseTestingData}
@@ -49,6 +48,7 @@ return <>
           <div className="row">
             <div className="col-12">
               <IndianTimeSeriesWrapper
+                theme={props.theme}
                 isMobile={props.isMobile}
               ></IndianTimeSeriesWrapper>
             </div>
@@ -56,7 +56,10 @@ return <>
               <AgeGroup ageGroup={props.ageGroup}></AgeGroup>
             </div> */}
             <div className="col-6">
-              <GenderChart gender={props.gender}></GenderChart>
+              <GenderChart 
+                gender={props.gender}
+                theme={props.theme}
+              ></GenderChart>
             </div>
             {/* <div className="col-6">
             <NationalityChart

@@ -42,7 +42,7 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
   const { t } = useTranslation();
   return !isHidden && (
     <tr className="fold">
-      <td colSpan="5">
+      <td colSpan="6">
         <div className="districts-table">
           <StateWiseTestData testingData={testingData}/>
           <div className="state-desc-header">
@@ -69,7 +69,7 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
                     handleSorting("confirmed");
                   }}
                 >
-                  <div className="title">{t('Confirmed')}</div>
+                  <span className="title">{t('Confirmed')}</span>
                   {activeSortingKey === "confirmed"
                     ? SortIcon(currentOrder)
                     : null}
@@ -116,4 +116,4 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
   );
 };
 
-export default RowTableAccordion;
+export default React.memo(RowTableAccordion);

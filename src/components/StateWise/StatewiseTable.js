@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import StateWiseRow from "./StateWiseRow";
 import { getDistrictWiseData } from "../../services/patients.service";
 import SortIcon from "./SortIcon";
@@ -18,7 +18,7 @@ const successMsg = <p>Congratulations you have enabled notifications! <span role
 const category = "User";
 const action = "Clicked Sorting";
 
-const StatewiseTable = ({ statewise, statewiseTestingData }) => {
+const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
   const stateWiseKeys = Object.keys(statewise);
   const {t} = useTranslation();
   const [stateSortObject, setStateSortObject] = useState({
@@ -31,7 +31,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(promptMsg);
   const [showGetNotificationButtons, setShowGetNotificationButtons] = useState(true);
-  const [allNotificationsEnabled, setAllNotificationsEnabled] = useState(false);
+  const [allNotificationsEnabled, setAllNotificationsEnabled] = useState(null);
   const [statesNotificationStatus, setStatesNotificationStatus] = useState({});
   const sortStates = useCallback((key, order, stateWiseKeys) => {
     return stateWiseKeys.sort((a, b) => {
@@ -96,11 +96,16 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
   useEffect(() =>{
     const statesNotificationStatus = {};
     idb.keys().then(keys => {
+      if(!keys.length){
+        setAllNotificationsEnabled(false);
+        return;
+      }
       keys.forEach((key) => {
         switch(key){
           case 'all_all': setAllNotificationsEnabled(true);
             break;
           default:
+            setAllNotificationsEnabled(false);
             const [state_code, district_code] = key.split('_');
             if (!statesNotificationStatus[state_code]) statesNotificationStatus[state_code] = {};
             statesNotificationStatus[state_code][district_code] = true;
@@ -131,9 +136,8 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
     }).catch(err => {
       setShowModal(true);
     })
-  }
-
-  return !isLoading && (
+  };
+  return !isLoading &&  allNotificationsEnabled !== null  && (
     <div className="card">
       <p className="notif-help-text">
         <span>{t('Enable Notifications for all new cases in India')}</span>
@@ -149,9 +153,9 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
           <tr>
             <th></th>
             <th>{t('State')}</th>
-            <th onClick={e => { handleSortClick("confirmed"); sendEventToGA(category, action, "confirmed") }}>
+            <th className={"clickable-header"} onClick={e => { handleSortClick("confirmed"); sendEventToGA(category, action, "confirmed") }}>
               <div className="heading">
-                <div>{t('Confirmed')}</div>
+                <div className="confirmed">{isMobile ? t('CNFRM') : t('Confirmed')}</div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "confirmed"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -159,9 +163,19 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
                 </div>
               </div>
             </th>
-            <th onClick={e => { handleSortClick("recovered"); sendEventToGA(category, action, "recovered") }}>
+            <th className={"clickable-header"} onClick={e => { handleSortClick("active"); sendEventToGA(category, action, "active") }}>
               <div className="heading">
-                <div>{t('Recovered')} </div>
+                <div className="active">{isMobile ? t('ACTV') : t('Active')} </div>
+                <div className="sortIcon">
+                  {stateSortObject.activeSorting === "active"
+                    ? SortIcon(stateSortObject.currentOrder)
+                    : null}
+                </div>
+              </div>
+            </th>
+            <th className={"clickable-header"} onClick={e => { handleSortClick("recovered"); sendEventToGA(category, action, "recovered") }}>
+              <div className="heading">
+                <div className="recovered">{isMobile ? t('RCVRD') : t('Recovered')} </div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "recovered"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -169,9 +183,9 @@ const StatewiseTable = ({ statewise, statewiseTestingData }) => {
                 </div>
               </div>
             </th>
-            <th onClick={e => { handleSortClick("deaths"); sendEventToGA(category, action, "deaths") }}>
+            <th className={"clickable-header"} onClick={e => { handleSortClick("deaths"); sendEventToGA(category, action, "deaths") }}>
               <div className="heading">
-                <div>{t('Deaths')} </div>{" "}
+                <div className="deaths">{isMobile ? t('DEATHS') : t('Deaths')} </div>{" "}
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "deaths" ? SortIcon(stateSortObject.currentOrder) : null}
                 </div>

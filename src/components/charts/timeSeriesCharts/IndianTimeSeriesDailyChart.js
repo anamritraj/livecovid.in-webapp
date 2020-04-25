@@ -4,6 +4,8 @@ import { ResponsiveLine } from "@nivo/line";
 const IndianTimeSeriesDailyChart = ({
   timeseries,
   months,
+  themeObject,
+  toolTipStyle,
   isMobile
 }) => {
   return (
@@ -17,11 +19,7 @@ const IndianTimeSeriesDailyChart = ({
         const month = d.getMonth();
         return (
           <div
-            style={{
-              background: "white",
-              padding: "9px 12px",
-              border: "1px solid #ccc"
-            }}
+            style={toolTipStyle}
           >
             {slice.points.map(point => (
               <div
@@ -30,7 +28,7 @@ const IndianTimeSeriesDailyChart = ({
                   padding: "3px 0"
                 }}
               >
-                <strong>{point.serieId}</strong> : {point.data.yFormatted}
+                <strong style={{color: point.color}}>{point.serieId}</strong> : {point.data.yFormatted}
               </div>
             ))}
 
@@ -73,7 +71,7 @@ const IndianTimeSeriesDailyChart = ({
         format: "%b %d",
         tickRotation: isMobile ? 45 : 0
       }}
-      theme={{ fontSize: isMobile ? 12 : 16 }}
+      theme={themeObject}
       axisLeft={{
         orient: "left",
         tickSize: 5,

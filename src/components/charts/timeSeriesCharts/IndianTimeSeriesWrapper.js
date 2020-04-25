@@ -19,11 +19,52 @@ const getWindowTimeSeriesData = (data) => {
   return data;
 }
 
+const darkTheme = {
+  background: "#323232",
+  tooltip: {
+    container: {
+      background: "#000"
+    }
+  },
+  axis: {
+    domain: {
+      line: {
+        stroke: "#526271"
+      }
+    },
+    ticks: {
+      line: {
+        stroke: "#526271",
+        strokeWidth: 1
+      },
+      text: {
+        fill: "#8d9cab",
+        fontSize: 11
+      }
+    },
+  },
+  grid: {
+    line: {
+      stroke: "#444"
+    }
+  },
+  crosshair: {
+    line: {
+      stroke: "#fff",
+    },
+  },
+}
+
 const IndianTimeSeriesWrapper = props => {
   const [dailyIndiaTimeSeriesData, setdailyIndiaTimeSeriesData] = useState([]);
   const [totalIndiaTimeSeriesData, settotalIndiaTimeSeriesData] = useState([]);
   const [chartToshow, setChartToshow] = useState(cumulative);
   const [isLoading, setIsLoading] = useState(true);
+  const [toolTipStyle, setToolTipStyle] = useState({
+    background: "white",
+    padding: "9px 12px",
+    border: "1px solid #ccc"
+  });
   const {t} = useTranslation();
   const memoizedMonths = useMemo(() => [
     t("months:January"),
@@ -39,6 +80,15 @@ const IndianTimeSeriesWrapper = props => {
     t("months:November"),
     t("months:December"),
   ], [t]);;
+
+  useEffect(() =>{
+    setToolTipStyle({
+      background: "#191919",
+      padding: "9px 12px",
+      border: "1px solid #ccc",
+      color: '#dadada'
+    })
+  }, [props.theme])
 
   useEffect(() => {
     getIndiaTimeSeries()
@@ -134,13 +184,17 @@ const IndianTimeSeriesWrapper = props => {
             <IndianTimeSeriesDailyChart
               timeseries={dailyIndiaTimeSeriesData}
               months={memoizedMonths}
+              themeObject={props.theme === 'dark' ? darkTheme: null}
               isMobile={props.isMobile}
+              toolTipStyle={toolTipStyle}
             ></IndianTimeSeriesDailyChart>
           ) : totalIndiaTimeSeriesData.length ? (
             <IndiaTimeSeriesCumulativeChart
               timeseries={totalIndiaTimeSeriesData}
+              themeObject={props.theme === 'dark' ? darkTheme: null}
               isMobile={props.isMobile}
               months={memoizedMonths}
+              toolTipStyle={toolTipStyle}
             ></IndiaTimeSeriesCumulativeChart>
           ) : null}
         </div>

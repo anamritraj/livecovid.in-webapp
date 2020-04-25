@@ -42,6 +42,7 @@ const Routes = (props) => {
         ageGroup={props.ageGroup}
         nationality={props.nationality}
         gender={props.gender}
+        theme={props.theme}
         hospitalizationStatus={props.hospitalizationStatus}
       ></Home>
     </Route>

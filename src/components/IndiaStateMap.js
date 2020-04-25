@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SVG } from "@svgdotjs/svg.js";
 import indiaMap from "../india-map";
 import Popover from "../Popover";
 
-const percentColors = [
+const lightThemeMapColors = [
   { percent: 0.0, color: { r: 243, g: 206, b: 206 } },
   { percent: 1.0, color: { r: 160, g: 0, b: 0 } }
+];
+const darkThemeMapColors = [
+  { percent: 0.0, color: { r: 224, g: 243, b: 248 } },
+  { percent: 1.0, color: { r: 69, g: 117, b: 180 } }
 ];
 
 const debounce = (func, delay) => {
@@ -21,17 +26,22 @@ const debounce = (func, delay) => {
 }
 
 // Calculate percent as minimum cases/ maximum cases. If % = 0, color should be white
-const getColorBasedOnNoOfCases = percent => {
+const getColorBasedOnNoOfCases = (percent, isDarkTheme) => {
   if (percent === 0) {
     return "#fff";
   }
-  for (var i = 1; i < percentColors.length - 1; i++) {
-    if (percent < percentColors[i].percent) {
+  let mapColors = lightThemeMapColors;
+  if (isDarkTheme) {
+    mapColors = darkThemeMapColors;
+  }
+
+  for (var i = 1; i < mapColors.length - 1; i++) {
+    if (percent < mapColors[i].percent) {
       break;
     }
   }
-  var lower = percentColors[i - 1];
-  var upper = percentColors[i];
+  var lower = mapColors[i - 1];
+  var upper = mapColors[i];
   var range = upper.percent - lower.percent;
   var rangepercent = (percent - lower.percent) / range;
   var percentLower = 1 - rangepercent;
@@ -46,20 +56,32 @@ const getColorBasedOnNoOfCases = percent => {
   return "rgb(" + [color.r, color.g, color.b].join(",") + ")";
 };
 
-const IndiaStateMap = ({ statewise, isMobile, total }) => {
+const assginColorToMap = (indiaSvgMap, max, isDarkTheme, statewise) => {
+  indiaSvgMap && Object.keys(statewise).forEach(key => {
+    indiaSvgMap
+      .findOne("#" + key)
+      .fill(getColorBasedOnNoOfCases(statewise[key].active / max, isDarkTheme));
+  });
+}
+
+const IndiaStateMap = ({ statewise, isMobile, total, isDarkTheme }) => {
   const [popover, setPopover] = useState({ x: 0, y: 0, show: false });
   const [selectedState, setSelectedState] = useState({ name: "", count: 0 });
+  const [indiaMapSaved, setIndiaMapSaved] = useState(null);
+  const { t } = useTranslation();
+  useEffect(() => {
+    assginColorToMap(indiaMapSaved, total.max, isDarkTheme, statewise)
+  }, [isDarkTheme]);
+
   useEffect(() => {
     const indiaSvgMap = SVG(indiaMap).addTo("#india-state-map");
+    setIndiaMapSaved(indiaSvgMap);
     const max = total.max;
+    assginColorToMap(indiaSvgMap, max, isDarkTheme, statewise)
     Object.keys(statewise).forEach(key => {
-      indiaSvgMap
-        .findOne("#" + key)
-        .fill(getColorBasedOnNoOfCases(statewise[key].active / max));
-      
       // This will hide the popover on mobile devices when user scrolls.
-        document.body.addEventListener("touchmove", debounce(() => {
-          indiaSvgMap.findOne("#" + key).fire('touchmove')
+      document.body.addEventListener("touchmove", debounce(() => {
+        indiaSvgMap.findOne("#" + key).fire('touchmove')
       }, 1000));
 
       indiaSvgMap.findOne("#" + key).on("mouseenter", e => {
@@ -100,19 +122,23 @@ const IndiaStateMap = ({ statewise, isMobile, total }) => {
       Object.keys(statewise).forEach(key => {
         indiaSvgMap.findOne("#" + key).off();
       });
-      document.body.removeEventListener("touchmove");
+      document.body.removeEventListener("touchmove", null);
     }
   }, [total.max]);
 
+
   return (
-    <>
-      <div id="india-state-map" className="card"></div>
+    <div className="card chart">
+      <div className="chart-controls">
+        <h2>{t('COVID-19 Cases India - State-wise')}</h2>
+      </div>
+      <div id="india-state-map"></div>
       <Popover
         popover={popover}
         count={selectedState.count}
         name={selectedState.name}
       ></Popover>
-    </>
+    </div>
   );
 };
 

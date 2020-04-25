@@ -34,6 +34,12 @@ const Toolbar = props => {
             </li>
           </ul>
         </div>
+        <div className="dark-mode-toggle" >
+          <label className="dayNight">
+            <input type="checkbox" onChange={props.handleDarkModeClick} checked={props.theme === 'light'}></input>
+            <div></div>
+          </label>
+        </div>
       </nav>
       <SideDrawer
         show={isSideDrawerOpen}

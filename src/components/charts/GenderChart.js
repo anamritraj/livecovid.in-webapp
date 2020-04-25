@@ -1,21 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import "./Charts.css";
 import { useTranslation } from "react-i18next";
 
-const colors = {
+const darkModeColors = {
+  Male: "#2c769d",
+  Female: "#be245d",
+  "Details Awaited": "#4f4d4d"
+};
+const lightModeColors = {
   Male: "#c2f0fc",
   Female: "#ffb0cd",
   "Details Awaited": "#959595"
 };
-const getColor = bar => {
+const getColor = (colors, bar) => {
   return colors[bar.id];
 };
 
-const GenderChart = ({ gender }) => {
+const lightThemeObject ={
+  tooltip: {
+    container: {
+      background: "#000"
+    }
+  }
+}
+
+const darkThemeObject = {
+  background: "#323232",
+  tooltip: {
+    container: {
+      background: "#000"
+    }
+  },
+  labels: {
+    text: {
+      fill: "#e4e4e4"
+    }
+  }
+}
+
+const GenderChart = ({ gender, theme }) => {
   const {t} = useTranslation();
   let data = [];
   let totalCases = 0;
+  const [colors, setColors] = useState(lightModeColors);
+  useEffect(() =>{
+    setColors((theme === 'dark') ? darkModeColors : lightModeColors);
+  }, [theme])
+
   Object.keys(gender).forEach(key => {
     let label = t("Male");
     if (key === "F") label = t("Female");
@@ -38,7 +70,7 @@ const GenderChart = ({ gender }) => {
         <ResponsivePie
           data={data}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-          colors={getColor}
+          colors={(bar) => getColor(colors, bar)}
           borderWidth={0}
           radialLabelsSkipAngle={10}
           radialLabelsTextXOffset={6}
@@ -47,15 +79,15 @@ const GenderChart = ({ gender }) => {
           radialLabelsLinkHorizontalLength={5}
           radialLabelsLinkStrokeWidth={1}
           animate={true}
-          tooltip={({ label, value }) => {
+          tooltip={({ label, value}) => {
             return (
-              <div>
+              <div style={{color : '#e4e4e4'}}>
                 {label} : {value} Cases <br></br>{" "}
                 {((value / totalCases) * 100).toPrecision(4)}%
               </div>
             );
           }}
-          theme={{ fontSize: 16 }}
+          theme={theme === 'dark' ? darkThemeObject : lightThemeObject}
           motionStiffness={90}
           motionDamping={15}
         />

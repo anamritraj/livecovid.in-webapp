@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 const IndiaTimeSeriesCumulativeChart = ({
   timeseries,
   isMobile,
+  themeObject,
+  toolTipStyle,
   months
 }) => {
   const {t} = useTranslation();
@@ -18,11 +20,7 @@ const IndiaTimeSeriesCumulativeChart = ({
         const month = d.getMonth();
         return (
           <div
-            style={{
-              background: "white",
-              padding: "9px 12px",
-              border: "1px solid #ccc"
-            }}
+            style={toolTipStyle}
           >
             {slice.points.map(point => (
               <div
@@ -31,7 +29,7 @@ const IndiaTimeSeriesCumulativeChart = ({
                   padding: "3px 0"
                 }}
               >
-                <strong>{point.serieId}</strong> : {point.data.yFormatted}
+                <strong style={{color: point.color}}>{point.serieId}</strong> : {point.data.yFormatted}
               </div>
             ))}
 
@@ -74,7 +72,7 @@ const IndiaTimeSeriesCumulativeChart = ({
         format: "%b %d",
         tickRotation: isMobile ? 45 : 0
       }}
-      theme={{ fontSize: isMobile ? 12 : 16 }}
+      theme={themeObject}
       axisLeft={{
         orient: "left",
         tickSize: 5,

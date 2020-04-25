@@ -1,0 +1,844 @@
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  overflow: auto;
+}
+body {
+  padding: 56px 0 0 0;
+}
+
+a {
+  color: #18b0b0;
+  font-weight: bold;
+}
+.text-center {
+  text-align: center;
+}
+.hide {
+  display: none !important;
+}
+.overlay {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 14px;
+  p {
+    font-size: 1rem;
+  }
+  .modal-button-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .btn {
+    padding: 10px;
+    background: #e4e4e4;
+  }
+}
+$night: #171c28;
+$day: #fff;
+$nightBtn: #fff;
+$dayBtn: #ecc91e;
+.dark-mode-toggle {
+  margin: 0 20px 0 20px;
+  .dayNight {
+    cursor: pointer;
+    input {
+      display: none;
+      & + div {
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        position: relative;
+        box-shadow: inset 4px -8px 0 0 $nightBtn;
+        transform: scale(1) rotate(-2deg);
+        transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+        &:before {
+          content: "";
+          width: inherit;
+          height: inherit;
+          border-radius: inherit;
+          position: absolute;
+          left: 0;
+          top: 0;
+          transition: background 0.3s ease;
+        }
+        &:after {
+          content: "";
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          margin: -3px 0 0 -3px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          box-shadow: 0 -17px 0 $dayBtn, 0 17px 0 $dayBtn, 17px 0 0 $dayBtn,
+            -17px 0 0 $dayBtn, 12px 12px 0 $dayBtn, -12px 12px 0 $dayBtn,
+            12px -12px 0 $dayBtn, -12px -12px 0 $dayBtn;
+          transform: scale(0);
+          transition: all 0.3s ease;
+        }
+      }
+      &:checked + div {
+        box-shadow: inset 15px -15px 0 0 $nightBtn;
+        transform: scale(0.5) rotate(0deg);
+        transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+        &:before {
+          background: $dayBtn;
+          transition: background 0.3s ease 0.1s;
+        }
+        &:after {
+          transform: scale(1.5);
+          transition: transform 0.5s ease 0.15s;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  text-align: center;
+  width: 80%;
+  max-width: 100rem;
+  z-index: 100;
+}
+.stats {
+  margin-top: 5px;
+}
+.boundaried-land-indian {
+  stroke: #464646;
+
+  &:hover::after {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+  transition: box-shadow 0.3s;
+  background: #fff;
+  overflow: auto;
+
+  p {
+    margin: 0;
+  }
+  .count {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  .delta {
+    font-weight: 800;
+  }
+
+  &.confirmed .delta {
+    color: red;
+  }
+  &.tested .delta {
+    color: #17a2bc;
+  }
+
+  &.active .delta {
+    color: red;
+  }
+  &.recovered .delta {
+    color: green;
+  }
+}
+.popover {
+  position: fixed;
+  border: 1px solid #e4e4e4;
+  background: #ffffff;
+  padding: 5px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+/* HELP CSS */
+.notif-help-text {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-weight: normal;
+  span {
+    margin-right: 5px;
+  }
+}
+
+.table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    font-weight: bolder;
+    background: #e4e4e4;
+  }
+  td,
+  th {
+    padding: 10px;
+  }
+
+  th {
+    padding: 10px;
+  }
+
+  a {
+    color: #000;
+  }
+}
+
+.statewise-cases {
+  tbody tr {
+    cursor: pointer;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 15px;
+
+    &:nth-child(even) {
+      background: #f8f8f8;
+    }
+  }
+  thead > tr > th:nth-child(2) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 2px solid #fff;
+  }
+  thead .heading {
+    display: flex;
+    min-width: 100px;
+    justify-content: center;
+  }
+
+  td,
+  th {
+    padding: 8px 2px;
+  }
+
+  td:nth-child(2),
+  th:nth-child(2) {
+    text-align: left;
+    max-width: 7.5rem;
+  }
+
+  tbody {
+    tr.fold {
+      background: transparent;
+      > td {
+        padding: 0;
+      }
+      .districts-table {
+        transition: all 0.4s ease;
+      }
+    }
+  }
+}
+
+.state-row {
+  &.open {
+    background: #f5f5f5;
+    box-shadow: -1px 3px 5px 2px #e4e4e4;
+    .expand-icon svg {
+      transform: rotateZ(90deg);
+    }
+  }
+  .expand-icon svg {
+    transition: all 0.4s ease-in-out;
+  }
+}
+.clickable-header {
+  border-radius: 10px;
+  border-right: 2px solid #fff;
+}
+.confirmed {
+  color: red;
+}
+.recovered {
+  color: green;
+}
+.deaths {
+  color: gray;
+}
+.active {
+  color: #ffa500;
+}
+
+.state-row .delta,
+.fold .delta {
+  font-size: 11px;
+  font-weight: 400;
+}
+
+/* Districts Table */
+.state-desc-header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  .bell-icon {
+    margin-top: 7px;
+  }
+}
+
+.statewise-cases .districts-table {
+  table {
+    width: 100%;
+    tr td {
+      padding: 4px;
+      text-align: center;
+    }
+    tr td:nth-child(2) {
+      text-align: center;
+    }
+  }
+  th {
+    padding: 4px;
+  }
+  .title {
+    display: inline-block;
+  }
+  th:nth-child(2) {
+    text-align:center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+.sorted-svg {
+  width: 10px;
+  right: 0;
+  transform: rotate(135deg);
+  stroke-width: 5px;
+  align-self: center;
+  display: inline-block;
+  margin: -7px -3px -6px 0.25rem;
+  color: rgba(108, 117, 125, 0.6);
+}
+
+.bell-icon {
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  &.active {
+    fill: #fbd30c;
+    animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    &.disabled {
+      fill: rgba(255, 219, 37, 0.45098039215686275);
+      stroke: #9c9c9c;
+    }
+  }
+}
+
+@keyframes bellshake {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(50deg);
+  }
+  30% {
+    transform: rotate(-50deg);
+  }
+  45% {
+    transform: rotate(40deg);
+  }
+  60% {
+    transform: rotate(-40deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+  85% {
+    transform: rotate(-20deg);
+  }
+  92% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+/* Notification SVG */
+.notification {
+  background: #50a4b5;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+.last-updated-state {
+  font-size: 12px;
+  color: #777;
+  padding: 10px;
+}
+
+/* Last Updated pulse animation */
+
+.live-indicator-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-indicator {
+  float: left;
+  margin: 10px;
+  width: 6px;
+  height: 6px;
+  text-transform: uppercase;
+  background: #ff1818;
+  border-radius: 50%;
+  animation: shadow-pulse 1s infinite;
+}
+
+.last-updated-main {
+  font-size: 14px;
+  color: #666;
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+  }
+}
+/* Credits */
+
+.helpful-resources ul {
+  text-align: left;
+  li {
+    margin: 10px 0;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Footer CSS */
+.footer {
+  padding: 1em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  z-index: 200;
+  font-size: 0.75rem;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0px 4px 40px 0px rgba(0, 64, 128, 0.2);
+  span {
+    margin: 0 10px;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+/* FAQ css */
+li {
+  .question {
+    font-size: 1.4em;
+    list-style-type: none;
+    color: #18b0b0;
+  }
+  .answer {
+    list-style: none;
+  }
+}
+
+.floating-actions {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  display: none;
+  z-index: 100;
+}
+.wa-svg {
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* RaceChart CSS */
+
+.race-chart {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  h3,
+  h2 {
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  h3 {
+    font-size: 1.2em;
+  }
+  .racechart-date {
+    float: left;
+    margin-left: 10px;
+  }
+  .racechart-speed {
+    color: #666;
+    font-size: 12px;
+    line-height: 40px;
+    float: right;
+    margin-right: 10px;
+    font-weight: bolder;
+  }
+}
+.race-chart-controls {
+  margin-top: 15px;
+  img.control-img {
+    width: 10px;
+    margin-right: 5px;
+  }
+}
+
+button.chart-control-btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #e4e4e4;
+  margin: 5px 10px;
+  background: #fff;
+  min-width: 70px;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border: 1px solid #ddd;
+    background: #e4e4e4;
+  }
+}
+
+.social-footer {
+  margin-top: 40px;
+  ul {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  li {
+    margin: 10px;
+  }
+  img {
+    width: 20px;
+    vertical-align: sub;
+    margin-right: 5px;
+  }
+
+  .github {
+    padding: 10px 20px;
+    background: #131313;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+
+  .twitter {
+    padding: 10px 20px;
+    background: rgb(29, 161, 242);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+}
+.alert {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #333;
+  padding: 10px 15px;
+  z-index: 100;
+
+  span {
+    color: #e4e4e4;
+  }
+  a {
+    text-decoration: underline;
+    color: #ffec07;
+  }
+}
+
+@media (max-width: 460px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  .container {
+    width: 100%;
+  }
+  .modal {
+    min-width: 60%;
+    .btn {
+      margin: 5px auto;
+    }
+  }
+  .modal-button-wrapper {
+    flex-direction: column;
+  }
+  td {
+    padding: 5px;
+  }
+  .card {
+    padding: 0;
+  }
+  .state-col {
+    width: 40%;
+  }
+  .popover {
+    font-size: 12px;
+    padding: 2px 8px;
+    font-weight: bold;
+  }
+  .statewise-cases {
+    font-size: 0.9rem;
+    thead .heading {
+      min-width: auto;
+    }
+  }
+  .faqs ul {
+    padding: 20px;
+  }
+  .floating-actions {
+    display: flex;
+  }
+  .social-footer {
+    margin-top: 10px;
+    ul {
+      display: grid;
+    }
+    li {
+      margin-top: 15px;
+    }
+  }
+  .race-chart {
+    padding: 0;
+  }
+  .race-chart-controls {
+    margin-bottom: 5px;
+  }
+  .button.chart-control-btn {
+    margin: 5px 5px;
+  }
+  .dark-mode-toggle {
+    margin: 10px 0;
+  }
+  .dayNight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+$dark-background: #212121;
+$dark-background-light: #414040;
+$dark-light-background: #323232;
+$dark-accent: #00818a;
+$dark-font: #c5c5c5;
+
+.dark {
+  transition: all 0.3s ease;
+  background: $dark-background;
+  p,
+  h2,
+  h1,
+  h3,
+  button,
+  span, .last-updated-main, li, .text-center {
+    color: $dark-font;
+    transition: all 0.3s ease;
+  }
+
+  a{
+    color: $dark-accent;
+    transition: all 0.3s ease;
+  }
+  .covid {
+    color: #8ac6d1;
+  }
+
+  .card {
+    transition: all 0.3s ease;
+
+    background: $dark-light-background;
+    box-shadow: none;
+  }
+
+  .toolbar {
+    background: #212121;
+    transition: all 0.3s ease;
+
+    .toggle-button svg {
+      fill: #adadad;
+    }
+    .toolbar_navigation-items a{
+      color: $dark-font;
+    }
+  }
+
+  .side-drawer {
+    background: #16191d;
+    .close-svg {
+      stroke: #adadad;
+    }
+    a {
+      color: $dark-font;
+    }
+  }
+
+  // notification
+  .notification {
+    background: #476d7c;
+    transition: all 0.3s ease;
+    color: #f4f4f4;
+  }
+
+  // Race chart
+  .racechart-speed {
+    color: $dark-font;
+    transition: all 0.3s ease;
+  }
+
+  .chart-control-btn {
+    border: 1px solid #535353;
+    background: #272727;
+    user-select: none;
+    &:active {
+      background: #464444;
+      border: 1px solid #535353;
+    }
+  }
+
+  // India State map
+  #water-body {
+    fill: $dark-light-background;
+    transition: all 0.3s ease;
+  }
+  .popover{
+    color: $dark-font
+  }
+
+  // States Table
+  .clickable-header {
+    border-right: 2px solid #323232;
+  }
+  .bell-icon {
+    &.active {
+      fill: #fbd30c;
+      stroke: #777;
+      &.disabled {
+        fill: rgb(247, 229, 136);
+        stroke: #7a7a7a;
+      }
+    }
+  }
+  .table {
+    td,
+    th {
+      color: $dark-font;
+    }
+    thead {
+      transition: all 0.3s ease;
+      background: $dark-background-light;
+    }
+    .sortIcon,
+    .expand-icon svg {
+      fill: $dark-font;
+      transition: all 0.3s ease;
+    }
+    .gray,
+    .deaths {
+      color: #b3b3b3;
+    }
+    .confirmed {
+      color: #ff073a;
+    }
+    .recovered {
+      color: #28a745;
+    }
+    .active {
+      color: #ffa500;
+    }
+
+    .state-row {
+      background: inherit;
+      box-shadow: none;
+      border-bottom: 1px solid $dark-background-light;
+      transition: all 0.3s ease;
+      &.open {
+        transition: all 0.3s ease;
+        background: #464646;
+      }
+    }
+  }
+
+  .statewise-cases {
+    thead > tr > th:nth-child(2) {
+      transition: all 0.3s ease;
+      border-right: 2px solid #323232;
+    }
+    thead {
+      transition: all 0.3s ease;
+      border-bottom: 2px solid #323232;
+    }
+    tbody tr {
+      transition: all 0.3s ease;
+      border-bottom: 1px solid $dark-background-light;
+    }
+    .last-updated-state{
+      color: $dark-font;
+    }
+  }
+
+  .districts-table {
+    tbody tr:nth-child(even) {
+      transition: all 0.3s ease;
+      background: #393939;
+    }
+  }
+
+  .footer {
+    transition: all 0.3s ease;
+    background: #191919;
+    a {
+      color: $dark-font;
+    }
+  }
+}
