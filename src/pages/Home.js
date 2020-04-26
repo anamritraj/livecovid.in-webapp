@@ -22,11 +22,6 @@ return <>
             tested={props.tested}
           ></Stats>
           <div className="row">
-            <div className="col-12">
-              <RaceChart isMobile={props.isMobile} isDarkTheme={props.theme === 'dark'}></RaceChart>
-            </div>
-          </div>
-          <div className="row">
             <div className="col-6">
               {props.isLoading ? null : <IndiaStateMap
                 dayChange={props.dayChange}
@@ -43,6 +38,11 @@ return <>
                 isMobile={props.isMobile}
                 statewiseTestingData = {props.statewiseTestingData}
               ></StatewiseTable>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <RaceChart isMobile={props.isMobile} isDarkTheme={props.theme === 'dark'}></RaceChart>
             </div>
           </div>
           <div className="row">

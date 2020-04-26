@@ -104,7 +104,6 @@ const App = () => {
             <SocialFooter></SocialFooter>
             <Footer></Footer>
           </>
-          <WhatsappShare></WhatsappShare>
           <Alert show={showContentUpdatedAlert} content={showContentUpdatedHTML}></Alert>
         </Suspense>
       </Router>
