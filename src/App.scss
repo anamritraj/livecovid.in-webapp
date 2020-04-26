@@ -323,7 +323,7 @@ $dayBtn: #ecc91e;
     display: inline-block;
   }
   th:nth-child(2) {
-    text-align:center;
+    text-align: center;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -471,18 +471,6 @@ li {
   }
 }
 
-.floating-actions {
-  position: fixed;
-  bottom: 0;
-  right: 20px;
-  display: none;
-  z-index: 100;
-}
-.wa-svg {
-  background: #fff;
-  border-radius: 50%;
-}
-
 /* RaceChart CSS */
 
 .race-chart {
@@ -549,6 +537,12 @@ button.chart-control-btn {
   }
   li {
     margin: 10px;
+    a {
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+    }
   }
   img {
     width: 20px;
@@ -557,19 +551,18 @@ button.chart-control-btn {
   }
 
   .github {
-    padding: 10px 20px;
     background: #131313;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
   }
 
   .twitter {
-    padding: 10px 20px;
     background: rgb(29, 161, 242);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
+  }
+
+  .slack {
+    background: #606060;
+  }
+  .whatsapp{
+    display: none;
   }
 }
 .alert {
@@ -629,9 +622,6 @@ button.chart-control-btn {
   .faqs ul {
     padding: 20px;
   }
-  .floating-actions {
-    display: flex;
-  }
   .social-footer {
     margin-top: 10px;
     ul {
@@ -665,6 +655,12 @@ button.chart-control-btn {
     padding: 0;
     box-sizing: border-box;
   }
+  .social-footer{
+    .whatsapp{
+      display: initial;
+      background: #25D366;
+    }
+  }
 }
 
 $dark-background: #212121;
@@ -681,21 +677,24 @@ $dark-font: #c5c5c5;
   h1,
   h3,
   button,
-  span, .last-updated-main, li, .text-center {
+  span,
+  .last-updated-main,
+  li,
+  .text-center {
     color: $dark-font;
     transition: all 0.3s ease;
   }
 
-  a{
+  a {
     color: $dark-accent;
     transition: all 0.3s ease;
   }
   .covid {
     color: #8ac6d1;
   }
-  .modal{
+  .modal {
     background: $dark-background-light;
-    .btn{
+    .btn {
       background: #5e5e5e;
     }
   }
@@ -714,7 +713,7 @@ $dark-font: #c5c5c5;
     .toggle-button svg {
       fill: #adadad;
     }
-    .toolbar_navigation-items a{
+    .toolbar_navigation-items a {
       color: $dark-font;
     }
   }
@@ -757,8 +756,8 @@ $dark-font: #c5c5c5;
     fill: $dark-light-background;
     transition: all 0.3s ease;
   }
-  .popover{
-    color: $dark-font
+  .popover {
+    color: $dark-font;
   }
 
   // States Table
@@ -828,7 +827,7 @@ $dark-font: #c5c5c5;
       transition: all 0.3s ease;
       border-bottom: 1px solid $dark-background-light;
     }
-    .last-updated-state{
+    .last-updated-state {
       color: $dark-font;
     }
   }
