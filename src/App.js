@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Toolbar from "./components/nav/Toolbar";
 import Footer from "./components/Footer";
-import WhatsappShare from "./components/whatsapp-share";
 import { schemaMarkup } from "./components/SEO";
 import SocialFooter from "./components/SocialFooter";
 import Routes from "./Routes";
