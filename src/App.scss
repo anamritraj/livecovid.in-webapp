@@ -177,22 +177,20 @@ $dayBtn: #ecc91e;
   position: absolute;
   right: 0;
   min-width: 150px;
-  .state-name{
+  .state-name {
     font-size: 1.25em;
   }
 }
 
-.map-controls{
+.map-controls {
   display: flex;
   flex-direction: column;
 }
 
-.instruction{
+.instruction {
   font-size: 12px;
-  color: #767676
+  color: #767676;
 }
-
-
 
 .india-state-maps {
   display: flex;
@@ -203,7 +201,7 @@ $dayBtn: #ecc91e;
   .india-state-stats {
     cursor: pointer;
     padding: 10px;
-    min-width: 80px;
+    min-width: 18%;
 
     &.confirmed {
       background: #ff00002b;
@@ -243,10 +241,10 @@ $dayBtn: #ecc91e;
     }
   }
 }
-.india-svg-map{
+.india-svg-map {
   margin-top: 10px;
   position: relative;
-  .regions{
+  .regions {
     cursor: pointer;
   }
 }
@@ -266,10 +264,28 @@ $primary-theme: #8ac6d1;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: $primary-theme;
+  }
+  &.confirmed {
+    &::-webkit-slider-thumb {
+      background: rgb(255, 10, 0);
+    }
+  }
+  &.active {
+    &::-webkit-slider-thumb {
+      background: rgb(255, 156, 0);
+    }
+  }
+  &.recovered {
+    &::-webkit-slider-thumb {
+      background: rgb(62, 161, 13);
+    }
+  }
+  &.deaths {
+    &::-webkit-slider-thumb {
+      background: rgb(71, 71, 71);
+    }
   }
 }
-
 /* FIREFOX */
 #range::-moz-range-thumb {
   border: none;
@@ -725,15 +741,15 @@ button.chart-control-btn {
   .state-col {
     width: 40%;
   }
-  .india-state-maps{
-    .india-state-stats{
-      min-width: 60px;
+  .india-state-maps {
+    .india-state-stats {
+      min-width: 18%;
     }
   }
 
-  .india-map-info{
-    .instruction{
-      font-size: 10px;
+  .india-map-info {
+    .instruction {
+      font-size: 11px;
     }
   }
 
@@ -885,11 +901,12 @@ $dark-font: #c5c5c5;
       color: #ddd;
     }
   }
-  .india-map-info, .india-map-date {
+  .india-map-info,
+  .india-map-date {
     color: #eee;
   }
-  .regions{
-    path{
+  .regions {
+    path {
       stroke: none;
       stroke-width: 0px;
     }

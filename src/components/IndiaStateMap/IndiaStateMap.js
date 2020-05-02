@@ -6,6 +6,7 @@ import IndiaMapControls from "./IndiaMapControls";
 import IndiaMapSVG from "./IndiaMapSVG";
 import StateDataManager from "../../services/india-statemap.service";
 import IndiaMapInfo from "./IndiaMapInfo";
+import { sendEventToGA } from "../../services/analytics.service";
 
 const Loading = React.memo(() => {
   return <div>Loading..</div>
@@ -62,6 +63,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
   }
 
   const handleAttributeClick = useCallback((attribute) => {
+    sendEventToGA("User", "Changed Active Map Attribute", attribute);
     setActiveAttribute(attribute);
   }, [])
 
@@ -86,8 +88,8 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         ></IndiaMapSVG>
       </div>
       <IndiaMapControls
+        activeAttribute={activeAttribute}
         currentIndex={currentIndex}
-        date={stateDataManager.getDataAtIndex(currentIndex).date}
         handleSliderUpdate={handleSliderUpdate}
         max={stateDataManager.getLatest().index}></IndiaMapControls>
     </div>
