@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   whyDidYouRender(React, {
     trackAllPureComponents: false,
-    include: [/^Race/],
+    include: [/^IndiaStateMap/],
     logOnDifferentValues: true,
     logOwnerReasons: true
   });

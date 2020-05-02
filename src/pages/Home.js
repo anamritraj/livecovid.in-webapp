@@ -1,7 +1,7 @@
 import React from "react";
 
 import Stats from "../components/Stats";
-import IndiaStateMap from "../components/IndiaStateMap";
+import IndiaStateMap from "../components/IndiaStateMap/IndiaStateMap";
 import GenderChart from "../components/charts/GenderChart";
 import IndianTimeSeriesWrapper from "../components/charts/timeSeriesCharts/IndianTimeSeriesWrapper";
 import { HelmetDefault } from "../components/SEO";
@@ -26,7 +26,7 @@ return <>
               {props.isLoading ? null : <IndiaStateMap
                 dayChange={props.dayChange}
                 total={props.total}
-                isDarkTheme={props.theme==='dark'}
+                theme={props.theme}
                 statewise={props.statewise}
                 isMobile={props.isMobile}
               ></IndiaStateMap>}

@@ -55,7 +55,7 @@ a {
 }
 $night: #171c28;
 $day: #fff;
-$nightBtn: #fff;
+$nightBtn: #ddd;
 $dayBtn: #ecc91e;
 .dark-mode-toggle {
   margin: 0 20px 0 20px;
@@ -171,6 +171,139 @@ $dayBtn: #ecc91e;
     color: green;
   }
 }
+
+// India State Map
+.india-map-info {
+  position: absolute;
+  right: 0;
+  min-width: 150px;
+  .state-name {
+    font-size: 1.25em;
+  }
+}
+
+.map-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.instruction {
+  font-size: 12px;
+  color: #767676;
+}
+
+.india-state-maps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  .india-state-stats {
+    cursor: pointer;
+    padding: 10px;
+    min-width: 18%;
+
+    &.confirmed {
+      background: #ff00002b;
+      color: #ff0e0e;
+    }
+
+    &.active {
+      background: #ffa50026;
+      color: #f69f00;
+    }
+
+    &.recovered {
+      background: #4caa1d1f;
+      color: #459e19;
+    }
+
+    &.deaths {
+      background: #0000002b;
+      color: #474747;
+    }
+    &.tested {
+      background: #0014ff2b;
+      color: #0e15ff;
+    }
+
+    h4 {
+      font-size: 12px;
+      margin: 0;
+    }
+    h5 {
+      margin: 0;
+      font-size: 16px;
+    }
+    h6 {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}
+.india-svg-map {
+  margin-top: 10px;
+  position: relative;
+  .regions {
+    cursor: pointer;
+  }
+}
+
+$primary: #ccc;
+$primary-theme: #8ac6d1;
+#range {
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  background: $primary;
+  height: 6px;
+  width: 80%;
+  border-radius: 5px;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+  &.confirmed {
+    &::-webkit-slider-thumb {
+      background: rgb(255, 10, 0);
+    }
+  }
+  &.active {
+    &::-webkit-slider-thumb {
+      background: rgb(255, 156, 0);
+    }
+  }
+  &.recovered {
+    &::-webkit-slider-thumb {
+      background: rgb(62, 161, 13);
+    }
+  }
+  &.deaths {
+    &::-webkit-slider-thumb {
+      background: rgb(71, 71, 71);
+    }
+  }
+}
+/* FIREFOX */
+#range::-moz-range-thumb {
+  border: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: $primary-theme;
+  cursor: pointer;
+}
+
+#range::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  background: $primary;
+  border-radius: 5px;
+}
+
 .popover {
   position: fixed;
   border: 1px solid #e4e4e4;
@@ -561,7 +694,7 @@ button.chart-control-btn {
   .slack {
     background: #606060;
   }
-  .whatsapp{
+  .whatsapp {
     display: none;
   }
 }
@@ -608,11 +741,18 @@ button.chart-control-btn {
   .state-col {
     width: 40%;
   }
-  .popover {
-    font-size: 12px;
-    padding: 2px 8px;
-    font-weight: bold;
+  .india-state-maps {
+    .india-state-stats {
+      min-width: 18%;
+    }
   }
+
+  .india-map-info {
+    .instruction {
+      font-size: 11px;
+    }
+  }
+
   .statewise-cases {
     font-size: 0.9rem;
     thead .heading {
@@ -655,10 +795,10 @@ button.chart-control-btn {
     padding: 0;
     box-sizing: border-box;
   }
-  .social-footer{
-    .whatsapp{
+  .social-footer {
+    .whatsapp {
       display: initial;
-      background: #25D366;
+      background: #25d366;
     }
   }
 }
@@ -752,9 +892,24 @@ $dark-font: #c5c5c5;
   }
 
   // India State map
-  #water-body {
+  .water-body path {
     fill: $dark-light-background;
     transition: all 0.3s ease;
+  }
+  .india-state-stats {
+    &.deaths {
+      color: #ddd;
+    }
+  }
+  .india-map-info,
+  .india-map-date {
+    color: #eee;
+  }
+  .regions {
+    path {
+      stroke: none;
+      stroke-width: 0px;
+    }
   }
   .popover {
     color: $dark-font;
