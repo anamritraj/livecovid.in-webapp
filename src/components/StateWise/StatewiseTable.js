@@ -155,7 +155,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
             <th>{t('State')}</th>
             <th className={"clickable-header"} onClick={e => { handleSortClick("confirmed"); sendEventToGA(category, action, "confirmed") }}>
               <div className="heading">
-                <div className="confirmed">{isMobile ? t('CNFRM') : t('Confirmed')}</div>
+                <div className="confirmed">{isMobile ? t('Cnfrm') : t('Confirmed')}</div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "confirmed"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -165,7 +165,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
             </th>
             <th className={"clickable-header"} onClick={e => { handleSortClick("active"); sendEventToGA(category, action, "active") }}>
               <div className="heading">
-                <div className="active">{isMobile ? t('ACTV') : t('Active')} </div>
+                <div className="active">{isMobile ? t('Actv') : t('Active')} </div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "active"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -175,7 +175,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
             </th>
             <th className={"clickable-header"} onClick={e => { handleSortClick("recovered"); sendEventToGA(category, action, "recovered") }}>
               <div className="heading">
-                <div className="recovered">{isMobile ? t('RCVRD') : t('Recovered')} </div>
+                <div className="recovered">{isMobile ? t('Rcvrd') : t('Recovered')} </div>
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "recovered"
                     ? SortIcon(stateSortObject.currentOrder)
@@ -185,7 +185,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
             </th>
             <th className={"clickable-header"} onClick={e => { handleSortClick("deaths"); sendEventToGA(category, action, "deaths") }}>
               <div className="heading">
-                <div className="deaths">{isMobile ? t('DEATHS') : t('Deaths')} </div>{" "}
+                <div className="deaths">{isMobile ? t('Deaths') : t('Deaths')} </div>{" "}
                 <div className="sortIcon">
                   {stateSortObject.activeSorting === "deaths" ? SortIcon(stateSortObject.currentOrder) : null}
                 </div>
@@ -203,6 +203,7 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile}) => {
                 districts={districts[stateCode]}
                 index={index + 1}
                 key={stateCode}
+                isMobile={isMobile}
                 handleBellClick={handleBellClick}
                 testingData={statewiseTestingData[stateCode]}
               ></StateWiseRow>

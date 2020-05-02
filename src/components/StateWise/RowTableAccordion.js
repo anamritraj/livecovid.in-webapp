@@ -4,6 +4,7 @@ import { formatDistance, format } from "date-fns";
 import BellIcon from "./BellIcon";
 import { useTranslation } from "react-i18next";
 import StateWiseTestData from './StateWiseTestData'
+import StateLastUpdate from "./StateLastUpdate";
 
 const sortDistricts = (districtArray, currentOrder, activeSortingKey) => {
   return Object.keys(districtArray).sort((a, b) => {
@@ -38,41 +39,83 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
   useEffect(() => {
     handleSorting("confirmed");
   }, []);
-  const time = new Date(Date.parse(lastUpdated.slice(0, 19) + "+05:30"));
+
   const { t } = useTranslation();
   return !isHidden && (
     <tr className="fold">
       <td colSpan="6">
         <div className="districts-table">
-          <StateWiseTestData testingData={testingData}/>
-          <div className="state-desc-header">
-            <div className="last-updated-state">
-              {" "}
-              {t('Updated')} {formatDistance(time, new Date())} {t('ago at')}{" "}
-              {format(time, "dd MMM yyyy HH:mm")}
-            </div>
-            <BellIcon
-              stateCode={stateCode}
-              districtName="all"
-              handleBellClick={handleBellClick}
-              isBellActive={allNotificationsEnabled || (statesNotificationStatus && statesNotificationStatus['all'] === true) || false}
-              isDisabled={allNotificationsEnabled}
-            ></BellIcon>
-          </div>
-          
+          <StateLastUpdate
+            testingData={testingData}
+            time={new Date(Date.parse(lastUpdated.slice(0, 19) + "+05:30"))}
+            stateCode={stateCode}
+            allNotificationsEnabled={allNotificationsEnabled}
+            statesNotificationStatus={statesNotificationStatus}
+            handleBellClick={handleBellClick}
+          />
           <table>
             <thead>
               <tr>
                 <th>{t('District')}</th>
                 <th
+                  className="clickable-header"
                   onClick={() => {
                     handleSorting("confirmed");
                   }}
                 >
-                  <span className="title">{t('Confirmed')}</span>
-                  {activeSortingKey === "confirmed"
-                    ? SortIcon(currentOrder)
-                    : null}
+                  <div className="heading">
+                    <div className="confirmed">{t('Cnfrm')}</div>
+                    <div className="sortIcon">
+                      {activeSortingKey === "confirmed"
+                        ? SortIcon(currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th
+                  className="clickable-header"
+                  onClick={() => {
+                    handleSorting("active");
+                  }}
+                >
+                  <div className="heading">
+                    <div className="active">{t('Actv')}</div>
+                    <div className="sortIcon">
+                      {activeSortingKey === "active"
+                        ? SortIcon(currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th
+                  className="clickable-header"
+                  onClick={() => {
+                    handleSorting("recovered");
+                  }}
+                >
+                  <div className="heading">
+                    <div className="recovered">{t('Rcvrd')}</div>
+                    <div className="sortIcon">
+                      {activeSortingKey === "recovered"
+                        ? SortIcon(currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th
+                  className="clickable-header"
+                  onClick={() => {
+                    handleSorting("death");
+                  }}
+                >
+                  <div className="heading">
+                    <div className="deaths">{t('Deaths')}</div>
+                    <div className="sortIcon">
+                      {activeSortingKey === "deceased"
+                        ? SortIcon(currentOrder)
+                        : null}
+                    </div>
+                  </div>
                 </th>
                 <th></th>
               </tr>
@@ -83,14 +126,32 @@ const RowTableAccordion = ({ districts, isHidden, lastUpdated, stateCode, handle
                   <tr key={districtName}>
                     <td>{districtName}</td>
                     <td>
-                      {districts[districtName].confirmed}{" "}
                       {districts[districtName].delta.confirmed ? (
                         <span className="delta confirmed">
-                          (+{districts[districtName].delta.confirmed})
+                          +{Number(districts[districtName].delta.confirmed).toLocaleString('en')}
                         </span>
-                      ) : (
-                          <span className="delta gray">(+0)</span>
-                        )}</td>
+                      ) : ("")}{" "}
+                      {Number(districts[districtName].confirmed).toLocaleString('en')}
+                    </td>
+                    <td>
+                      {Number(districts[districtName].active).toLocaleString('en')}
+                    </td>
+                    <td>
+                      {districts[districtName].delta.recovered ? (
+                        <span className="delta recovered">
+                          +{Number(districts[districtName].delta.recovered).toLocaleString('en')}
+                        </span>
+                      ) : ("")}{" "}
+                      {Number(districts[districtName].recovered).toLocaleString('en')}
+                    </td>
+                    <td>
+                      {districts[districtName].delta.deceased ? (
+                        <span className="delta deceased">
+                          +{Number(districts[districtName].delta.deceased).toLocaleString('en')}
+                        </span>
+                      ) : ("")}{" "}
+                      {Number(districts[districtName].deceased).toLocaleString('en')}
+                      </td>
                     <td>
                       <BellIcon
                         districtName={districtName}

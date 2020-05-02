@@ -6,9 +6,9 @@ import ChevronIcon from "./ChevronIcon";
 const category = "User";
 const action = "Clicked State Row"
 
-const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus, testingData}) => {
+const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabled, statesNotificationStatus, testingData, isMobile }) => {
   const [isHidden, setIsHidden] = useState(true);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return state.active > 0
     ? [
@@ -22,51 +22,45 @@ const StateWiseRow = ({ state, districts, handleBellClick, allNotificationsEnabl
         </td>
         <td>{t("states:" + state.name)}</td>
         <td>
-          {state.confirmed}{" "}
           {state.delta.confirmed ? (
             <span className="delta confirmed">
-              (+{state.delta.confirmed})
+              +{Number(state.delta.confirmed).toLocaleString('en')}
               </span>
-          ) : (
-              <span className="delta gray">(+0)</span>
-            )}
+          ) : ("")}
+          {" "}{Number(state.confirmed).toLocaleString('en')}
         </td>
         <td>
-          {state.active}
+          {Number(state.active).toLocaleString('en')}
         </td>
         <td>
-          {state.recovered}{" "}
           {state.delta.recovered ? (
             <span className="delta recovered">
-              (+{state.delta.recovered})
+              +{ Number(state.delta.recovered).toLocaleString('en')}
               </span>
-          ) : (
-              <span className="delta gray">(+0)</span>
-            )}
+          ) : ("")}
+          {" "}{Number(state.recovered).toLocaleString('en')}
         </td>
         <td>
-          {state.deaths}{" "}
           {state.delta.deaths ? (
-            <span className="delta deaths">(+{state.delta.deaths})</span>
-          ) : (
-              <span className="delta gray">(+0)</span>
-            )}
+            <span className="delta deaths">+{Number(state.delta.deaths).toLocaleString('en')}</span>
+          ) : ("")}
+          {" "}{Number(state.deaths).toLocaleString('en')}
         </td>
       </tr>,
-        districts.districts ? (
-          <RowTableAccordion
-            lastUpdated={state.lastUpdated}
-            districts={districts.districts}
-            isHidden={isHidden}
-            stateCode={state.code}
-            key={state.code}
-            handleBellClick={handleBellClick}
-            allNotificationsEnabled={allNotificationsEnabled}
-            statesNotificationStatus={statesNotificationStatus}
-            testingData={testingData}
-          ></RowTableAccordion>
-        ) : null
-      ]
+      districts.districts ? (
+        <RowTableAccordion
+          lastUpdated={state.lastUpdated}
+          districts={districts.districts}
+          isHidden={isHidden}
+          stateCode={state.code}
+          key={state.code}
+          handleBellClick={handleBellClick}
+          allNotificationsEnabled={allNotificationsEnabled}
+          statesNotificationStatus={statesNotificationStatus}
+          testingData={testingData}
+        ></RowTableAccordion>
+      ) : null
+    ]
     : null;
 };
 
