@@ -365,7 +365,7 @@ $primary-theme: #8ac6d1;
   }
   thead .heading {
     display: flex;
-    min-width: 100px;
+    min-width: 90px;
     justify-content: center;
   }
 
@@ -378,6 +378,7 @@ $primary-theme: #8ac6d1;
   th:nth-child(2) {
     text-align: left;
     max-width: 7.5rem;
+    font-size: 1.1em;
   }
 
   tbody {
@@ -429,36 +430,42 @@ $primary-theme: #8ac6d1;
 }
 
 /* Districts Table */
-.state-desc-header {
+.state-last-update {
   display: flex;
-  justify-content: center;
-  align-content: center;
-  .bell-icon {
-    margin-top: 7px;
+  align-items: center;
+  justify-content: space-around;
+  .state-desc-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .testing-stats {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    background: rgba(32,26,162,.125);
+    color: rgba(32,26,162,.9);
   }
 }
 
 .statewise-cases .districts-table {
+  display: flex;
+  flex-direction: column;
   table {
     width: 100%;
     tr td {
-      padding: 4px;
+      padding: 4px 0;
       text-align: center;
     }
     tr td:nth-child(2) {
       text-align: center;
     }
-  }
-  th {
-    padding: 4px;
+    th {
+      padding: 4px 0;
+    }
   }
   .title {
     display: inline-block;
-  }
-  th:nth-child(2) {
-    text-align: center;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
   }
 }
 .sorted-svg {
@@ -992,11 +999,10 @@ $dark-font: #c5c5c5;
       transition: all 0.3s ease;
       background: #393939;
     }
-  }
-
-  .footer {
-    transition: all 0.3s ease;
-    background: #191919;
+    .testing-stats{
+      color: #9673b9;
+      background: rgba(64,0,128,.31);
+    }
     a {
       color: $dark-font;
     }
