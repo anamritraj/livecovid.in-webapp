@@ -1,13 +1,13 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fbdfd508-acd8-403a-b24a-209e1e7e9419/deploy-status)](https://app.netlify.com/sites/gallant-shirley-8651b6/deploys)
 ## livecovid.in 
 > A live state-wise Covid-19 cases tracker for India.
-<img width="1440" alt="Screenshot 2020-03-26 at 10 48 19 PM" src="https://user-images.githubusercontent.com/11889942/77676171-f3e63180-6fb3-11ea-9306-9bff35b68e90.png">
+<img width="1440" alt="Screenshot 2020-05-04 at 8 58 31 PM" src="https://user-images.githubusercontent.com/11889942/80983320-10467b00-8e4a-11ea-88fb-9092bc5c2b33.png">
 
 ## How to contribute?
 - Fork this repository by clicking the fork button on the top right of this page.
 - Clone that forked repository in your local, make changes, test and then push to your forked branch.
-  - If you are making changes only in this Repo change your URL in the `.environment.development` to https://api.livecovid.in/api.  
-- If you want to setup the backend as well, see this repo: https://github.com/anamritraj/livecovind.in-api
+  - If you are making changes only in this Repo change your URL in the `.environment.development` to https://api.livecovid.in/api.
+- If you want to setup the backend as well, see this repo: https://github.com/anamritraj/livecovind.in-api. Currently there is some sensetive information in the repo and hence it is not public. Planning to clean it but I procastinate a lot. :( [DM me](https://twitter.com/anamritraj) for access to this repo. 
 - Now, create a pull request from your forked repo to this repo.
 
 ## Available Scripts
