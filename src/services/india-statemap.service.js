@@ -1,3 +1,68 @@
+import axios from "axios";
+const api = process.env.REACT_APP_API_URL;
+
+export const getDistrictZonalInformation = () => {
+  return axios.get(`${api}/states/zones`);
+};
+
+
+class DataManger {
+  constructor(data, theme) {
+    this.index = 0;
+    this.dataStore = data;
+    this.theme = theme;
+    this.state = this.dataStore[0];
+    this.totalElements = data.length;
+  }
+
+  getLatest = () => {
+    return {
+      state: this.dataStore[this.totalElements - 1],
+      index: this.totalElements - 1
+    };
+  }
+  restart = () => {
+    this.index = 0;
+    this.state = this.dataStore[0];
+  }
+  increment = () => {
+    if (this.index + 1 < this.totalElements) {
+      this.index++;
+      this.state = this.dataStore[this.index];
+    }
+  }
+  decrement = () => {
+    if (this.index > 0) {
+      this.index--;
+      this.state = this.dataStore[this.index];
+    }
+  }
+  getDataAtIndex = (index) => {
+    return this.dataStore[index];
+  }
+  getCurrentData = () => {
+    return {
+      index :this.index,
+      state: this.state
+    }
+  }
+  moveTo = (index) => {
+    if (index >= 0 && index < this.totalElements)
+      this.state = this.dataStore[index];
+  }
+  isEnded = () => {
+    return this.index + 1 === this.totalElements;
+  }
+}
+
+class DistrictZonesDataManager extends DataManger {
+  constructor(data, theme, mapColorData){
+    // Sending the data as an array for now since there is not enough data to render as timeseries
+    super([data], theme);
+  }
+}
+
+// TODO: Inherit this StateManager from the above DataManager class.
 const StateDataManager = () => {
   let index;
   let dataStore;
@@ -30,7 +95,7 @@ const StateDataManager = () => {
   const getMapColorBasedOnCases = (theme) => {
     mapColorData = {};
     const opacity = theme === 'dark' ? 0.67 : 1;
-    if(mapColorData[theme]){
+    if (mapColorData[theme]) {
       return mapColorData;
     }
     mapColorData[theme] = {};
@@ -122,13 +187,13 @@ const StateDataManager = () => {
       return index + 1 === totalElements;
     },
     getMapColorData: (theme, fieldKey, date) => {
-      if(!mapColorData) return {};
+      if (!mapColorData) return {};
       return mapColorData[theme][fieldKey][date];
     },
-    changeStyle: (theme) =>{
+    changeStyle: (theme) => {
       getMapColorBasedOnCases(theme);
     }
   }
 }
 
-export default StateDataManager;
+export { StateDataManager, DistrictZonesDataManager};
