@@ -8,6 +8,7 @@ import { HelmetDefault } from "../components/SEO";
 import LastUpdatedIndicator from "../components/LastUpdatedIndicator";
 import RaceChart from "../components/raceChart/RaceChart";
 import StatewiseTable from "../components/StateWise/StatewiseTable";
+import IndiaDistrictWiseZones from "../components/IndiaDistrictWiseZones/IndiaDistrictWiseZones";
 
 const Home = props => {
 return <>
@@ -21,8 +22,8 @@ return <>
             total={props.total}
             tested={props.tested}
           ></Stats>
-          <div className="row">
-            <div className="col-6">
+          <div className="grid">
+            <div className="grid-child india-state-wrapper">
               {props.isLoading ? null : <IndiaStateMap
                 dayChange={props.dayChange}
                 total={props.total}
@@ -31,13 +32,18 @@ return <>
                 isMobile={props.isMobile}
               ></IndiaStateMap>}
             </div>
-            <div className="col-6">
+            <div className="grid-child state-wise-wrapper">
               <StatewiseTable
                 theme={props.theme}
                 statewise={props.statewise}
                 isMobile={props.isMobile}
-                statewiseTestingData = {props.statewiseTestingData}
+                statewiseTestingData={props.statewiseTestingData}
               ></StatewiseTable>
+            </div>
+            <div className="grid-child zone-wrapper">
+              {props.isLoading ? null : <IndiaDistrictWiseZones
+                theme={props.theme}
+              />}
             </div>
           </div>
           <div className="row">

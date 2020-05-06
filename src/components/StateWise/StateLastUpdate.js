@@ -11,9 +11,8 @@ const StateLastUpdate = ({ testingData, time, stateCode, allNotificationsEnabled
     <StateWiseTestData testingData={testingData} />
     <div className="state-desc-header">
       <div className="last-updated-state">
-        {" "}
-        {t('Updated')} {formatDistance(time, new Date())} {t('ago at')}{" "}
-        {format(time, "dd MMM yyyy HH:mm")}<br></br>
+        <span className="last-update-time">{t('Updated')} {formatDistance(time, new Date())} {t('ago at')}{" "}
+          {format(time, "dd MMM yyyy HH:mm")}</span><br></br>
         Click on the bell icon to enable notifications for this state
       </div>
       <BellIcon
