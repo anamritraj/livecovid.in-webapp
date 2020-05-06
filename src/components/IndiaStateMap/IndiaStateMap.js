@@ -4,7 +4,7 @@ import IndiaMapStats from "./IndiaMapStats";
 import { getStatesTimeseries } from "../../services/charts.service";
 import IndiaMapControls from "./IndiaMapControls";
 import IndiaMapSVG from "./IndiaMapSVG";
-import StateDataManager from "../../services/india-statemap.service";
+import {StateDataManager} from "../../services/india-statemap.service";
 import IndiaMapInfo from "./IndiaMapInfo";
 import { sendEventToGA } from "../../services/analytics.service";
 
@@ -20,6 +20,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
   const [selectedState, setSelectedState] = useState("total");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeAttribute, setActiveAttribute] = useState('confirmed');
+  const [mapInfo, setMapInfo] = useState({name: 'India'});
   const [mapColors, setMapColors] = useState(intialMapColor);
   const { t } = useTranslation();
 
@@ -60,6 +61,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
 
   const handleMapMouseEnter = (stateCode) => {
     setSelectedState(stateCode);
+    setMapInfo({name: stateDataManager.getDataAtIndex(currentIndex).data[stateCode].name});
   }
 
   const handleAttributeClick = useCallback((attribute) => {
@@ -78,7 +80,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
       <div className="india-svg-map">
         <IndiaMapInfo
           date={stateDataManager.getDataAtIndex(currentIndex).date}
-          stateName={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].name}
+          mapInfo={mapInfo}
         ></IndiaMapInfo>
         <IndiaMapSVG
           activeAttribute={activeAttribute}
