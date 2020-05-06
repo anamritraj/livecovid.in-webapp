@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
-import ReactGA from 'react-ga';
 import Help from "./pages/Help";
 import Home from "./pages/Home";
+import { sendPageView } from "./services/analytics.service";
 
 const Credits = React.lazy(() => import("./pages/Credits"));
 const FAQs = React.lazy(() => import("./pages/FAQs"));
-ReactGA.initialize("UA-83719221-8");
 
 const Routes = (props) => {
   let location = useLocation();
 
   useEffect(() => {
-    ReactGA.pageview(location.pathname)
+    sendPageView(location.pathname)
   }, [location]);
 
   return <Switch>
