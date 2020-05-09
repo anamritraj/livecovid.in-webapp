@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-const Alert = ({ show, content}) => {
-  return <div className={"alert " + (show ? '' : 'hide')}>
+const Alert = ({ show, content }) => (
+  <div className={`alert ${show ? '' : 'hide'}`}>
     {content}
-  </div>;
-};
+  </div>
+);
 
 export default Alert;

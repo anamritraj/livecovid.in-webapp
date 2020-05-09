@@ -6,6 +6,6 @@ if (process.env.NODE_ENV === 'development') {
     trackAllPureComponents: false,
     include: [/^IndiaStateMap/],
     logOnDifferentValues: true,
-    logOwnerReasons: true
+    logOwnerReasons: true,
   });
 }

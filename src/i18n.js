@@ -17,16 +17,16 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     backend: {
-      loadPath: '/static/locales/{{lng}}/{{ns}}.json'
+      loadPath: '/static/locales/{{lng}}/{{ns}}.json',
     },
     defaultNS: 'common',
     ns: ['months', 'states', 'districts', 'common'],
-    lng: "en",
+    lng: 'en',
     fallbackLng: 'en',
     debug: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-    }
+    },
   });
 
 
