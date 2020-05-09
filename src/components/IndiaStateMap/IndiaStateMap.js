@@ -21,6 +21,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeAttribute, setActiveAttribute] = useState('confirmed');
   const [mapColors, setMapColors] = useState(intialMapColor);
+  const [mode, setMode] = useState('normal');
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -72,6 +73,8 @@ const IndiaStateMap = ({ isMobile, theme }) => {
       <h2>{t('State-wise COVID-19 Cases India')}</h2>
       <IndiaMapStats
         activeAttribute={activeAttribute}
+        mode={mode}
+        state={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].name}
         stats={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].value}
         handleAttributeClick={handleAttributeClick}
       ></IndiaMapStats>
@@ -91,7 +94,10 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         activeAttribute={activeAttribute}
         currentIndex={currentIndex}
         handleSliderUpdate={handleSliderUpdate}
-        max={stateDataManager.getLatest().index}></IndiaMapControls>
+        max={stateDataManager.getLatest().index}
+        mode={mode}
+        setMode={setMode}
+      ></IndiaMapControls>
     </div>
   );
 };
