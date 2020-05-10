@@ -12,18 +12,23 @@ const Switch = ({ mode, setMode, activeAttribute }) => {
           }
           onClick={() => { setMode('normal') }}
         >
-          Normal
-      </button>
+          {t('Normal')}
+        </button>
         <button
           className={
-            "btn btn-chart " + (mode === 'per million' ? activeAttribute : "")
+            "btn btn-chart " + (mode === 'per-million' ? activeAttribute : "")
           }
-          onClick={() => { setMode('per million') }}
+          onClick={() => { setMode('per-million') }}
         >
-          Per Million
-      </button>
+          {t('Per Million')}
+        </button>
       </div>
-      <span style={{ fontSize: '0.8em', color: '#7d7d7d' }}>{t('Use the buttons to see the cases as per the state population in million')}</span>
+      <span style={{ fontSize: '0.8em', color: '#7d7d7d' }}>
+        {t('Use the buttons to switch between Total Cases and Cases per million population ')}
+        <a href="https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population" target="_blank" rel="noopener noreferrer">
+          {t('Population Source')}
+        </a>
+      </span>
     </>
   );
 }
