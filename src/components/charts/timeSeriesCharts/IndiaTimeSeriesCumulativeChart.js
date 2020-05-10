@@ -1,18 +1,19 @@
-import React from "react";
-import { ResponsiveLine } from "@nivo/line";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { ResponsiveLine } from '@nivo/line';
+import { useTranslation } from 'react-i18next';
 
 const IndiaTimeSeriesCumulativeChart = ({
   timeseries,
   isMobile,
   themeObject,
   toolTipStyle,
-  months
+  months,
 }) => {
-  const {t} = useTranslation();
-  return (<ResponsiveLine
-    data={timeseries}
-      enableSlices={"x"}
+  const { t } = useTranslation();
+  return (
+    <ResponsiveLine
+      data={timeseries}
+      enableSlices="x"
       sliceTooltip={({ slice }) => {
         const d = slice.points[0].data.x;
         const year = d.getFullYear();
@@ -22,18 +23,21 @@ const IndiaTimeSeriesCumulativeChart = ({
           <div
             style={toolTipStyle}
           >
-            {slice.points.map(point => (
+            {slice.points.map((point) => (
               <div
                 key={point.id}
                 style={{
-                  padding: "3px 0"
+                  padding: '3px 0',
                 }}
               >
-                <strong style={{color: point.color}}>{point.serieId}</strong> : {point.data.yFormatted}
+                <strong style={{ color: point.color }}>{point.serieId}</strong>
+                {' '}
+                :
+                {point.data.yFormatted}
               </div>
             ))}
 
-            <strong>{date + " " + months[month] + " ," + year}</strong>
+            <strong>{`${date} ${months[month]} ,${year}`}</strong>
           </div>
         );
       }}
@@ -41,50 +45,48 @@ const IndiaTimeSeriesCumulativeChart = ({
         top: 0,
         right: isMobile ? 10 : 40,
         bottom: 70,
-        left: isMobile ? 50 : 60
+        left: isMobile ? 50 : 60,
       }}
-      xScale={{ type: "time", format: "%Y-%m-%d", precision: "day" }}
+      xScale={{ type: 'time', format: '%Y-%m-%d', precision: 'day' }}
       xFormat="time:%Y-%m-%d"
       yScale={{
-        type: "linear",
-        min: "auto",
-        max: "auto",
-        reverse: false
+        type: 'linear',
+        min: 'auto',
+        max: 'auto',
+        reverse: false,
       }}
       layers={[
-        "grid",
-        "markers",
-        "axes",
-        "crosshair",
-        "lines",
-        "points",
-        "slices",
-        "mesh",
-        "legends"
+        'grid',
+        'markers',
+        'axes',
+        'crosshair',
+        'lines',
+        'points',
+        'slices',
+        'mesh',
+        'legends',
       ]}
       enableGridX={false}
       gridYValues={5}
       lineWidth={2}
       axisBottom={{
-        orient: "bottom",
+        orient: 'bottom',
         tickSize: 5,
         tickPadding: 5,
-        format: "%b %d",
-        tickRotation: isMobile ? 45 : 0
+        format: '%b %d',
+        tickRotation: isMobile ? 45 : 0,
       }}
       theme={themeObject}
       axisLeft={{
-        orient: "left",
+        orient: 'left',
         tickSize: 5,
-        tickPadding: 5
+        tickPadding: 5,
       }}
       enablePoints={false}
-      useMesh={true}
-      colors={["red", "green", "#178fa7"]}
+      useMesh
+      colors={['red', 'green', '#178fa7']}
     />
   );
 };
 
-export default React.memo(IndiaTimeSeriesCumulativeChart, ({timeseries : timeseriesOld}, {timeseries: timeseriesNew}) => {
-  return timeseriesNew !== timeseriesOld
-});
+export default React.memo(IndiaTimeSeriesCumulativeChart, ({ timeseries: timeseriesOld }, { timeseries: timeseriesNew }) => timeseriesNew !== timeseriesOld);

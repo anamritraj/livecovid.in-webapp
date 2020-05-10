@@ -11,10 +11,10 @@ const Modal = (props) => {
     modalRoot.appendChild(element);
     return () => {
       modalRoot.removeChild(element);
-    }
-  })
+    };
+  });
 
   return createPortal(props.children, element);
-}
+};
 
 export default Modal;
