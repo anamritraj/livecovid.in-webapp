@@ -3,7 +3,7 @@ import RangeSlider from './RangeSlider';
 import Switch from './Switch';
 
 const IndiaMapControls = ({
-  currentIndex, max, activeAttribute, handleSliderUpdate,
+  currentIndex, max, activeAttribute, handleSliderUpdate, mode, setMode
 }) => (
   <div className="map-controls">
   <Switch
