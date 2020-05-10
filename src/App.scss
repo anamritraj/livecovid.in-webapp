@@ -212,6 +212,39 @@ $dayBtn: #ecc91e;
 .map-controls {
   display: flex;
   flex-direction: column;
+  .switch {
+    margin: auto;
+    button {
+      cursor: pointer;
+      &:before {
+       background: none;
+      }
+
+      &:after {
+       background: none;
+      }
+
+    &.confirmed {
+      background: #ff00002b;
+      color: #ff0e0e;
+    }
+
+    &.active {
+      background: #ffa50026;
+      color: #f69f00;
+    }
+
+    &.recovered {
+      background: #4caa1d1f;
+      color: #459e19;
+    }
+
+    &.deaths {
+      background: #0000005c;
+      color: #474747;
+    }
+    }
+  }
 }
 
 .instruction {
