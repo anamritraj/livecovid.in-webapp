@@ -83,6 +83,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         <IndiaMapInfo
           date={stateDataManager.getDataAtIndex(currentIndex).date}
           mapInfo={mapInfo}
+          showInstruction
         />
         <IndiaMapSVG
           activeAttribute={activeAttribute}
