@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import notifications from "../data/NotificationsStore";
-import useInterval from "../hooks/useInterval";
+import React, { useState } from 'react';
+import notifications from '../data/NotificationsStore';
+import useInterval from '../hooks/useInterval';
 
 const Notification = () => {
   const [notificationIndex, setNoticationIndex] = useState(0);
   const [notification, setNotication] = useState(
-    notifications[notificationIndex].message
+    notifications[notificationIndex].message,
   );
 
   useInterval(() => {

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./nav.css";
-import DrawerToggleButton from "./DrawerToggleButton";
-import SideDrawer from "./SideDrawer";
-import Backdrop from "./BackDrop";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './nav.css';
+import DrawerToggleButton from './DrawerToggleButton';
+import SideDrawer from './SideDrawer';
+import Backdrop from './BackDrop';
 
-const Toolbar = props => {
+const Toolbar = (props) => {
   const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   return (
@@ -34,10 +34,10 @@ const Toolbar = props => {
             </li>
           </ul>
         </div>
-        <div className="dark-mode-toggle" >
+        <div className="dark-mode-toggle">
           <label className="dayNight">
-            <input type="checkbox" onChange={props.handleDarkModeClick} checked={props.theme === 'light'}></input>
-            <div></div>
+            <input type="checkbox" onChange={props.handleDarkModeClick} checked={props.theme === 'light'} />
+            <div />
           </label>
         </div>
       </nav>

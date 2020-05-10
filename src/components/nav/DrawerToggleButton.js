@@ -1,6 +1,7 @@
-import React from "react";
-import "./nav.css";
-const DrawerToggleButton = props => (
+import React from 'react';
+import './nav.css';
+
+const DrawerToggleButton = (props) => (
   <button className="toggle-button" onClick={props.click}>
     <svg
       version="1.1"
