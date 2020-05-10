@@ -2,9 +2,11 @@ import React from 'react';
 import RangeSlider from './RangeSlider';
 import Switch from './Switch';
 
-const IndiaMapControls = ({ currentIndex, max, activeAttribute, handleSliderUpdate, mode, setMode }) => {
-  return <div className="map-controls">
-    <Switch
+const IndiaMapControls = ({
+  currentIndex, max, activeAttribute, handleSliderUpdate,
+}) => (
+  <div className="map-controls">
+  <Switch
       mode={mode}
       setMode={setMode}
       activeAttribute={activeAttribute}
@@ -15,7 +17,7 @@ const IndiaMapControls = ({ currentIndex, max, activeAttribute, handleSliderUpda
       handleSliderUpdate={handleSliderUpdate}
       activeAttribute={activeAttribute}
     />
-  </div>;
-}
+  </div>
+);
 
 export default IndiaMapControls;

@@ -1,25 +1,25 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import IndiaMapStats from "./IndiaMapStats";
-import { getStatesTimeseries } from "../../services/charts.service";
-import IndiaMapControls from "./IndiaMapControls";
-import IndiaMapSVG from "./IndiaMapSVG";
-import StateDataManager from "../../services/india-statemap.service";
-import IndiaMapInfo from "./IndiaMapInfo";
-import { sendEventToGA } from "../../services/analytics.service";
+import React, { useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const Loading = React.memo(() => {
-  return <div>Loading..</div>
-})
+import IndiaMapStats from './IndiaMapStats';
+import IndiaMapInfo from './IndiaMapInfo';
+import IndiaMapControls from './IndiaMapControls';
+import IndiaMapSVG from './IndiaMapSVG';
+import { getStatesTimeseries } from '../../services/charts.service';
+import { StateDataManager } from '../../services/india-statemap.service';
+import { sendEventToGA } from '../../services/analytics.service';
+
+const Loading = React.memo(() => <div>Loading..</div>);
 
 const stateDataManager = StateDataManager();
-let intialMapColor = stateDataManager.getMapColorData();
+const intialMapColor = stateDataManager.getMapColorData();
 
 const IndiaStateMap = ({ isMobile, theme }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedState, setSelectedState] = useState("total");
+  const [selectedState, setSelectedState] = useState('total');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeAttribute, setActiveAttribute] = useState('confirmed');
+  const [mapInfo, setMapInfo] = useState({ name: 'India' });
   const [mapColors, setMapColors] = useState(intialMapColor);
   const [mode, setMode] = useState('normal');
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
     if (!isLoading) {
       setMapColors(stateDataManager.changeStyle(theme));
     }
-  }, [theme, isLoading])
+  }, [theme, isLoading]);
 
   // Make a network request and get data for the map
   useEffect(() => {
@@ -39,10 +39,10 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         setMapColors(stateDataManager.getMapColorData(theme, 'confirmed', stateDataManager.getDataAtIndex(result.data.length - 1).date));
         setIsLoading(false);
       }
-    }).catch(err => {
+    }).catch((err) => {
       console.log(err);
-    })
-  }, [])
+    });
+  }, []);
 
 
   useEffect(() => {
@@ -50,25 +50,26 @@ const IndiaStateMap = ({ isMobile, theme }) => {
       setMapColors(stateDataManager.getMapColorData(theme, activeAttribute, stateDataManager.getDataAtIndex(currentIndex).date));
       stateDataManager.moveTo(currentIndex);
     }
-  }, [currentIndex, activeAttribute, isLoading, theme])
+  }, [currentIndex, activeAttribute, isLoading, theme]);
 
   const handleSliderUpdate = (e) => {
     setCurrentIndex(e.target.value);
-  }
+  };
 
   const handleMapMouseLeave = useCallback(() => {
   }, []);
 
   const handleMapMouseEnter = (stateCode) => {
     setSelectedState(stateCode);
-  }
+    setMapInfo({ name: stateDataManager.getDataAtIndex(currentIndex).data[stateCode].name });
+  };
 
   const handleAttributeClick = useCallback((attribute) => {
-    sendEventToGA("User", "Changed Active Map Attribute", attribute);
+    sendEventToGA('User', 'Changed Active Map Attribute', attribute);
     setActiveAttribute(attribute);
-  }, [])
+  }, []);
 
-  return isLoading ? <Loading></Loading> : (
+  return isLoading ? <Loading /> : (
     <div className="card chart chart-controls">
       <h2>{t('State-wise COVID-19 Cases India')}</h2>
       <IndiaMapStats
@@ -77,18 +78,18 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         state={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].name}
         stats={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].value}
         handleAttributeClick={handleAttributeClick}
-      ></IndiaMapStats>
+      />
       <div className="india-svg-map">
         <IndiaMapInfo
           date={stateDataManager.getDataAtIndex(currentIndex).date}
-          stateName={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].name}
-        ></IndiaMapInfo>
+          mapInfo={mapInfo}
+        />
         <IndiaMapSVG
           activeAttribute={activeAttribute}
           statewiseColors={mapColors}
           handleMouseLeave={handleMapMouseLeave}
           handleMouseEnter={handleMapMouseEnter}
-        ></IndiaMapSVG>
+        />
       </div>
       <IndiaMapControls
         activeAttribute={activeAttribute}
@@ -97,7 +98,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         max={stateDataManager.getLatest().index}
         mode={mode}
         setMode={setMode}
-      ></IndiaMapControls>
+      />
     </div>
   );
 };

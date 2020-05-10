@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+
 import * as population from '../../data/Population.json';
 
 function calculateCases(cases, mode, state) {
@@ -55,7 +56,7 @@ const IndiaMapStats = ({ stats, handleAttributeClick, activeAttribute, mode, sta
         <h4>{t('Deaths')}</h4>
       </motion.div>
     </div>
-    <div className="instruction">{t("Click on the tiles to see cases in that category")}</div>
+    <div className="instruction">{t('Click on the tiles to see cases in that category')}</div>
   </>;
 }
 

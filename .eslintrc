@@ -1,0 +1,47 @@
+{
+    "env": {
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "extends": "airbnb",
+    "plugins": ["import"],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "off",
+      "global-require": "off",
+      "react/jsx-filename-extension": "off",
+      "react/prop-types": "off",
+      "import/no-named-as-default": "off",
+      "import/no-named-as-default-member": "off",
+      "no-unused-vars": "off",
+      "react/button-has-type": "off",
+      "no-nested-ternary": "off",
+      "react/destructuring-assignment": "off",
+      "no-param-reassign": "off",
+      "max-len": "off",
+      "import/prefer-default-export": "off",
+      "no-unused-expressions": "off",
+      "no-plusplus": "off",
+      "jsx-a11y/label-has-associated-control": "off",
+      "no-use-before-define": "off",
+      "radix": "off",
+      "no-mixed-operators": "off",
+      "jsx-a11y/control-has-associated-label": "off",
+      "no-shadow": "off",
+      "no-case-declarations": "off",
+      "camelcase": "off",
+      "react/no-unescaped-entities" : "off",
+      "prefer-destructuring": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "prefer-promise-reject-errors": "off",
+      "array-callback-return": "off",
+      "import/named": "off"
+
+    }
+  }

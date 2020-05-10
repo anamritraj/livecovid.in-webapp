@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function useNotificationsPermission() {
   const [hasPermission, setHasPermission] = useState(null);
 
   useEffect(() => {
-    navigator.permissions && navigator.permissions.query({ name: "notifications" }).then(result => {
-      return result;
-    }).then(result => {
+    navigator.permissions && navigator.permissions.query({ name: 'notifications' }).then((result) => result).then((result) => {
       result.onchange = () => {
-        if (result.state === "granted") {
+        if (result.state === 'granted') {
           setHasPermission(true);
         } else {
           setHasPermission(false);
         }
-      }
+      };
       switch (result.state) {
-        case "granted":
+        case 'granted':
           setHasPermission(true);
           break;
 
@@ -23,8 +21,8 @@ function useNotificationsPermission() {
           setHasPermission(false);
         }
       }
-    })
-  }, [])
+    });
+  }, []);
   return hasPermission;
 }
 

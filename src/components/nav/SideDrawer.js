@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./nav.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './nav.css';
 
-const SideDrawer = props => {
-  let drawerClasses = "side-drawer";
+const SideDrawer = (props) => {
+  let drawerClasses = 'side-drawer';
   if (props.show) {
-    drawerClasses = "side-drawer open";
+    drawerClasses = 'side-drawer open';
   }
   return (
     <nav className={drawerClasses}>
@@ -26,7 +26,7 @@ const SideDrawer = props => {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeMiterlimit="10"
-          ></line>
+          />
           <line
             x1="25"
             y1="15"
@@ -35,7 +35,7 @@ const SideDrawer = props => {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeMiterlimit="10"
-          ></line>
+          />
         </svg>
       </div>
       <ul>

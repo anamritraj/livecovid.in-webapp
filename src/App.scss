@@ -120,8 +120,22 @@ $dayBtn: #ecc91e;
   max-width: 100rem;
   z-index: 100;
 }
+// TODO: Deprecate the layout library currently used and move enerything to use css grids
+.grid {
+  display: grid;
+  max-width: 1200px;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  margin: 0 auto;
+}
+
+.state-wise-wrapper {
+  grid-row: 1/3;
+}
+
 .stats {
-  margin-top: 5px;
+  max-width: 1024px;
+  margin: 20px auto;
 }
 .boundaried-land-indian {
   stroke: #464646;
@@ -179,6 +193,19 @@ $dayBtn: #ecc91e;
   min-width: 150px;
   .state-name {
     font-size: 1.25em;
+  }
+  .india-map-zone {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    &.Green {
+      color: green;
+    }
+    &.Orange {
+      color: orange;
+    }
+    &.Red {
+      color: red;
+    }
   }
 }
 
@@ -282,6 +309,11 @@ $dayBtn: #ecc91e;
   }
 }
 
+.regions path:hover {
+  stroke: black;
+  stroke-width: 2px;
+}
+
 $primary: #ccc;
 $primary-theme: #8ac6d1;
 #range {
@@ -298,8 +330,20 @@ $primary-theme: #8ac6d1;
     height: 18px;
     border-radius: 50%;
   }
+
+  /* FIREFOX */
+  &::-moz-range-thumb {
+    border: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
   &.confirmed {
     &::-webkit-slider-thumb {
+      background: rgb(255, 10, 0);
+    }
+    &::-moz-range-thumb {
       background: rgb(255, 10, 0);
     }
   }
@@ -307,9 +351,15 @@ $primary-theme: #8ac6d1;
     &::-webkit-slider-thumb {
       background: rgb(255, 156, 0);
     }
+    &::-moz-range-thumb {
+      background: rgb(255, 156, 0);
+    }
   }
   &.recovered {
     &::-webkit-slider-thumb {
+      background: rgb(62, 161, 13);
+    }
+    &::-moz-range-thumb {
       background: rgb(62, 161, 13);
     }
   }
@@ -317,19 +367,12 @@ $primary-theme: #8ac6d1;
     &::-webkit-slider-thumb {
       background: rgb(71, 71, 71);
     }
+    &::-moz-range-thumb {
+      background: rgb(71, 71, 71);
+    }
   }
-}
-/* FIREFOX */
-#range::-moz-range-thumb {
-  border: none;
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
-  background: $primary-theme;
-  cursor: pointer;
-}
-
-#range::-moz-range-track {
+  }
+#range #range::-moz-range-track {
   width: 100%;
   height: 3px;
   cursor: pointer;
@@ -476,8 +519,8 @@ $primary-theme: #8ac6d1;
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
-    background: rgba(32,26,162,.125);
-    color: rgba(32,26,162,.9);
+    background: rgba(32, 26, 162, 0.125);
+    color: rgba(32, 26, 162, 0.9);
   }
 }
 
@@ -1032,9 +1075,9 @@ $dark-font: #c5c5c5;
       transition: all 0.3s ease;
       background: #393939;
     }
-    .testing-stats{
+    .testing-stats {
       color: #9673b9;
-      background: rgba(64,0,128,.31);
+      background: rgba(64, 0, 128, 0.31);
     }
     a {
       color: $dark-font;
