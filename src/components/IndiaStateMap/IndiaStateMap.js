@@ -69,6 +69,11 @@ const IndiaStateMap = ({ isMobile, theme }) => {
     setActiveAttribute(attribute);
   }, []);
 
+  const changeMode = (mode, attribute) => {
+    setMode(mode);
+    setActiveAttribute(attribute);
+  }
+
   return isLoading ? <Loading /> : (
     <div className="card chart chart-controls">
       <h2>{t('State-wise COVID-19 Cases India')}</h2>
@@ -98,7 +103,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         handleSliderUpdate={handleSliderUpdate}
         max={stateDataManager.getLatest().index}
         mode={mode}
-        setMode={setMode}
+        changeMode={changeMode}
       />
     </div>
   );

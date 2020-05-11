@@ -42,7 +42,7 @@ class DataManger {
   }
   getCurrentData = () => {
     return {
-      index :this.index,
+      index: this.index,
       state: this.state
     }
   }
@@ -56,7 +56,7 @@ class DataManger {
 }
 
 class DistrictZonesDataManager extends DataManger {
-  constructor(data, theme, mapColorData){
+  constructor(data, theme, mapColorData) {
     // Sending the data as an array for now since there is not enough data to render as timeseries
     super([data], theme);
   }
@@ -78,6 +78,14 @@ const StateDataManager = () => {
       deaths: [{ percent: 0.0, color: { r: 216, g: 216, b: 216 } },
       { percent: 1.0, color: { r: 71, g: 71, b: 71 } }],
       recovered: [{ percent: 0.0, color: { r: 196, g: 239, b: 175 } },
+      { percent: 1.0, color: { r: 62, g: 161, b: 13 } }],
+      confirmedPerMillion: [{ percent: 0.0, color: { r: 243, g: 206, b: 206 } },
+      { percent: 1.0, color: { r: 255, g: 10, b: 0 } }],
+      activePerMillion: [{ percent: 0.0, color: { r: 246, g: 231, b: 206 } },
+      { percent: 1.0, color: { r: 255, g: 156, b: 0 } }],
+      deathsPerMillion: [{ percent: 0.0, color: { r: 216, g: 216, b: 216 } },
+      { percent: 1.0, color: { r: 71, g: 71, b: 71 } }],
+      recoveredPerMillion: [{ percent: 0.0, color: { r: 196, g: 239, b: 175 } },
       { percent: 1.0, color: { r: 62, g: 161, b: 13 } }]
     },
     dark: {
@@ -88,6 +96,14 @@ const StateDataManager = () => {
       deaths: [{ percent: 0.0, color: { r: 216, g: 216, b: 216 } },
       { percent: 1.0, color: { r: 71, g: 71, b: 71 } }],
       recovered: [{ percent: 0.0, color: { r: 196, g: 239, b: 175 } },
+      { percent: 1.0, color: { r: 62, g: 161, b: 13 } }],
+      confirmedPerMillion: [{ percent: 0.0, color: { r: 243, g: 206, b: 206 } },
+      { percent: 1.0, color: { r: 160, g: 0, b: 0 } }],
+      activePerMillion: [{ percent: 0.0, color: { r: 246, g: 231, b: 206 } },
+      { percent: 1.0, color: { r: 255, g: 156, b: 0 } }],
+      deathsPerMillion: [{ percent: 0.0, color: { r: 216, g: 216, b: 216 } },
+      { percent: 1.0, color: { r: 71, g: 71, b: 71 } }],
+      recoveredPerMillion: [{ percent: 0.0, color: { r: 196, g: 239, b: 175 } },
       { percent: 1.0, color: { r: 62, g: 161, b: 13 } }]
     }
   }
@@ -100,7 +116,7 @@ const StateDataManager = () => {
     }
     mapColorData[theme] = {};
 
-    ['active', 'confirmed', 'deaths', 'recovered'].forEach((attributeKey) => {
+    ['active', 'confirmed', 'deaths', 'recovered', 'activePerMillion', 'confirmedPerMillion', 'deathsPerMillion', 'recoveredPerMillion'].forEach((attributeKey) => {
       mapColorData[theme][attributeKey] = mapColorData[theme][attributeKey] || {};
       const mapColors = mapColorThemes[theme][attributeKey];
       dataStore.forEach(dayObject => {
@@ -196,4 +212,4 @@ const StateDataManager = () => {
   }
 }
 
-export { StateDataManager, DistrictZonesDataManager};
+export { StateDataManager, DistrictZonesDataManager };

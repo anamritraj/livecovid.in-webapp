@@ -2,72 +2,68 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
-import * as population from '../../data/Population.json';
-
-function calculateCases(cases, mode, state) {
-  if (mode === 'normal') { return Number(cases); }
-  const casesPerMillion = Math.round((Number(cases) / population.default[state]) * 1000000);
-  return casesPerMillion.toLocaleString('en');
-}
-
 const IndiaMapStats = ({
   stats, handleAttributeClick, activeAttribute, mode, state,
 }) => {
   const { t } = useTranslation();
   const isNormal = mode === 'normal';
+  const confirmAttribute = isNormal ? 'confirmed' : 'confirmedPerMillion';
+  const activesAttribute = isNormal ? 'active' : 'activePerMillion';
+  const recoveredAttribute = isNormal ? 'recovered' : 'recoveredPerMillion';
+  const deathAttribute = isNormal ? 'deaths' : 'deathsPerMillion';
   return (
     <>
       <div className="india-state-maps">
         <motion.div
           className="india-state-stats confirmed"
-          animate={{ scaleY: activeAttribute === 'confirmed' ? 1.1 : 1 }}
-          onClick={() => handleAttributeClick('confirmed')}
+          animate={{ scaleY: activeAttribute === confirmAttribute ? 1.1 : 1 }}
+          onClick={() => handleAttributeClick(confirmAttribute)}
         >
-          <h5>{calculateCases(stats.confirmed, mode, state)}</h5>
+          <h5>{Number(stats[confirmAttribute]).toLocaleString('en')}</h5>
           {isNormal && (
-          <h6>
-            +
-            {Number(stats.delta.confirmed).toLocaleString('en')}
-          </h6>
+            <h6>
+              +
+              {Number(stats.delta.confirmed).toLocaleString('en')}
+            </h6>
           )}
           <h4>{t('Confirmed')}</h4>
           {!isNormal && <h6>{t('per million')}</h6>}
         </motion.div>
         <motion.div
           className="india-state-stats active"
-          animate={{ scaleY: activeAttribute === 'active' ? 1.1 : 1 }}
-          onClick={() => handleAttributeClick('active')}
+          animate={{ scaleY: activeAttribute === activesAttribute ? 1.1 : 1 }}
+          onClick={() => handleAttributeClick(activesAttribute)}
         >
-          <h5>{calculateCases(stats.active, mode, state)}</h5>
+          <h5>{Number(stats[activesAttribute]).toLocaleString('en')}</h5>
           <h4>{t('Active')}</h4>
           {!isNormal && <h6>{t('per million')}</h6>}
         </motion.div>
         <motion.div
-          animate={{ scaleY: activeAttribute === 'recovered' ? 1.1 : 1 }}
-          onClick={() => handleAttributeClick('recovered')}
+          animate={{ scaleY: activeAttribute === recoveredAttribute ? 1.1 : 1 }}
+          onClick={() => handleAttributeClick(recoveredAttribute)}
           className="india-state-stats recovered"
         >
-          <h5>{calculateCases(stats.recovered, mode, state)}</h5>
+          <h5>{Number(stats[recoveredAttribute]).toLocaleString('en')}</h5>
           {isNormal && (
-          <h6>
-            +
-            {Number(stats.delta.recovered).toLocaleString('en')}
-          </h6>
+            <h6>
+              +
+              {Number(stats.delta.recovered).toLocaleString('en')}
+            </h6>
           )}
           <h4>{t('Recovered')}</h4>
           {!isNormal && <h6>{t('per million')}</h6>}
         </motion.div>
         <motion.div
           className="india-state-stats deaths"
-          animate={{ scaleY: activeAttribute === 'deaths' ? 1.1 : 1 }}
-          onClick={() => handleAttributeClick('deaths')}
+          animate={{ scaleY: activeAttribute === deathAttribute ? 1.1 : 1 }}
+          onClick={() => handleAttributeClick(deathAttribute)}
         >
-          <h5>{calculateCases(stats.deaths, mode, state)}</h5>
+          <h5>{Number(stats[deathAttribute]).toLocaleString('en')}</h5>
           {isNormal && (
-          <h6>
-            +
-            {Number(stats.delta.deaths).toLocaleString('en')}
-          </h6>
+            <h6>
+              +
+              {Number(stats.delta.deaths).toLocaleString('en')}
+            </h6>
           )}
           <h4>{t('Deaths')}</h4>
           {!isNormal && <h6>{t('per million')}</h6>}

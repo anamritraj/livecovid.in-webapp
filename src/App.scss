@@ -224,22 +224,22 @@ $dayBtn: #ecc91e;
         background: none;
       }
 
-      &.confirmed {
+      &.confirmed,&.confirmedPerMillion {
         background: #ff00002b;
         color: #ff0e0e;
       }
 
-      &.active {
+      &.active,&.activePerMillion {
         background: #ffa50026;
         color: #f69f00;
       }
 
-      &.recovered {
+      &.recovered,&.recoveredPerMillion {
         background: #4caa1d1f;
         color: #459e19;
       }
 
-      &.deaths {
+      &.deaths,&.deathsPerMillion {
         background: #0000005c;
         color: #474747;
       }
@@ -339,7 +339,7 @@ $primary-theme: #8ac6d1;
     border-radius: 50%;
     cursor: pointer;
   }
-  &.confirmed {
+  &.confirmed,&.confirmedPerMillion {
     &::-webkit-slider-thumb {
       background: rgb(255, 10, 0);
     }
@@ -347,7 +347,7 @@ $primary-theme: #8ac6d1;
       background: rgb(255, 10, 0);
     }
   }
-  &.active {
+  &.active,&.activePerMillion{
     &::-webkit-slider-thumb {
       background: rgb(255, 156, 0);
     }
@@ -355,7 +355,7 @@ $primary-theme: #8ac6d1;
       background: rgb(255, 156, 0);
     }
   }
-  &.recovered {
+  &.recovered,&.recoveredPerMillion {
     &::-webkit-slider-thumb {
       background: rgb(62, 161, 13);
     }
@@ -363,7 +363,7 @@ $primary-theme: #8ac6d1;
       background: rgb(62, 161, 13);
     }
   }
-  &.deaths {
+  &.deaths,&.deathsPerMillion {
     &::-webkit-slider-thumb {
       background: rgb(71, 71, 71);
     }
