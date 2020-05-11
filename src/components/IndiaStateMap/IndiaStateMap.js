@@ -104,6 +104,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         max={stateDataManager.getLatest().index}
         mode={mode}
         changeMode={changeMode}
+
       />
     </div>
   );

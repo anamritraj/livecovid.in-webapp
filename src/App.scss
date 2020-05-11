@@ -339,6 +339,7 @@ $primary-theme: #8ac6d1;
     border-radius: 50%;
     cursor: pointer;
   }
+
   &.confirmed,&.confirmedPerMillion {
     &::-webkit-slider-thumb {
       background: rgb(255, 10, 0);

@@ -42,7 +42,7 @@ class DataManger {
   }
   getCurrentData = () => {
     return {
-      index: this.index,
+      index :this.index,
       state: this.state
     }
   }
@@ -56,7 +56,7 @@ class DataManger {
 }
 
 class DistrictZonesDataManager extends DataManger {
-  constructor(data, theme, mapColorData) {
+  constructor(data, theme, mapColorData){
     // Sending the data as an array for now since there is not enough data to render as timeseries
     super([data], theme);
   }
@@ -212,4 +212,5 @@ const StateDataManager = () => {
   }
 }
 
-export { StateDataManager, DistrictZonesDataManager };
+export { StateDataManager, DistrictZonesDataManager};
+
