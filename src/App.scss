@@ -799,7 +799,11 @@ button.chart-control-btn {
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 576px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
+
   h1 {
     font-size: 1.2rem;
   }
