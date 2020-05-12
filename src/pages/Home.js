@@ -62,12 +62,12 @@ const Home = (props) => (
             isMobile={props.isMobile}
           />
         </div>
-        <div className="col-6">
-          <GenderChart
-            gender={props.gender}
-            theme={props.theme}
-          />
-        </div>
+      </div>
+      <div className="grid">
+        <GenderChart
+          gender={props.gender}
+          theme={props.theme}
+        />
       </div>
     </div>
   </>

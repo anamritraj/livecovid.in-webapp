@@ -5,6 +5,7 @@ import Github from './nav/github.svg';
 import Twitter from './nav/twitter.svg';
 import Slack from './nav/slack.svg';
 import Whatsapp from './nav/whatsapp.svg';
+import Telegram from './nav/telegram.svg';
 
 import { sendEventToGA } from '../services/analytics.service';
 
@@ -23,10 +24,16 @@ const SocialFooter = () => {
             {t('Contribute on Github')}
           </a>
         </li>
-        <li>
+        {/* <li>
           <a className="slack" target="_blank" rel="noopener noreferrer" onClick={() => handleOnclick('slack')} href="https://join.slack.com/t/livecovidin/shared_invite/zt-e10jouqp-HquZhM2L853zaN0JM9S2qg">
             <img src={Slack} alt="slack join" />
             {t('Join on Slack')}
+          </a>
+        </li> */}
+        <li>
+          <a className="telegram" target="_blank" rel="noopener noreferrer" onClick={() => handleOnclick('telegram')} href="https://t.me/livecovidin">
+            <img src={Telegram} alt="telegram join" />
+            {t('Join on Telegram')}
           </a>
         </li>
         <li>

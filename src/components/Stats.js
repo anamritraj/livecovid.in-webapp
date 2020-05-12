@@ -5,8 +5,8 @@ const Stats = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="row stats">
-      <div className="col-3 col-6-sm card confirmed">
+    <div className="stats-grid">
+      <div className=" card confirmed">
         <p className="delta">
           (+
           {Number(props.dayChange.confirmed).toLocaleString('en')}
@@ -15,7 +15,7 @@ const Stats = (props) => {
         <p className="count">{Number(props.total.confirmed).toLocaleString('en')}</p>
         <p className="title">{t('Confirmed Cases')}</p>
       </div>
-      <div className="col-3 col-6-sm card tested">
+      <div className=" card tested">
         <p className="delta">
           (+
           {Number(props.tested.delta).toLocaleString('en')}
@@ -24,7 +24,7 @@ const Stats = (props) => {
         <p className="count">{Number(props.tested.totalsamplestested).toLocaleString('en')}</p>
         <p className="title">{t('Tested')}</p>
       </div>
-      <div className="col-3 col-6-sm card recovered">
+      <div className=" card recovered">
         <p className="delta">
           (+
           {Number(props.dayChange.recovered).toLocaleString('en')}
@@ -33,7 +33,7 @@ const Stats = (props) => {
         <p className="count">{Number(props.total.recovered).toLocaleString('en')}</p>
         <p className="title">{t('Recovered')}</p>
       </div>
-      <div className="col-3 col-6-sm card deceased">
+      <div className=" card deceased">
         <p className="delta">
           (+
           {Number(props.dayChange.deceased).toLocaleString('en')}
