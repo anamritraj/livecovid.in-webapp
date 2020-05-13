@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Switch = ({ mode, changeMode, activeAttribute }) => {
+const Switch = ({ mode, setMode, activeAttribute }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -10,7 +10,7 @@ const Switch = ({ mode, changeMode, activeAttribute }) => {
           className={
             "btn btn-chart " + (mode === 'normal' ? activeAttribute : "")
           }
-          onClick={() => { changeMode('normal', 'confirmed') }}
+          onClick={() => { setMode('normal') }}
         >
           {t('Normal')}
         </button>
@@ -18,7 +18,7 @@ const Switch = ({ mode, changeMode, activeAttribute }) => {
           className={
             "btn btn-chart " + (mode === 'per-million' ? activeAttribute : "")
           }
-          onClick={() => { changeMode('per-million', 'confirmedPerMillion') }}
+          onClick={() => { setMode('per-million') }}
         >
           {t('Per Million')}
         </button>

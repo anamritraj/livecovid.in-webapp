@@ -36,7 +36,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
       if (result.status === 200) {
         stateDataManager.initialise(result.data, theme);
         setCurrentIndex(result.data.length - 1);
-        setMapColors(stateDataManager.getMapColorData(theme, 'confirmed', stateDataManager.getDataAtIndex(result.data.length - 1).date));
+        setMapColors(stateDataManager.getMapColorData(theme, 'confirmed', mode, stateDataManager.getDataAtIndex(result.data.length - 1).date));
         setIsLoading(false);
       }
     }).catch((err) => {
@@ -47,10 +47,10 @@ const IndiaStateMap = ({ isMobile, theme }) => {
 
   useEffect(() => {
     if (!isLoading) {
-      setMapColors(stateDataManager.getMapColorData(theme, activeAttribute, stateDataManager.getDataAtIndex(currentIndex).date));
+      setMapColors(stateDataManager.getMapColorData(theme, activeAttribute, mode, stateDataManager.getDataAtIndex(currentIndex).date));
       stateDataManager.moveTo(currentIndex);
     }
-  }, [currentIndex, activeAttribute, isLoading, theme]);
+  }, [currentIndex, activeAttribute, isLoading, theme, mode]);
 
   const handleSliderUpdate = (e) => {
     setCurrentIndex(e.target.value);
@@ -69,18 +69,12 @@ const IndiaStateMap = ({ isMobile, theme }) => {
     setActiveAttribute(attribute);
   }, []);
 
-  const changeMode = (mode, attribute) => {
-    setMode(mode);
-    setActiveAttribute(attribute);
-  }
-
   return isLoading ? <Loading /> : (
     <div className="card chart chart-controls">
       <h2>{t('State-wise COVID-19 Cases India')}</h2>
       <IndiaMapStats
         activeAttribute={activeAttribute}
         mode={mode}
-        state={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].name}
         stats={stateDataManager.getDataAtIndex(currentIndex).data[selectedState].value}
         handleAttributeClick={handleAttributeClick}
       />
@@ -103,7 +97,7 @@ const IndiaStateMap = ({ isMobile, theme }) => {
         handleSliderUpdate={handleSliderUpdate}
         max={stateDataManager.getLatest().index}
         mode={mode}
-        changeMode={changeMode}
+        setMode={setMode}
       />
     </div>
   );

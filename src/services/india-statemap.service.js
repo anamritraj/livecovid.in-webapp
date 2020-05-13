@@ -202,9 +202,10 @@ const StateDataManager = () => {
     isEnded: () => {
       return index + 1 === totalElements;
     },
-    getMapColorData: (theme, fieldKey, date) => {
+    getMapColorData: (theme, fieldKey, mode, date) => {
+      const attribute = mode === 'normal' ? fieldKey : fieldKey + 'PerMillion';
       if (!mapColorData) return {};
-      return mapColorData[theme][fieldKey][date];
+      return mapColorData[theme][attribute][date];
     },
     changeStyle: (theme) => {
       getMapColorBasedOnCases(theme);
