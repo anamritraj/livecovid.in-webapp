@@ -19,5 +19,4 @@ const IndiaMapControls = ({
       />
     </div>
   );
-
 export default IndiaMapControls;
