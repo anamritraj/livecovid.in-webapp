@@ -12,6 +12,9 @@
 - Now, create a pull request from your forked repo to this repo.
 
 ## Development
+
+### :metal: [Join Telegram Development Group](https://t.me/livecovidin) :metal:
+
 ### Available Scripts
 
 In the project directory, you can run:
