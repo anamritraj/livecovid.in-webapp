@@ -165,6 +165,10 @@ $dayBtn: #ecc91e;
   p {
     margin: 0;
   }
+  
+  .percent{
+    font-size: 0.9rem;
+  }
   .count {
     font-size: 2em;
     font-weight: 700;
@@ -904,6 +908,12 @@ button.chart-control-btn {
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     margin: 10px;
+    .card .count{
+      font-size: 1.6rem;
+    }
+    .card .percent{
+      font-size: 0.8rem;
+    }
   }
 }
 

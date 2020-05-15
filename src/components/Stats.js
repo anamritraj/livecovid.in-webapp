@@ -1,9 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+const calculatePercentage = (cases, total) => {
+  return ((cases / total) * 100).toFixed(2).toLocaleString('en');
+}
+
 const Stats = (props) => {
   const { t } = useTranslation();
-
+  const { confirmed, recovered, deaths } = props.total;
   return (
     <div className="stats-grid">
       <div className=" card confirmed">
@@ -12,8 +16,9 @@ const Stats = (props) => {
           {Number(props.dayChange.confirmed).toLocaleString('en')}
           )
         </p>
-        <p className="count">{Number(props.total.confirmed).toLocaleString('en')}</p>
+        <p className="count">{Number(confirmed).toLocaleString('en')}</p>
         <p className="title">{t('Confirmed Cases')}</p>
+        <p className="percent">{calculatePercentage(confirmed, props.tested.totalsamplestested) + t('% of Total Tested')}</p>
       </div>
       <div className=" card tested">
         <p className="delta">
@@ -30,8 +35,9 @@ const Stats = (props) => {
           {Number(props.dayChange.recovered).toLocaleString('en')}
           )
         </p>
-        <p className="count">{Number(props.total.recovered).toLocaleString('en')}</p>
+        <p className="count">{Number(recovered).toLocaleString('en')}</p>
         <p className="title">{t('Recovered')}</p>
+        <p className="percent">{calculatePercentage(recovered, confirmed) + t('% of Total Confirmed')}</p>
       </div>
       <div className=" card deceased">
         <p className="delta">
@@ -39,8 +45,9 @@ const Stats = (props) => {
           {Number(props.dayChange.deceased).toLocaleString('en')}
           )
         </p>
-        <p className="count">{Number(props.total.deaths).toLocaleString('en')}</p>
+        <p className="count">{Number(deaths).toLocaleString('en')}</p>
         <p className="title">{t('Deceased')}</p>
+        <p className="percent">{calculatePercentage(deaths, confirmed) + t('% of Total Confirmed')}</p>
       </div>
     </div>
   );
