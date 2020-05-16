@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const calculatePercentage = (cases, total) => {
-  return ((cases / total) * 100).toFixed(2).toLocaleString('en');
-}
+const calculatePercentage = (cases, total) => ((cases / total) * 100).toFixed(2).toLocaleString('en');
 
 const Stats = (props) => {
   const { t } = useTranslation();

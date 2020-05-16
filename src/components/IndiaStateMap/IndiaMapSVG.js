@@ -6,7 +6,7 @@ const borderColors = {
   active: 'rgba(255, 155, 0, 0.8)',
   confirmed: 'rgba(246, 88, 88, 0.8)',
   recovered: 'rgba(62, 161, 14, 0.8)',
-  deaths: 'rgba(71, 71, 71, 0.8)'
+  deaths: 'rgba(71, 71, 71, 0.8)',
 };
 const IndiaMapSVG = ({
   statewiseColors, activeAttribute, handleMouseEnter, handleMouseLeave,
