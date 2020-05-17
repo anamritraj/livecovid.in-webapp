@@ -8,17 +8,17 @@ const Switch = ({ mode, setMode, activeAttribute }) => {
       <div className="switch">
         <button
           className={
-            "btn btn-chart " + (mode === 'normal' ? activeAttribute : "")
+            `btn btn-chart ${mode === 'normal' ? activeAttribute : ''}`
           }
-          onClick={() => { setMode('normal') }}
+          onClick={() => { setMode('normal'); }}
         >
           {t('Normal')}
         </button>
         <button
           className={
-            "btn btn-chart " + (mode === 'per-million' ? activeAttribute : "")
+            `btn btn-chart ${mode === 'per-million' ? activeAttribute : ''}`
           }
-          onClick={() => { setMode('per-million') }}
+          onClick={() => { setMode('per-million'); }}
         >
           {t('Per Million')}
         </button>
@@ -31,6 +31,6 @@ const Switch = ({ mode, setMode, activeAttribute }) => {
       </span>
     </>
   );
-}
+};
 
 export default Switch;
