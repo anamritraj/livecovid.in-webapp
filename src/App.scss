@@ -457,14 +457,36 @@ $primary-theme: #8ac6d1;
     padding: 8px 2px;
   }
 
+  td:nth-child(1),
+  th:nth-child(1) {
+    position: sticky;
+    left: 0px;
+    z-index:99;
+  }
+
   td:nth-child(2),
   th:nth-child(2) {
     text-align: left;
     max-width: 7.5rem;
     font-size: 1.1em;
+    position: sticky;
+    left: 15px;
+    z-index:99;
   }
 
   tbody {
+      td:nth-child(2),
+      th:nth-child(2) {
+         position: sticky;
+         left: 15px;
+          z-index:99;
+      }
+      td:nth-child(1),
+      th:nth-child(1) {
+         position: sticky;
+         left: 0px;
+          z-index:99;
+      }
     tr.fold {
       background: transparent;
       > td {
