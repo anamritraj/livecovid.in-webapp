@@ -1,6 +1,6 @@
-import React from 'react';
-import HelpResources from '../components/HelpResources';
-import { HelmetDefault } from '../components/SEO';
+import React from 'react'
+import HelpResources from '../components/HelpResources'
+import { HelmetDefault } from '../components/SEO'
 
 const Credits = (props) => (
   <>
@@ -18,9 +18,7 @@ const Credits = (props) => (
             </a>
           </li>
           <li>
-            Inspired from another great project
-            {' '}
-            <br />
+            Inspired from another great project <br />
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -30,10 +28,8 @@ const Credits = (props) => (
             </a>
           </li>
           <li>
-            Wanna Help? Please consider helping this project by donating some
-            of your time.
-            {' '}
-            <br />
+            Wanna Help? Please consider helping this project by donating some of your
+            time. <br />
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -48,6 +44,6 @@ const Credits = (props) => (
       <HelpResources />
     </div>
   </>
-);
+)
 
-export default Credits;
+export default Credits

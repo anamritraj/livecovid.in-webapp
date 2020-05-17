@@ -1,30 +1,30 @@
-import React from 'react';
-import { ResponsivePie } from '@nivo/pie';
-import './Charts.css';
+import React from 'react'
+import { ResponsivePie } from '@nivo/pie'
+import './Charts.css'
 
 const colors = {
   Indian: '#8ac6d1',
   Foreign: '#ff7272',
   'Details Awaited': '#f1e7b6',
-};
+}
 
-const getColor = (bar) => colors[bar.id];
+const getColor = (bar) => colors[bar.id]
 
-let totalCases = 0;
+let totalCases = 0
 
 const NationalityChart = ({ nationality }) => {
-  const data = [];
+  const data = []
   Object.keys(nationality).map((key) => {
-    let label = 'Indian';
-    if (key === 'foreign') label = 'Foreign';
-    if (key === 'unknown') label = 'Details Awaited';
-    totalCases += nationality[key];
+    let label = 'Indian'
+    if (key === 'foreign') label = 'Foreign'
+    if (key === 'unknown') label = 'Details Awaited'
+    totalCases += nationality[key]
     data.push({
       id: label,
       label,
       value: nationality[key],
-    });
-  });
+    })
+  })
 
   return (
     <div className="card chart">
@@ -36,7 +36,10 @@ const NationalityChart = ({ nationality }) => {
         <ResponsivePie
           data={data}
           margin={{
-            top: 40, right: 40, bottom: 40, left: 60,
+            top: 40,
+            right: 40,
+            bottom: 40,
+            left: 60,
           }}
           colors={getColor}
           startAngle={-45}
@@ -51,16 +54,8 @@ const NationalityChart = ({ nationality }) => {
           animate
           tooltip={({ label, value }) => (
             <div>
-              {label}
-              {' '}
-              :
-              {value}
-              {' '}
-              Cases
-              <br />
-              {' '}
-              {((value / totalCases) * 100).toPrecision(4)}
-              %
+              {label} :{value} Cases
+              <br /> {((value / totalCases) * 100).toPrecision(4)}%
             </div>
           )}
           motionStiffness={90}
@@ -68,7 +63,7 @@ const NationalityChart = ({ nationality }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NationalityChart;
+export default NationalityChart

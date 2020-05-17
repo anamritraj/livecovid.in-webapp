@@ -49,7 +49,7 @@
 }
 .btn-chart::before,
 .btn-chart::after {
-  content: "";
+  content: '';
   position: absolute;
   height: 100%;
   width: 100%;

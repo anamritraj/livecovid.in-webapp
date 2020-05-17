@@ -1,6 +1,6 @@
-import React from 'react';
-import HelpResources from '../components/HelpResources';
-import { HelmetDefault } from '../components/SEO';
+import React from 'react'
+import HelpResources from '../components/HelpResources'
+import { HelmetDefault } from '../components/SEO'
 
 const Help = () => (
   <>
@@ -8,23 +8,12 @@ const Help = () => (
     <div className="container">
       <h2>Helpline</h2>
       <p>
-        Helpline No (Toll Free)
-        {' '}
-        <br />
-        {' '}
-        <a href="tel:1075">1075</a>
-        {' '}
-        |
+        Helpline No (Toll Free) <br /> <a href="tel:1075">1075</a> |
         <a href="tel:+91-11-23978046">+91-11-23978046</a>
       </p>
       <p>
-        Helpline email
-        {' '}
-        <br />
-        <a href="mailto:ncov2019@gov.in">ncov2019@gov.in</a>
-        {' '}
-        |
-        {' '}
+        Helpline email <br />
+        <a href="mailto:ncov2019@gov.in">ncov2019@gov.in</a> |{' '}
         <a href="mailto:ncov2019@gmail.com">ncov2019@gmail.com</a>
       </p>
       <p>
@@ -34,10 +23,8 @@ const Help = () => (
           href="https://twitter.com/MoHFW_INDIA"
         >
           Twitter
-        </a>
-        {' '}
-        |
-        {' '}
+        </a>{' '}
+        |{' '}
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -62,11 +49,7 @@ const Help = () => (
               <td>1</td>
               <td>Andhra Pradesh</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:0866-2410978"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:0866-2410978">
                   0866-2410978
                 </a>
               </td>
@@ -75,11 +58,7 @@ const Help = () => (
               <td>2</td>
               <td>Arunachal Pradesh</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:9536055743"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:9536055743">
                   9536055743
                 </a>
               </td>
@@ -88,11 +67,7 @@ const Help = () => (
               <td>3</td>
               <td>Assam</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:6913347770"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:6913347770">
                   6913347770
                 </a>
               </td>
@@ -110,11 +85,7 @@ const Help = () => (
               <td>5</td>
               <td>Chhattisgarh</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:077122-35091"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:077122-35091">
                   077122-35091
                 </a>
               </td>
@@ -141,11 +112,7 @@ const Help = () => (
               <td>8</td>
               <td>Haryana</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:8558893911"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:8558893911">
                   8558893911
                 </a>
               </td>
@@ -181,11 +148,7 @@ const Help = () => (
               <td>12</td>
               <td>Kerala</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:0471-2552056"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:0471-2552056">
                   0471-2552056
                 </a>
               </td>
@@ -194,11 +157,7 @@ const Help = () => (
               <td>13</td>
               <td>Madhya Pradesh</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:0755-2527177"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:0755-2527177">
                   0755-2527177
                 </a>
               </td>
@@ -207,11 +166,7 @@ const Help = () => (
               <td>14</td>
               <td>Maharashtra</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:020-26127394"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:020-26127394">
                   020-26127394
                 </a>
               </td>
@@ -220,11 +175,7 @@ const Help = () => (
               <td>15</td>
               <td>Manipur</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:3852411668"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:3852411668">
                   3852411668
                 </a>
               </td>
@@ -233,11 +184,7 @@ const Help = () => (
               <td>16</td>
               <td>Meghalaya</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:9366090748"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:9366090748">
                   9366090748
                 </a>
               </td>
@@ -255,11 +202,7 @@ const Help = () => (
               <td>18</td>
               <td>Nagaland</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:7005539653"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:7005539653">
                   7005539653
                 </a>
               </td>
@@ -268,11 +211,7 @@ const Help = () => (
               <td>19</td>
               <td>Odisha</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:9439994859"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:9439994859">
                   9439994859
                 </a>
               </td>
@@ -290,11 +229,7 @@ const Help = () => (
               <td>21</td>
               <td>Rajasthan</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:0141-2225624"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:0141-2225624">
                   0141-2225624
                 </a>
               </td>
@@ -312,11 +247,7 @@ const Help = () => (
               <td>23</td>
               <td>Tamil Nadu</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:044-29510500"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:044-29510500">
                   044-29510500
                 </a>
               </td>
@@ -334,11 +265,7 @@ const Help = () => (
               <td>25</td>
               <td>Tripura</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:0381-2315879"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:0381-2315879">
                   0381-2315879
                 </a>
               </td>
@@ -356,11 +283,7 @@ const Help = () => (
               <td>27</td>
               <td>Uttar Pradesh</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:18001805145"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:18001805145">
                   18001805145
                 </a>
               </td>
@@ -369,11 +292,7 @@ const Help = () => (
               <td>28</td>
               <td>West Bengal</td>
               <td>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="tel:3323412600"
-                >
+                <a target="_blank" rel="noopener noreferrer" href="tel:3323412600">
                   3323412600
                 </a>
               </td>
@@ -394,11 +313,7 @@ const Help = () => (
               <td>1</td>
               <td>Andaman and Nicobar Islands</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:03192-232102"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:03192-232102">
                   03192-232102
                 </a>
               </td>
@@ -407,11 +322,7 @@ const Help = () => (
               <td>2</td>
               <td>Chandigarh</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:9779558282"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:9779558282">
                   9779558282
                 </a>
               </td>
@@ -429,11 +340,7 @@ const Help = () => (
               <td>4</td>
               <td>Delhi</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:011-22307145"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:011-22307145">
                   011-22307145
                 </a>
               </td>
@@ -442,21 +349,13 @@ const Help = () => (
               <td>5</td>
               <td>Jammu &amp; Kashmir</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:1912520982"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:1912520982">
                   1912520982
                 </a>
                 <span>
                   <br />
                 </span>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:0194-2440283"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:0194-2440283">
                   0194-2440283
                 </a>
               </td>
@@ -465,11 +364,7 @@ const Help = () => (
               <td>6</td>
               <td>Ladakh</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:1982256462"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:1982256462">
                   1982256462
                 </a>
               </td>
@@ -478,11 +373,7 @@ const Help = () => (
               <td>7</td>
               <td>Lakshadweep</td>
               <td>
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href="tel:4896263742"
-                >
+                <a rel="noopener noreferrer" target="_blank" href="tel:4896263742">
                   4896263742
                 </a>
               </td>
@@ -503,6 +394,6 @@ const Help = () => (
       <HelpResources />
     </div>
   </>
-);
+)
 
-export default Help;
+export default Help

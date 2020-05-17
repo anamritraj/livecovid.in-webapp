@@ -1,6 +1,6 @@
-import React from 'react';
-import { ResponsiveLine } from '@nivo/line';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import { ResponsiveLine } from '@nivo/line'
+import { useTranslation } from 'react-i18next'
 
 const IndiaTimeSeriesCumulativeChart = ({
   timeseries,
@@ -9,20 +9,18 @@ const IndiaTimeSeriesCumulativeChart = ({
   toolTipStyle,
   months,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <ResponsiveLine
       data={timeseries}
       enableSlices="x"
       sliceTooltip={({ slice }) => {
-        const d = slice.points[0].data.x;
-        const year = d.getFullYear();
-        const date = d.getDate();
-        const month = d.getMonth();
+        const d = slice.points[0].data.x
+        const year = d.getFullYear()
+        const date = d.getDate()
+        const month = d.getMonth()
         return (
-          <div
-            style={toolTipStyle}
-          >
+          <div style={toolTipStyle}>
             {slice.points.map((point) => (
               <div
                 key={point.id}
@@ -30,16 +28,14 @@ const IndiaTimeSeriesCumulativeChart = ({
                   padding: '3px 0',
                 }}
               >
-                <strong style={{ color: point.color }}>{point.serieId}</strong>
-                {' '}
-                :
+                <strong style={{ color: point.color }}>{point.serieId}</strong> :
                 {point.data.yFormatted}
               </div>
             ))}
 
             <strong>{`${date} ${months[month]} ,${year}`}</strong>
           </div>
-        );
+        )
       }}
       margin={{
         top: 0,
@@ -86,7 +82,11 @@ const IndiaTimeSeriesCumulativeChart = ({
       useMesh
       colors={['red', 'green', '#178fa7']}
     />
-  );
-};
+  )
+}
 
-export default React.memo(IndiaTimeSeriesCumulativeChart, ({ timeseries: timeseriesOld }, { timeseries: timeseriesNew }) => timeseriesNew !== timeseriesOld);
+export default React.memo(
+  IndiaTimeSeriesCumulativeChart,
+  ({ timeseries: timeseriesOld }, { timeseries: timeseriesNew }) =>
+    timeseriesNew !== timeseriesOld
+)

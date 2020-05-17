@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { ResponsiveBar } from '@nivo/bar';
-import { format } from 'date-fns';
-import { useTranslation } from 'react-i18next';
-import { getStatesRaceChart } from '../../services/charts.service';
-import useInterval from '../../hooks/useInterval';
-import RaceChartControls from './RaceChartControls';
-import { sendEventToGA } from '../../services/analytics.service';
+import React, { useEffect, useState, useMemo } from 'react'
+import { ResponsiveBar } from '@nivo/bar'
+import { format } from 'date-fns'
+import { useTranslation } from 'react-i18next'
+import { getStatesRaceChart } from '../../services/charts.service'
+import useInterval from '../../hooks/useInterval'
+import RaceChartControls from './RaceChartControls'
+import { sendEventToGA } from '../../services/analytics.service'
 
 const BarComponent = (props) => (
   <g transform={`translate(${props.x},${props.y})`}>
@@ -51,36 +51,36 @@ const BarComponent = (props) => (
       {props.data.value}
     </text>
   </g>
-);
+)
 
-const MemoizedBarComponent = React.memo(BarComponent);
+const MemoizedBarComponent = React.memo(BarComponent)
 
 const DataManager = () => {
-  let index = 0;
-  let dataStore = {};
-  let state = [];
-  let totalElements = 0;
+  let index = 0
+  let dataStore = {}
+  let state = []
+  let totalElements = 0
   return {
     initialise: (intialIndex, data) => {
-      index = intialIndex;
-      dataStore = data;
-      state = data[index];
-      totalElements = data.length;
+      index = intialIndex
+      dataStore = data
+      state = data[index]
+      totalElements = data.length
     },
     restart: () => {
-      index = 0;
-      state = dataStore[0];
+      index = 0
+      state = dataStore[0]
     },
     increment: () => {
       if (index + 1 < totalElements) {
-        index++;
-        state = dataStore[index];
+        index++
+        state = dataStore[index]
       }
     },
     decrement: () => {
       if (index > 0) {
-        index--;
-        state = dataStore[index];
+        index--
+        state = dataStore[index]
       }
     },
     getData: () => ({
@@ -88,13 +88,13 @@ const DataManager = () => {
       state,
     }),
     isEnded: () => index + 1 === totalElements,
-  };
-};
+  }
+}
 
-const dataManager = DataManager();
+const dataManager = DataManager()
 // Analytics variables.
-const category = 'User';
-const action = 'Clicked Race Controls';
+const category = 'User'
+const action = 'Clicked Race Controls'
 
 const darkTheme = {
   background: '#323232',
@@ -120,66 +120,109 @@ const darkTheme = {
       stroke: '#444',
     },
   },
-};
+}
 
 const RaceChart = (props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [raceTimeInterval, setRaceTimeInterval] = useState(2000);
-  const [barData, setBarData] = useState({});
-  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true)
+  const [isPaused, setIsPaused] = useState(false)
+  const [raceTimeInterval, setRaceTimeInterval] = useState(2000)
+  const [barData, setBarData] = useState({})
+  const { t } = useTranslation()
 
   useEffect(() => {
     getStatesRaceChart().then((response) => {
       if (response.status === 200) {
-        dataManager.initialise(0, response.data.raceChart);
-        setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
+        dataManager.initialise(0, response.data.raceChart)
+        setBarData({
+          data: [...dataManager.getData().state.data],
+          date: dataManager.getData().state.date,
+        })
       } else {
-        console.log('Error in API');
+        console.log('Error in API')
       }
-      setIsLoading(false);
-    });
-  }, []);
+      setIsLoading(false)
+    })
+  }, [])
 
-  useInterval(() => {
-    dataManager.increment();
-    setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date });
-  }, (isPaused || isLoading || dataManager.isEnded()) ? null : raceTimeInterval);
-
-
-  const raceChartProps = useMemo(() => ({
-    margin: {
-      top: 26, right: props.isMobile ? 10 : 20, bottom: 26, left: props.isMobile ? 10 : 20,
+  useInterval(
+    () => {
+      dataManager.increment()
+      setBarData({
+        data: [...dataManager.getData().state.data],
+        date: dataManager.getData().state.date,
+      })
     },
-    keys: ['value'],
-    borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
-    axisTop: {
-      format: '~s',
-    },
-    axisBottom: {
-      format: '~s',
-    },
-    labelTextColor: { from: 'color', modifiers: [['darker', 1.4]] },
-  }), [props.isMobile]);
+    isPaused || isLoading || dataManager.isEnded() ? null : raceTimeInterval
+  )
 
-  const handlePauseClick = React.useCallback(() => { setIsPaused(!isPaused); sendEventToGA(category, action, 'pause/play'); }, [isPaused]);
-  const handleFasterClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval - (raceTimeInterval * 0.25)); sendEventToGA(category, action, 'faster'); }, [raceTimeInterval]);
-  const handleSlowerClick = React.useCallback(() => { setRaceTimeInterval(raceTimeInterval + (raceTimeInterval * 0.25)); sendEventToGA(category, action, 'slower'); }, [raceTimeInterval]);
-  const handleRestartClick = () => { setIsPaused(false); dataManager.restart(); sendEventToGA(category, action, 'restart'); };
-  const handleForwardClick = React.useCallback(() => { setIsPaused(true); dataManager.increment(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'forward'); }, []);
-  const handleBackwardClick = React.useCallback(() => { setIsPaused(true); dataManager.decrement(); setBarData({ data: [...dataManager.getData().state.data], date: dataManager.getData().state.date }); sendEventToGA(category, action, 'backward'); }, []);
+  const raceChartProps = useMemo(
+    () => ({
+      margin: {
+        top: 26,
+        right: props.isMobile ? 10 : 20,
+        bottom: 26,
+        left: props.isMobile ? 10 : 20,
+      },
+      keys: ['value'],
+      borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
+      axisTop: {
+        format: '~s',
+      },
+      axisBottom: {
+        format: '~s',
+      },
+      labelTextColor: { from: 'color', modifiers: [['darker', 1.4]] },
+    }),
+    [props.isMobile]
+  )
 
-  return isLoading ? <div>{t('Loading')}</div> : (
+  const handlePauseClick = React.useCallback(() => {
+    setIsPaused(!isPaused)
+    sendEventToGA(category, action, 'pause/play')
+  }, [isPaused])
+  const handleFasterClick = React.useCallback(() => {
+    setRaceTimeInterval(raceTimeInterval - raceTimeInterval * 0.25)
+    sendEventToGA(category, action, 'faster')
+  }, [raceTimeInterval])
+  const handleSlowerClick = React.useCallback(() => {
+    setRaceTimeInterval(raceTimeInterval + raceTimeInterval * 0.25)
+    sendEventToGA(category, action, 'slower')
+  }, [raceTimeInterval])
+  const handleRestartClick = () => {
+    setIsPaused(false)
+    dataManager.restart()
+    sendEventToGA(category, action, 'restart')
+  }
+  const handleForwardClick = React.useCallback(() => {
+    setIsPaused(true)
+    dataManager.increment()
+    setBarData({
+      data: [...dataManager.getData().state.data],
+      date: dataManager.getData().state.date,
+    })
+    sendEventToGA(category, action, 'forward')
+  }, [])
+  const handleBackwardClick = React.useCallback(() => {
+    setIsPaused(true)
+    dataManager.decrement()
+    setBarData({
+      data: [...dataManager.getData().state.data],
+      date: dataManager.getData().state.date,
+    })
+    sendEventToGA(category, action, 'backward')
+  }, [])
+
+  return isLoading ? (
+    <div>{t('Loading')}</div>
+  ) : (
     <div className="card race-chart">
       <h2>{t('State-wise Cases with Time')}</h2>
       <div>
-        <h3 className="racechart-date">{format(new Date(barData.date), 'd MMMM yyyy')}</h3>
+        <h3 className="racechart-date">
+          {format(new Date(barData.date), 'd MMMM yyyy')}
+        </h3>
         <p className="racechart-speed">
-          {t('Speed')}
-          :
-          {' '}
-          {(2000 / raceTimeInterval).toPrecision(3)}
-          x
+          {t('Speed')}: {(2000 / raceTimeInterval).toPrecision(3)}x
         </p>
       </div>
       <div className="race-chart" style={{ height: '500px' }}>
@@ -217,7 +260,7 @@ const RaceChart = (props) => {
         onStepBackward={handleBackwardClick}
       />
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(RaceChart);
+export default React.memo(RaceChart)

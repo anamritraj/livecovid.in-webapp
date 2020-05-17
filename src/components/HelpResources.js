@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const HelpResources = () => (
   <div className="helpful-resources">
@@ -17,12 +17,8 @@ const HelpResources = () => (
         <a href="https://www.mohfw.gov.in/">https://www.mohfw.gov.in/</a>
       </li>
       <li>
-        Twitter updates by Press Information Bureau
-        {' '}
-        <br />
-        <a href="https://twitter.com/PIB_India">
-          https://twitter.com/PIB_India
-        </a>
+        Twitter updates by Press Information Bureau <br />
+        <a href="https://twitter.com/PIB_India">https://twitter.com/PIB_India</a>
       </li>
       <li>
         WHO : COVID-19 Guidelines
@@ -32,25 +28,19 @@ const HelpResources = () => (
         </a>
       </li>
       <li>
-        CDC
-        {' '}
-        <br />
-        {' '}
+        CDC <br />{' '}
         <a href="https://www.cdc.gov/coronavirus/2019-ncov/faq.html">
           https://www.cdc.gov/coronavirus/2019-ncov/faq.html
         </a>
       </li>
       <li>
-        Myth Busters By WHO
-        {' '}
-        <br />
-        {' '}
+        Myth Busters By WHO <br />{' '}
         <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters">
           https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters
         </a>
       </li>
     </ul>
   </div>
-);
+)
 
-export default HelpResources;
+export default HelpResources

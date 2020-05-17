@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './nav.css';
-import DrawerToggleButton from './DrawerToggleButton';
-import SideDrawer from './SideDrawer';
-import Backdrop from './BackDrop';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import './nav.css'
+import DrawerToggleButton from './DrawerToggleButton'
+import SideDrawer from './SideDrawer'
+import Backdrop from './BackDrop'
 
 const Toolbar = (props) => {
-  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false)
 
   return (
     <header className="toolbar">
@@ -36,20 +36,19 @@ const Toolbar = (props) => {
         </div>
         <div className="dark-mode-toggle">
           <label className="dayNight">
-            <input type="checkbox" onChange={props.handleDarkModeClick} checked={props.theme === 'light'} />
+            <input
+              type="checkbox"
+              onChange={props.handleDarkModeClick}
+              checked={props.theme === 'light'}
+            />
             <div />
           </label>
         </div>
       </nav>
-      <SideDrawer
-        show={isSideDrawerOpen}
-        click={() => setSideDrawerOpen(false)}
-      />
-      {isSideDrawerOpen ? (
-        <Backdrop click={() => setSideDrawerOpen(false)} />
-      ) : null}
+      <SideDrawer show={isSideDrawerOpen} click={() => setSideDrawerOpen(false)} />
+      {isSideDrawerOpen ? <Backdrop click={() => setSideDrawerOpen(false)} /> : null}
     </header>
-  );
-};
+  )
+}
 
-export default Toolbar;
+export default Toolbar

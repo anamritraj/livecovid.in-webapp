@@ -72,7 +72,7 @@ $dayBtn: #ecc91e;
         transform: scale(1) rotate(-2deg);
         transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
         &:before {
-          content: "";
+          content: '';
           width: inherit;
           height: inherit;
           border-radius: inherit;
@@ -82,7 +82,7 @@ $dayBtn: #ecc91e;
           transition: background 0.3s ease;
         }
         &:after {
-          content: "";
+          content: '';
           width: 6px;
           height: 6px;
           border-radius: 50%;
@@ -144,7 +144,7 @@ $dayBtn: #ecc91e;
   stroke: #464646;
 
   &:hover::after {
-    content: "";
+    content: '';
     background-color: rgba(255, 255, 255, 0.25);
     width: 100%;
     height: 100%;
@@ -165,8 +165,8 @@ $dayBtn: #ecc91e;
   p {
     margin: 0;
   }
-  
-  .percent{
+
+  .percent {
     font-size: 0.9rem;
   }
   .count {
@@ -784,7 +784,7 @@ button.chart-control-btn {
   .slack {
     background: #606060;
   }
-  .telegram{
+  .telegram {
     background: #2bb6f6;
   }
   .whatsapp {
@@ -908,10 +908,10 @@ button.chart-control-btn {
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     margin: 10px;
-    .card .count{
+    .card .count {
       font-size: 1.6rem;
     }
-    .card .percent{
+    .card .percent {
       font-size: 0.8rem;
     }
   }
