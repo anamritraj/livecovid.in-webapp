@@ -48,7 +48,7 @@ If you feel any information is missing or there is any error, please feel free t
 
 ## Credits
 
-This would not have been possible without the awesome guys at https://github.com/covid19india. I was initially scraping the MoHFW website, but then I got to know about them and since then this project internally calls their API. They are doing really awesome work maintaining a crowdsorced database of patients. Thanks to them for all the hard work!
+This would not have been possible without the awesome guys at https://github.com/covid19india. I was initially scraping the MoHFW website, but then I got to know about them and since then this project internally calls their API. They are doing really awesome work maintaining a crowdsourced database of patients. Thanks to them for all the hard work!
 
 ## Meta
 
