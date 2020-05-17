@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
-const defaultMapColor = '#ccc';
+const defaultMapColor = '#ccc'
 const borderColors = {
   active: 'rgba(255, 155, 0, 0.8)',
   confirmed: 'rgba(246, 88, 88, 0.8)',
   recovered: 'rgba(62, 161, 14, 0.8)',
   deaths: 'rgba(71, 71, 71, 0.8)',
-};
+}
 const IndiaMapSVG = ({
-  statewiseColors, activeAttribute, handleMouseEnter, handleMouseLeave,
+  statewiseColors,
+  activeAttribute,
+  handleMouseEnter,
+  handleMouseLeave,
 }) => {
-  const [currentStateCode, setcurrentStateCode] = useState('');
+  const [currentStateCode, setcurrentStateCode] = useState('')
   const handleMouseClick = (e) => {
     if (e.target.id === 'chart' || !e.target.id) {
-      setcurrentStateCode('');
-      handleMouseEnter('total');
+      setcurrentStateCode('')
+      handleMouseEnter('total')
     } else {
-      setcurrentStateCode(e.target.id);
-      handleMouseEnter(e.target.id);
+      setcurrentStateCode(e.target.id)
+      handleMouseEnter(e.target.id)
     }
-  };
+  }
 
   return (
     <svg
@@ -29,16 +32,18 @@ const IndiaMapSVG = ({
       viewBox="0 0 432 491.2495365184175"
       onClick={handleMouseClick}
     >
-      <g
-        className="regions"
-      >
+      <g className="regions">
         <motion.path
           id="an"
           d="M379.7201696876202,484.0388663916766L380.8863864249904,487.2062118080272L379.520246818357,491.2495365184175L376.85460856151144,485.7324811794412ZM377.7209409949862,480.9955576704787L378.35403008098706,482.0310669035109L376.4880833011953,483.5997117951617ZM372.82283069803293,472.32837248197717L372.75618974161216,474.4334653190215L371.75657539529493,473.2396207993129ZM374.9553413035094,469.2165235292761L374.6887774778247,472.1712469254411L373.88908600077116,470.0968063689394ZM364.1261858850751,454.13633901121966L364.6593135364442,455.2396332115769L363.19321249517907,455.8699843580298L363.0599305823371,454.4200651575168ZM360.02776706517534,429.1684547213903L361.19398380254506,432.14619728808697L359.7278827612804,434.9954099775707L358.56166602391045,434.45735998077566L357.9952178943306,431.1960663844377ZM362.6934053220207,408.90362712497017L363.55973775549546,409.826900696057L363.2598534516003,411.32279121465655L363.7929811029694,411.8000867349477L362.95996914770535,413.3270566721162L363.95958349402235,413.48608325478097L363.12657153875807,419.77864136340366L361.92703432317785,419.74688444840046L359.9611261087541,414.82166378231807L361.3272657153875,413.6769070187121ZM364.55935210181246,407.9164439480711L365.39236405707675,408.1393776248407L365.2257616660236,409.5085544882094L363.6596991901272,411.54553610644075L363.72634014654795,409.0309878412769ZM365.6589278827612,398.63753511425364L366.6918627072887,401.2863630617671L366.3919784033935,405.49521438351235L365.45900501349774,407.5979456118772L363.52641727728474,408.0438361477926L362.7267258002314,407.4705391347626L363.0599305823371,399.97813531372765ZM362.6600848438102,397.48807246499666L362.99328962591585,399.2759750039347L362.1935981488623,399.14829559802723ZM367.591515618974,388.6637295982308L368.0580023139221,391.8314130554581L366.5585807944467,391.8953783661515L367.82475896644814,393.14247973657626L367.6581565753952,396.1146441437701L364.226147319707,398.8610012704686L365.2590821442343,390.16792271019995Z"
           fill={statewiseColors.an || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'an' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'an'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -47,7 +52,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ar || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ar' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ar'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -56,7 +65,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.as || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'as' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'as'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -65,7 +78,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.br || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'br' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'br'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -74,7 +91,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ch || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ch' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ch'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -83,7 +104,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.dn || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'dn' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'dn'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -92,7 +117,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.dd || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'dd' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'dd'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -101,7 +130,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ga || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ga' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ga'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -110,7 +143,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.hr || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'hr' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'hr'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -119,7 +156,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.hp || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'hp' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'hp'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -128,7 +169,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.kl || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'kl' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'kl'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -137,7 +182,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ld || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ld' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ld'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -146,7 +195,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.mh || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'mh' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'mh'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -155,7 +208,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.mn || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'mn' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'mn'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -164,7 +221,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ml || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ml' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ml'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -173,7 +234,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.mz || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'mz' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'mz'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -182,7 +247,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.nl || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'nl' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'nl'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -191,7 +260,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.py || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'py' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'py'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -200,7 +273,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.rj || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'rj' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'rj'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -209,7 +286,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.sk || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'sk' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'sk'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -218,7 +299,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.tg || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'tg' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'tg'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -227,7 +312,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.tr || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'tr' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'tr'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -236,7 +325,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.up || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'up' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'up'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -245,7 +338,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ut || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ut' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ut'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -254,7 +351,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.wb || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'wb' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'wb'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -263,7 +364,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.or || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'or' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'or'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -272,7 +377,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ap || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ap' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ap'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -281,7 +390,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.jk || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'jk' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'jk'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -290,7 +403,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.lh || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'lh' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'lh'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -299,7 +416,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.jh || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'jh' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'jh'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -308,7 +429,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ct || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ct' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ct'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -317,7 +442,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.tn || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'tn' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'tn'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -326,7 +455,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.ka || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'ka' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'ka'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -335,7 +468,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.gj || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'gj' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'gj'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -344,7 +481,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.mp || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'mp' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'mp'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -353,7 +494,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.dl || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'dl' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'dl'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
         <motion.path
@@ -362,7 +507,11 @@ const IndiaMapSVG = ({
           fill={statewiseColors.pb || defaultMapColor}
           onMouseEnter={handleMouseClick}
           onMouseLeave={handleMouseLeave}
-          animate={currentStateCode === 'pb' ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' } : { stroke: 'rgba(0, 0, 0, 0)' }}
+          animate={
+            currentStateCode === 'pb'
+              ? { stroke: 'rgba(50, 50, 50, 0.53)', strokeWidth: '3px' }
+              : { stroke: 'rgba(0, 0, 0, 0)' }
+          }
           initial={{ strokeWidth: '1px', stroke: 'rgba(0, 0, 0, 0)' }}
         />
       </g>
@@ -375,7 +524,7 @@ const IndiaMapSVG = ({
         />
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default IndiaMapSVG;
+export default IndiaMapSVG

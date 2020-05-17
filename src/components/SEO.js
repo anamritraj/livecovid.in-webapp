@@ -1,5 +1,5 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from 'react'
+import { Helmet } from 'react-helmet'
 
 const schemaMarkup = () => ({
   '@context': 'http://schema.org/',
@@ -8,16 +8,14 @@ const schemaMarkup = () => ({
   alternateName: 'COVID-19 Tracker State-wise India',
   url: 'https://livecovid.in/',
   description:
-      'Provides real-time live tracking of coronavirus (Covid-19) cases in India District-wise / Statewise.',
+    'Provides real-time live tracking of coronavirus (Covid-19) cases in India District-wise / Statewise.',
   identifier: 'https://livecovid.in',
-});
+})
 
 const HelmetDefault = (props) => (
   <Helmet>
     <title itemProp="name" lang="en">
-      {props.title}
-      {' '}
-      | Live Coronavirus Tracker India State-wise, District-wise
+      {props.title} | Live Coronavirus Tracker India State-wise, District-wise
     </title>
     <meta
       name="description"
@@ -28,6 +26,6 @@ const HelmetDefault = (props) => (
       content="coronavirus,corona,covid,covid19,covid-19,covidindia,india,virus"
     />
   </Helmet>
-);
+)
 
-export { schemaMarkup, HelmetDefault };
+export { schemaMarkup, HelmetDefault }

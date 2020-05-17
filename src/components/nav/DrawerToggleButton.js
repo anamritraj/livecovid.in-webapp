@@ -1,5 +1,5 @@
-import React from 'react';
-import './nav.css';
+import React from 'react'
+import './nav.css'
 
 const DrawerToggleButton = (props) => (
   <button className="toggle-button" onClick={props.click}>
@@ -16,6 +16,6 @@ const DrawerToggleButton = (props) => (
       <path className="line line-3" d="M5 73h90v14H5z" />
     </svg>
   </button>
-);
+)
 
-export default DrawerToggleButton;
+export default DrawerToggleButton

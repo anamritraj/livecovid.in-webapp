@@ -1,5 +1,5 @@
-import React from 'react';
-import { ResponsiveLine } from '@nivo/line';
+import React from 'react'
+import { ResponsiveLine } from '@nivo/line'
 
 const IndianTimeSeriesDailyChart = ({
   timeseries,
@@ -12,14 +12,12 @@ const IndianTimeSeriesDailyChart = ({
     data={timeseries}
     enableSlices="x"
     sliceTooltip={({ slice }) => {
-      const d = slice.points[0].data.x;
-      const year = d.getFullYear();
-      const date = d.getDate();
-      const month = d.getMonth();
+      const d = slice.points[0].data.x
+      const year = d.getFullYear()
+      const date = d.getDate()
+      const month = d.getMonth()
       return (
-        <div
-          style={toolTipStyle}
-        >
+        <div style={toolTipStyle}>
           {slice.points.map((point) => (
             <div
               key={point.id}
@@ -27,16 +25,14 @@ const IndianTimeSeriesDailyChart = ({
                 padding: '3px 0',
               }}
             >
-              <strong style={{ color: point.color }}>{point.serieId}</strong>
-              {' '}
-              :
+              <strong style={{ color: point.color }}>{point.serieId}</strong> :
               {point.data.yFormatted}
             </div>
           ))}
 
           <strong>{`${date} ${months[month]} ,${year}`}</strong>
         </div>
-      );
+      )
     }}
     margin={{
       top: 0,
@@ -86,6 +82,6 @@ const IndianTimeSeriesDailyChart = ({
     motionStiffness={90}
     motionDamping={15}
   />
-);
+)
 
-export default IndianTimeSeriesDailyChart;
+export default IndianTimeSeriesDailyChart

@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { ResponsivePie } from '@nivo/pie';
-import './Charts.css';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react'
+import { ResponsivePie } from '@nivo/pie'
+import './Charts.css'
+import { useTranslation } from 'react-i18next'
 
 const darkModeColors = {
   Male: '#2c769d',
   Female: '#be245d',
   'Details Awaited': '#4f4d4d',
-};
+}
 const lightModeColors = {
   Male: '#c2f0fc',
   Female: '#ffb0cd',
   'Details Awaited': '#959595',
-};
-const getColor = (colors, bar) => colors[bar.id];
+}
+const getColor = (colors, bar) => colors[bar.id]
 
 const lightThemeObject = {
   tooltip: {
@@ -21,7 +21,7 @@ const lightThemeObject = {
       background: '#000',
     },
   },
-};
+}
 
 const darkThemeObject = {
   background: '#323232',
@@ -35,28 +35,28 @@ const darkThemeObject = {
       fill: '#e4e4e4',
     },
   },
-};
+}
 
 const GenderChart = ({ gender, theme }) => {
-  const { t } = useTranslation();
-  const data = [];
-  let totalCases = 0;
-  const [colors, setColors] = useState(lightModeColors);
+  const { t } = useTranslation()
+  const data = []
+  let totalCases = 0
+  const [colors, setColors] = useState(lightModeColors)
   useEffect(() => {
-    setColors((theme === 'dark') ? darkModeColors : lightModeColors);
-  }, [theme]);
+    setColors(theme === 'dark' ? darkModeColors : lightModeColors)
+  }, [theme])
 
   Object.keys(gender).forEach((key) => {
-    let label = t('Male');
-    if (key === 'F') label = t('Female');
-    if (key === 'unknown') label = t('Details Awaited');
-    totalCases += gender[key];
+    let label = t('Male')
+    if (key === 'F') label = t('Female')
+    if (key === 'unknown') label = t('Details Awaited')
+    totalCases += gender[key]
     data.push({
       id: label,
       label,
       value: gender[key],
-    });
-  });
+    })
+  })
 
   return (
     <div className="card chart">
@@ -68,7 +68,10 @@ const GenderChart = ({ gender, theme }) => {
         <ResponsivePie
           data={data}
           margin={{
-            top: 40, right: 40, bottom: 40, left: 40,
+            top: 40,
+            right: 40,
+            bottom: 40,
+            left: 40,
           }}
           colors={(bar) => getColor(colors, bar)}
           borderWidth={0}
@@ -81,16 +84,8 @@ const GenderChart = ({ gender, theme }) => {
           animate
           tooltip={({ label, value }) => (
             <div style={{ color: '#e4e4e4' }}>
-              {label}
-              {' '}
-              :
-              {value}
-              {' '}
-              Cases
-              <br />
-              {' '}
-              {((value / totalCases) * 100).toPrecision(4)}
-              %
+              {label} :{value} Cases
+              <br /> {((value / totalCases) * 100).toPrecision(4)}%
             </div>
           )}
           theme={theme === 'dark' ? darkThemeObject : lightThemeObject}
@@ -99,7 +94,7 @@ const GenderChart = ({ gender, theme }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GenderChart;
+export default GenderChart

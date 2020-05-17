@@ -3,9 +3,9 @@
       "commonjs": true,
       "es6": true,
       "node": true,
-      "browser": true
+      "jest": true
     },
-    "extends": "airbnb",
+    "extends": ["airbnb","plugin:prettier/recommended"],
     "plugins": ["import"],
     "parserOptions": {
       "ecmaVersion": 2018,

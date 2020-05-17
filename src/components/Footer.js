@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Footer = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <footer className="footer">
       <span>
@@ -30,7 +30,7 @@ const Footer = (props) => {
         </a>
       </span>
     </footer>
-  );
-};
+  )
+}
 
-export default React.memo(Footer);
+export default React.memo(Footer)

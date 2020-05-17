@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SortIcon = (currentOrder) => (
   <svg
@@ -15,6 +15,6 @@ const SortIcon = (currentOrder) => (
   >
     <polygon points="0,63.75 127.5,191.25 255,63.75" />
   </svg>
-);
+)
 
-export default SortIcon;
+export default SortIcon

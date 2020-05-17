@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './nav.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './nav.css'
 
 const SideDrawer = (props) => {
-  let drawerClasses = 'side-drawer';
+  let drawerClasses = 'side-drawer'
   if (props.show) {
-    drawerClasses = 'side-drawer open';
+    drawerClasses = 'side-drawer open'
   }
   return (
     <nav className={drawerClasses}>
@@ -61,7 +61,7 @@ const SideDrawer = (props) => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default SideDrawer;
+export default SideDrawer

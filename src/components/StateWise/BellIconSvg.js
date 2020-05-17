@@ -1,10 +1,12 @@
-import React from 'react';
+import React from 'react'
 
 const BellIconSVG = ({ isBellActive, onClick, isDisabled }) => (
   <svg
     onClick={onClick}
     height="20"
-    className={`bell-icon${isBellActive ? ' active' : ''}${isDisabled ? ' disabled' : ''}`}
+    className={`bell-icon${isBellActive ? ' active' : ''}${
+      isDisabled ? ' disabled' : ''
+    }`}
     viewBox="0 0 16 16"
     stroke="#000"
     fill="#fff"
@@ -24,6 +26,6 @@ const BellIconSVG = ({ isBellActive, onClick, isDisabled }) => (
       transform="translate(14.414 4.8)"
     />
   </svg>
-);
+)
 
-export default React.memo(BellIconSVG);
+export default React.memo(BellIconSVG)

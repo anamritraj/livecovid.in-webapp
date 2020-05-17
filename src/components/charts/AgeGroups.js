@@ -1,17 +1,17 @@
-import React from 'react';
-import { ResponsiveBar } from '@nivo/bar';
+import React from 'react'
+import { ResponsiveBar } from '@nivo/bar'
 
-import './Charts.css';
+import './Charts.css'
 
 const AgeGroup = (props) => {
-  const { ageGroup } = props;
-  const data = [];
+  const { ageGroup } = props
+  const data = []
   Object.keys(ageGroup).map((key) => {
     data.push({
       ageGroup: key,
       value: ageGroup[key],
-    });
-  });
+    })
+  })
 
   return (
     <div className="card chart">
@@ -25,7 +25,10 @@ const AgeGroup = (props) => {
           keys={['value']}
           indexBy="ageGroup"
           margin={{
-            top: 50, right: 0, bottom: 50, left: 45,
+            top: 50,
+            right: 0,
+            bottom: 50,
+            left: 45,
           }}
           padding={0.3}
           colorBy="index"
@@ -73,7 +76,7 @@ const AgeGroup = (props) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AgeGroup;
+export default AgeGroup
