@@ -160,7 +160,15 @@ $dayBtn: #ecc91e;
   box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
   transition: box-shadow 0.3s;
   background: #fff;
-  overflow: auto;
+  // overflow: auto;
+  .outer {
+  position: relative;
+}
+  .inner{ 
+  overflow-x: scroll;
+  overflow-y: visible;
+  max-width: 100%;
+  margin-left: 150px;}
 
   p {
     margin: 0;
@@ -432,6 +440,10 @@ $primary-theme: #8ac6d1;
 }
 
 .statewise-cases {
+  .fixed {
+  position: absolute;
+  left: 0;
+}
   tbody tr {
     cursor: pointer;
     border-bottom: 1px solid #f4f4f4;
@@ -457,14 +469,36 @@ $primary-theme: #8ac6d1;
     padding: 8px 2px;
   }
 
+  // td:nth-child(1),
+  // th:nth-child(1) {
+  //   position: sticky;
+  //   left: 0px;
+  //   z-index:99;
+  // }
+
   td:nth-child(2),
   th:nth-child(2) {
     text-align: left;
     max-width: 7.5rem;
     font-size: 1.1em;
+    left:20px;
+    // position: sticky;
+    // left: 15px;
+    // z-index:99;
   }
 
   tbody {
+      // td:nth-child(2),
+      // th:nth-child(2) {
+      //    position: sticky;
+      //    left: 15px;
+      //     z-index:99;
+      // }
+      // td:nth-child(1),
+      // th:nth-child(1) {
+      //   position: absolute;
+      //   left: 0;
+      // }
     tr.fold {
       background: transparent;
       > td {
@@ -534,6 +568,12 @@ $primary-theme: #8ac6d1;
 .statewise-cases .districts-table {
   display: flex;
   flex-direction: column;
+   .inner{
+      overflow-x: scroll;
+  overflow-y: visible;
+  max-width: 100%;
+  margin-left: 0px;
+    }
   table {
     width: 100%;
     tr td {
@@ -1106,6 +1146,7 @@ $dark-font: #c5c5c5;
       transition: all 0.3s ease;
       background: #393939;
     }
+   
     .testing-stats {
       color: #9673b9;
       background: rgba(64, 0, 128, 0.31);

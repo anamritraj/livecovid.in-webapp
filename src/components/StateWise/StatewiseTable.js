@@ -154,87 +154,91 @@ const StatewiseTable = ({ statewise, statewiseTestingData, isMobile }) => {
           handleBellClick={handleBellClick}
         />
       </p>
-      <table className="statewise-cases table ">
-        <thead>
-          <tr>
-            <th />
-            <th>{t('State')}</th>
-            <th className="clickable-header" onClick={(e) => { handleSortClick('confirmed'); sendEventToGA(category, action, 'confirmed'); }}>
-              <div className="heading">
-                <div className="confirmed">{isMobile ? t('Cnfrm') : t('Confirmed')}</div>
-                <div className="sortIcon">
-                  {stateSortObject.activeSorting === 'confirmed'
-                    ? SortIcon(stateSortObject.currentOrder)
-                    : null}
-                </div>
-              </div>
-            </th>
-            <th className="clickable-header" onClick={(e) => { handleSortClick('active'); sendEventToGA(category, action, 'active'); }}>
-              <div className="heading">
-                <div className="active">
-                  {isMobile ? t('Actv') : t('Active')}
-                  {' '}
-                </div>
-                <div className="sortIcon">
-                  {stateSortObject.activeSorting === 'active'
-                    ? SortIcon(stateSortObject.currentOrder)
-                    : null}
-                </div>
-              </div>
-            </th>
-            <th className="clickable-header" onClick={(e) => { handleSortClick('recovered'); sendEventToGA(category, action, 'recovered'); }}>
-              <div className="heading">
-                <div className="recovered">
-                  {isMobile ? t('Rcvrd') : t('Recovered')}
-                  {' '}
-                </div>
-                <div className="sortIcon">
-                  {stateSortObject.activeSorting === 'recovered'
-                    ? SortIcon(stateSortObject.currentOrder)
-                    : null}
-                </div>
-              </div>
-            </th>
-            <th className="clickable-header" onClick={(e) => { handleSortClick('deaths'); sendEventToGA(category, action, 'deaths'); }}>
-              <div className="heading">
-                <div className="deaths">
-                  {isMobile ? t('Deaths') : t('Deaths')}
-                  {' '}
-                </div>
-                {' '}
-                <div className="sortIcon">
-                  {stateSortObject.activeSorting === 'deaths' ? SortIcon(stateSortObject.currentOrder) : null}
-                </div>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {stateSortObject.states.map((stateCode, index) => (
-            <StateWiseRow
-              state={statewise[stateCode]}
-              allNotificationsEnabled={allNotificationsEnabled}
-              statesNotificationStatus={statesNotificationStatus[stateCode]}
-              districts={districts[stateCode]}
-              index={index + 1}
-              key={stateCode}
-              isMobile={isMobile}
-              handleBellClick={handleBellClick}
-              testingData={statewiseTestingData[stateCode]}
-            />
-          ))}
-        </tbody>
-      </table>
-      {showModal && (
-      <Modal>
-        <div className="modal text-center">
-          {modalContent}
-          <div className="modal-button-wrapper">
-            {showGetNotificationButtons && <button className="btn" onClick={getNotificationPermissions}>Okay</button>}
-            <button className="btn" onClick={() => setShowModal(false)}>Close</button>
-          </div>
+      <div className="outer">
+        <div className="inner">
+          <table className="statewise-cases table ">
+            <thead>
+              <tr>
+                <th className="fixed" />
+                <th className="fixed">{t('State')}</th>
+                <th className="clickable-header" onClick={(e) => { handleSortClick('confirmed'); sendEventToGA(category, action, 'confirmed'); }}>
+                  <div className="heading">
+                    <div className="confirmed">{isMobile ? t('Cnfrm') : t('Confirmed')}</div>
+                    <div className="sortIcon">
+                      {stateSortObject.activeSorting === 'confirmed'
+                        ? SortIcon(stateSortObject.currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th className="clickable-header" onClick={(e) => { handleSortClick('active'); sendEventToGA(category, action, 'active'); }}>
+                  <div className="heading">
+                    <div className="active">
+                      {isMobile ? t('Actv') : t('Active')}
+                      {' '}
+                    </div>
+                    <div className="sortIcon">
+                      {stateSortObject.activeSorting === 'active'
+                        ? SortIcon(stateSortObject.currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th className="clickable-header" onClick={(e) => { handleSortClick('recovered'); sendEventToGA(category, action, 'recovered'); }}>
+                  <div className="heading">
+                    <div className="recovered">
+                      {isMobile ? t('Rcvrd') : t('Recovered')}
+                      {' '}
+                    </div>
+                    <div className="sortIcon">
+                      {stateSortObject.activeSorting === 'recovered'
+                        ? SortIcon(stateSortObject.currentOrder)
+                        : null}
+                    </div>
+                  </div>
+                </th>
+                <th className="clickable-header" onClick={(e) => { handleSortClick('deaths'); sendEventToGA(category, action, 'deaths'); }}>
+                  <div className="heading">
+                    <div className="deaths">
+                      {isMobile ? t('Deaths') : t('Deaths')}
+                      {' '}
+                    </div>
+                    {' '}
+                    <div className="sortIcon">
+                      {stateSortObject.activeSorting === 'deaths' ? SortIcon(stateSortObject.currentOrder) : null}
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {stateSortObject.states.map((stateCode, index) => (
+                <StateWiseRow
+                  state={statewise[stateCode]}
+                  allNotificationsEnabled={allNotificationsEnabled}
+                  statesNotificationStatus={statesNotificationStatus[stateCode]}
+                  districts={districts[stateCode]}
+                  index={index + 1}
+                  key={stateCode}
+                  isMobile={isMobile}
+                  handleBellClick={handleBellClick}
+                  testingData={statewiseTestingData[stateCode]}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
-      </Modal>
+      </div>
+      {showModal && (
+        <Modal>
+          <div className="modal text-center">
+            {modalContent}
+            <div className="modal-button-wrapper">
+              {showGetNotificationButtons && <button className="btn" onClick={getNotificationPermissions}>Okay</button>}
+              <button className="btn" onClick={() => setShowModal(false)}>Close</button>
+            </div>
+          </div>
+        </Modal>
       )}
     </div>
   );
