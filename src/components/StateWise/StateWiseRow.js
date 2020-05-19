@@ -20,10 +20,10 @@ const StateWiseRow = ({
         className={`state-row ${isHidden ? '' : 'open'}`}
         key={state.name}
       >
-        <td className="expand-icon">
+        <td className="expand-icon fixed">
           <ChevronIcon />
         </td>
-        <td>{t(`states:${state.name}`)}</td>
+        <td className="fixed">{t(`states:${state.name}`)}</td>
         <td>
           {state.delta.confirmed ? (
             <span className="delta confirmed">
