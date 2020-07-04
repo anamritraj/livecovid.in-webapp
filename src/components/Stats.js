@@ -10,8 +10,8 @@ const Stats = (props) => {
     <div className="stats-grid">
       <div className=" card confirmed">
         <p className="delta">
-          (+
-          {Number(props.dayChange.confirmed).toLocaleString('en')}
+          (
+          {props.dayChange.confirmed > 0 ? `+ ${Number(props.dayChange.confirmed).toLocaleString('en')}` : '+0'}
           )
         </p>
         <p className="count">{Number(confirmed).toLocaleString('en')}</p>
@@ -20,8 +20,8 @@ const Stats = (props) => {
       </div>
       <div className=" card tested">
         <p className="delta">
-          (+
-          {Number(props.tested.delta).toLocaleString('en')}
+          (
+          {props.tested.delta > 0 ? `+ ${Number(props.tested.delta).toLocaleString('en')}` : '+0'}
           )
         </p>
         <p className="count">{Number(props.tested.totalsamplestested).toLocaleString('en')}</p>
@@ -29,8 +29,8 @@ const Stats = (props) => {
       </div>
       <div className=" card recovered">
         <p className="delta">
-          (+
-          {Number(props.dayChange.recovered).toLocaleString('en')}
+          (
+          {props.dayChange.recovered > 0 ? `+ ${Number(props.dayChange.recovered).toLocaleString('en')}` : '+0'}
           )
         </p>
         <p className="count">{Number(recovered).toLocaleString('en')}</p>
@@ -39,8 +39,8 @@ const Stats = (props) => {
       </div>
       <div className=" card deceased">
         <p className="delta">
-          (+
-          {Number(props.dayChange.deceased).toLocaleString('en')}
+          (
+          {props.dayChange.deceased > 0 ? `+ ${Number(props.dayChange.deceased).toLocaleString('en')}` : '+0'}
           )
         </p>
         <p className="count">{Number(deaths).toLocaleString('en')}</p>
