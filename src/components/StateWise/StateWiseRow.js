@@ -27,8 +27,7 @@ const StateWiseRow = ({
         <td>
           {state.delta.confirmed ? (
             <span className="delta confirmed">
-              +
-              {Number(state.delta.confirmed).toLocaleString('en')}
+              {(state.delta.confirmed >= 0 ? '+ ' : '') + Number(state.delta.confirmed).toLocaleString('en')}
             </span>
           ) : ('')}
           {' '}

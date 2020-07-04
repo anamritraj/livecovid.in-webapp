@@ -127,8 +127,7 @@ const RowTableAccordion = ({
                   <td>
                     {districts[districtName].delta.confirmed ? (
                       <span className="delta confirmed">
-                        +
-                        {Number(districts[districtName].delta.confirmed).toLocaleString('en')}
+                        {(districts[districtName].delta.confirmed >= 0 ? '+ ' : '') + Number(districts[districtName].delta.confirmed).toLocaleString('en')}
                       </span>
                     ) : ('')}
                     {' '}

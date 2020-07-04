@@ -42,13 +42,13 @@ const Home = (props) => (
             statewiseTestingData={props.statewiseTestingData}
           />
         </div>
-        <div className="grid-child zone-wrapper">
+        {/* <div className="grid-child zone-wrapper">
           {props.isLoading ? null : (
             <IndiaDistrictWiseZones
               theme={props.theme}
             />
           )}
-        </div>
+        </div> */}
       </div>
       <div className="row">
         <div className="col-12">
@@ -63,12 +63,12 @@ const Home = (props) => (
           />
         </div>
       </div>
-      <div className="grid">
+      {/* <div className="grid">
         <GenderChart
           gender={props.gender}
           theme={props.theme}
         />
-      </div>
+      </div> */}
     </div>
   </>
 );
