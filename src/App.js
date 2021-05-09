@@ -57,14 +57,7 @@ const App = () => {
       setTotal(data.total);
       setDayChange(data.dayChange);
       setTested(data.tested);
-
-      getStats().then(({ data }) => {
-        setAgeGroup(data.ageGroup);
-        setHospitalizationStatus(data.hospitalizationStatus);
-        setGender(data.gender);
-        setNationality(data.nationality);
-        setIsLoading(false);
-      });
+      setIsLoading(false);
     });
     getTestingData().then(({data}) => setTestingData(data))
   }, []);
